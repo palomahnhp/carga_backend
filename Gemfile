@@ -31,6 +31,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# SOAP client
+gem 'savon'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
