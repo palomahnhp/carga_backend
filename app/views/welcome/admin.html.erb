@@ -43,6 +43,14 @@
       </fieldset>
     </form>
     <button type="reset" class="btn btn-default">Cancelar</button>
-    <button type="submit" class="btn btn-primary" id="submit-survey">Actualizar</button>
+    <button type="submit" class="btn btn-primary" id="update-admin">Actualizar</button>
   </div>
 </div>
+
+<script>
+
+    $( "#update-admin" ).click(function() {
+      swal("Actualizado!", "La configuración se ha actualizado con éxito", "success");
+    })
+
+</script>
