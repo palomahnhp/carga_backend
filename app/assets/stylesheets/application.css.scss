@@ -32,7 +32,11 @@
 
  @import "font-awesome";
 
- .element-style {
+.label-admin {
+  text-align: left;
+}
+
+.element-style {
    margin-top: 100px;
  }
 
@@ -3023,7 +3027,7 @@
  }
  @media (min-width: 768px) {
    .form-horizontal .control-label {
-     text-align: right;
+     text-align: left;
      margin-bottom: 0;
      padding-top: 9px;
    }
