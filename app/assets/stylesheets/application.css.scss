@@ -32,6 +32,10 @@
 
  @import "font-awesome";
 
+ .element-style {
+   margin-top: 100px;
+ }
+
 .org-panel {
   background: #F3F3F3;
   border-radius: 5px;
@@ -39,14 +43,12 @@
 }
 
 .btn-index {
-  margin-top: 20%;
+  margin-top: 10%;
   width: 30%;
 }
 
  #ayto-logo {
-   width: 50%;
-   height: auto;
-   margin: 0 30% 5%;
+   width: 60%;
  }
 
  html {
