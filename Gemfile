@@ -33,6 +33,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # SOAP client
 gem 'savon'
+# Authorization
+gem 'cancancan'
+# Authentication
+gem 'devise'
+
+gem 'rails-i18n'
+gem 'responders'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

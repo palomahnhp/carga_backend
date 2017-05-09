@@ -1,7 +1,7 @@
 <div class="row element-style">
   <div class="col-md-5 col-md-offset-3">
     <div class="progress progress-striped active">
-      <div class="progress-bar" style="width: 45%"></div>
+      <div class="progress-bar progress-bar-success" style="width: 45%"></div>
     </div>
     <form class="form-horizontal">
       <fieldset>
@@ -170,33 +170,11 @@
                 <th>Tiempo medio</th>
                 <th>Tiempo máximo</th>
               </thead>
-              <tbody>
+              <tbody id="other-tasks">
                 <tr>
                   <td>
                     <td>
-                      <input class="form-control input-sm" type="text" id="inputSmall" placeholder="Tarea 1">
-                    </td>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <td>
-                      <input class="form-control input-sm" type="text" id="inputSmall" placeholder="Tarea 2">
+                      <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Tarea 1">
                     </td>
                   </td>
                   <td>
@@ -218,18 +196,23 @@
               </tbody>
             </table>
           </div>
-          <button type="reset" class="btn btn-success pull-right">Añadir tarea</button>
+          <button type="reset" class="btn btn-success pull-right" id="add-task">Añadir tarea</button>
         </div>
       </fieldset>
     </form>
-    <button type="reset" class="btn btn-default">Cancelar</button>
-    <button type="submit" class="btn btn-primary" id="submit-survey">Enviar</button>
+    <button type="reset" class="btn btn-default btn-lg">Cancelar</button>
+    <button type="submit" class="btn btn-primary btn-lg" id="submit-survey">Enviar encuesta</button>
   </div>
 </div>
 
 <script>
+    $("#add-task").click(function() {
+      taskTemplate = '<tr><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Tarea 1"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
+      
+      $("#other-tasks").append(taskTemplate);
+    })
 
-    $( "#submit-survey" ).click(function() {
+    $("#submit-survey").click(function() {
       swal("Gracias!", "La encuesta se ha enviado correctamente!", "success");
     })
 

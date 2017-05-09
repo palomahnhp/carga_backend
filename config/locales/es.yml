@@ -1,0 +1,192 @@
+es:
+  welcome:
+    title: Bienvenido!
+    main_text: Esta es la página de Administración del Voluntariado de Madrid
+  humanize:
+    "true":  "Sí"
+    "false": "No"
+  app_name: 'Voluntariado'
+  actions:   Acciones
+  action:
+    new:          'Nuevo %{model}'
+    new_fem:      'Nueva %{model}'
+    edit:         'Editar %{model}'
+    show:         'Ver %{model}'
+    destroy:      'Eliminar'
+    delete:       'Eliminar'
+    download:     'Descargar'
+    download_csv: 'Descargar tabla'
+    upload:       'Subir'
+    archive:      'Archivar'
+    search:       'Buscar'
+    back:         'Volver'
+    close:        'Cerrar'
+    add:          'Añadir'
+    remove:       'Eliminar'
+    approve:      'Aprobar'
+    manage:       'Gestionar'
+    reject:       'Rechazar'
+    recover:      'Restablecer'
+    share:        'Abrir'
+    undo_rejection: 'Deshacer rechazo'
+    process:  'Procesar'
+    man_trackings: 'Gestionar seguimientos'
+  upload_new_file: Nuevo fichero
+  new_element: Nuevo elemento
+  new_file:    Nuevo elemento
+  must_choose_a_file: Debe seleccionar un archivo
+  show_original_size: Ver en tamaño original
+  files_are_allowed_olny_on_update: Sólo se pueden subir archivos para registros ya existentes
+  does_not_have: "No tiene %{element}"
+  details: Detalles
+  sms: SMS
+  send_sms: Enviar SMS
+  send_message: Enviar mensaje
+  search_filter: 'Filtrar búsqueda'
+  type_text: 'Introducir texto'
+  date_placeholder: 'dd/mm/aaaa'
+  mark_as_pending: Marcar como pendiente
+  creating: Creando
+  representative: Representante legal
+  volunteers_amount: Número de voluntarios
+  other_data: Otros datos de interés
+  main_data: Datos principales
+  contact_data: Datos de contacto
+  logo: Logo
+  doc: Documento
+  docs: Documentos
+  url: Enlaces
+  urls: Enlaces de interés
+  video: Video
+  videos: Videos
+  image: Imágen
+  images: Imágenes
+  cell_phone: Móvil
+  update_logo: Actualizar logo
+  name: Nombre
+  messages:
+    are_you_sure: ¿Está seguro?
+    access_denied: "Accesso denegado, no tiene suficientes permisos."
+    select_a_model: Seleccionar %{model}
+    confirm_action: Se van a efectuar los cambios. ¿Está seguro de que desea continuar?
+    confirm_undo: Se perderán todos los cambios realizados. ¿Está seguro de que desea continuar?
+    confirm_mark_as_pending: Se marcará la solicitud como pendiente. ¿Está seguro de que desea continuar?
+    confirm_revised_all_volunteer: Los campos de errores del voluntario han sido marcados como revisados. ¿Está seguro de que quiere continuar?
+    confirm_revised_volunteer: Este voluntario tiene campos de errores pendientes de revisar. ¿Está seguro de que quiere continuar?
+    confirm_unsubscribe_volunteer: Se aprobará y gestionará la baja. ¿Está seguro de que desea continuar?
+    confirm_file_deletion: El archivo se eliminará cuando se de al botón de actualizar. ¿Está seguro de que desea continuar?
+    undo_changes: Deshacer cambios
+    request_form_successfully_rejected: Solicitud rechazada con éxito
+    request_form_successfully_managed: Solicitud gestionada con éxito
+    request_form_successfully_marked_as_pending: Solicitud marcada como pendiente
+    request_form_cannot_be_processed: 'La solicitud no puede ser procesada porque ya está %{status_name}'
+    user_is_not_in_given_project: La solicitud no puede ser procesada porque el usuario no está en el proyecto en que se solicita su baja
+    errors_found_in_request_form: "Se han encontrado errores al procesar la solicitud:"
+    another_manager_is_processing_this_request_form: 'El gestor %{manager} está tratando esta solicitud'
+    succesfully_recovered: Se ha activado correctamente
+  will_paginate:
+    next_label: ❱
+    page_entries_info:
+      multi_page: Mostrando %{model} %{from} - %{to} de %{count} en total
+      multi_page_html: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> en total
+      single_page:
+        one: Mostrando 1 %{model}
+        other: Mostrando en total %{count} %{model}
+        zero: No se encontraron %{model}
+      single_page_html:
+        one: Mostrando <b>1</b> %{model}
+        other: Mostrando en <b>total&nbsp;%{count}</b> %{model}
+        zero: No se encontraron %{model}
+    page_gap: "&hellip;"
+    previous_label: "❰"
+  items_per_page: "Elementos por página"
+  select_item: Elegir opcion
+  work_place_addresses: 'Direcciones del lugar de ejecución'
+  user_name:  'Nombre'
+  user_login: 'Login'
+  active:   Activo
+  active_f: Activa
+  inactive: Inactivo
+  all:      Todos
+  of: de
+  and: y
+  contact_person: Persona de contacto
+  common_fields: 'Campos comunes'
+  specific_fields:  'Campos específicos'
+  administration: Administración
+  catalogs: Catálogos
+  district: Distrito
+  diary: Agenda
+  pending: Pendientes
+  block: Bloque
+  filter: Filtro
+  status: Estado
+  reset_search: "Limpiar búsqueda"
+  add_day: 'Añadir día'
+  available_day: 'Día disponible'
+  availability: 'Disponibilidad'
+  id: 'ID del voluntario'
+  choose_availability: 'Elegir disponibilidad'
+  search: 'Buscar'
+  sms_service: 'Servicio SMS'
+  mail_service: 'Servicio Mail'
+  administration_title_text: Aquí se administran las tablas de la aplicación
+  areas_text: Ámbitos a los que pertenece un proyecto
+  project_types_text: Tipos de proyecto a los que un proyecto puede ser
+  collectives_text: Colectivos a los que pertenece un proyecto
+  coordinations_text: Coordinaciones asociadas a un proyecto
+  all_statuses: Todos los estados
+  errors_title_volun: Errores u observaciones
+  revised: Revisado
+  files: Archivos
+  associated_projects: Proyectos asociados al voluntario
+  not_associated_projects: Asociar a proyectos
+  trackings:
+    unsubscribe_from_project: Baja de un proyecto
+    subscribe_to_project: Alta en un proyecto
+    volunteer_subscribe: Alta de voluntario
+    volunteer_unsubscribe: Baja de voluntario
+    entity_subscribe: Alta de entidad
+    entity_unsubscribe: Baja de entidad
+  errors:
+    missing_required_fields: Faltan datos obligatorios
+    request_form_no_longer_exists: 'La %{request_type} ya no existe'
+    request_form_must_be_at_processing: 'La solicitud tiene que estar en estado "en trámite"'
+    a_rejection_type_must_be_selected: Debe seleccionar un motivo de rechazo
+    cannot_log_in: No puede iniciar sessión
+    service_temporally_unavailable: El servicio no está disponible temporalmente. Por favor, inténtelo más tarde.
+  date:
+    datepicker:
+      default: "dd/mm/yyyy"
+    formats:
+      default: ! '%d/%m/%Y'
+  no_accept_cond: No acepta condiciones
+  others: Otros
+  inactivate: Dar de baja entidad
+  alert_title: 'Lo sentimos'
+  alert_message: 'No se ha encontrado ningún número de teléfono móvil disponible'
+  alert_mail: 'No se ha encontrado ningúna dirección de correo electrónico disponible'
+  alert_message_sending: 'Temporalmente fuera de servicio'
+  success_sending: '¡Enviado!'
+  success_message_sending: 'El mensaje ha sido enviado'
+  unauthorized:
+    default: No tienes permiso para acceder a esta página.
+    manage:
+      all: "No tienes permiso para realizar la acción '%{action}' sobre %{subject}."
+  message_title_urgent: Proyecto urgente
+  message_body_urgent: Ya existe un proyecto urgente
+  message_title_outstanding: Proyectos destacados
+  message_body_outstanding: Ya existen tres proyectos destacados
+  volunteer_docs: Documentación del voluntario
+  age: Edad
+  setting:
+    form:
+      note: Tener en cuenta que la clave debe tener el prefijo "VolunBackend." o "VolunFrontend."
+  send_mail:
+    title: Envío de correo electrónico
+    sender: Remitente
+    recipient: Destinatario
+    subject: Asunto
+    message: Mensaje
+    send_button: Enviar email
+  value: Valor
