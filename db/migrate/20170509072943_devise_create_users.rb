@@ -31,6 +31,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
       t.string :name
       t.string :last_name
+      t.string :last_name_alt
+      t.string :official_position
       t.string :login
       t.string :locale
       t.references :notice_type, index: true, foreign_key: true

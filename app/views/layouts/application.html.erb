@@ -8,16 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <header>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top nav-ayto">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Carga de trabajo prototipo</a>
+      <a href="/" >
+        <img id="ayto-nw-logo" src="/assets/madrid.svg">
+      </a>
+      <!-- <a class="navbar-brand" href="/">Carga de trabajo prototipo</a> -->
     </div>
     <div class="navbar-right">
       <a class="navbar-brand">
         <%if @current_user%>
-          <%= @current_user.login %>,
-          <%= @current_user.email %>
+          <p><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
+          <p><%= @current_user.official_position %></p>
         <%end%>
       </a>
     </div>

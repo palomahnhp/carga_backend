@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170509083846) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "last_name"
+    t.string   "last_name_alt"
+    t.string   "official_position"
     t.string   "login"
     t.string   "locale"
     t.integer  "notice_type_id"
