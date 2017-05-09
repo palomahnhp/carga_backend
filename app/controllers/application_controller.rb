@@ -67,6 +67,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if devise_controller?
   end
 
+  def use_devise_authentication?
+  end
+
   def user_authenticated?
     session[:uweb_user_data]
     current_user.present?

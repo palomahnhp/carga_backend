@@ -14,7 +14,12 @@
       <a class="navbar-brand" href="/">Carga de trabajo prototipo</a>
     </div>
     <div class="navbar-right">
-      <a class="navbar-brand"></a>
+      <a class="navbar-brand">
+        <%if @current_user%>
+          <%= @current_user.login %>,
+          <%= @current_user.email %>
+        <%end%>
+      </a>
     </div>
   </div>
 </nav>
