@@ -39,6 +39,7 @@ gem 'cancancan'
 gem 'devise'
 
 gem 'rails-i18n'
+gem 'responders'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
