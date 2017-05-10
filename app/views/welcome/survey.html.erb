@@ -200,7 +200,9 @@
         </div>
       </fieldset>
     </form>
-    <button type="reset" class="btn btn-default btn-lg">Cancelar</button>
+    <a href="/">
+      <button type="reset" class="btn btn-default btn-lg" hrc>Cancelar</button>
+    </a>
     <button type="submit" class="btn btn-primary btn-lg" id="submit-survey">Enviar encuesta</button>
   </div>
 </div>
@@ -208,7 +210,7 @@
 <script>
     $("#add-task").click(function() {
       taskTemplate = '<tr><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Tarea 1"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
-      
+
       $("#other-tasks").append(taskTemplate);
     })
 

@@ -1,0 +1,32 @@
+<% template_path =  local_assigns[:template_path] || "#{params[:controller]}/#{params[:action]}" %>
+<% html_content  =  j(render file: template_path) %>
+
+//alert("<%= params.inspect %>");
+
+$('<div/>', {
+  id: 'dialog',
+  class: 'dialog-custom',
+  style: 'display:none'
+}).appendTo('body').
+html("<%= html_content %>").
+dialog({
+  title:       $('#dialog > h1.page-header').remove().text(),
+  resizable:   true,
+  closeText:   '',
+  stack:       true,
+  dialogClass: '',
+  modal:       false,
+  width:       'auto',
+  buttons: [
+    {
+      text: "<%= t('action.close') %>",
+      class: "btn btn-default",
+      click: function() {
+        $( this ).dialog( "close" );
+      }
+    }
+  ],
+  'close': function(event, ui){
+    $(this).remove();
+  }
+});

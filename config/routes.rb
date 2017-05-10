@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/admin', to: 'welcome#admin'
   get '/survey', to: 'welcome#survey'
+  get '/send_mail', to: 'welcome#send_mail'
+  get '/show_mail', to: 'welcome#show_mail'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
