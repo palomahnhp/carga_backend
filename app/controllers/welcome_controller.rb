@@ -11,9 +11,15 @@ class WelcomeController < ApplicationController
     @current_user
   end
 
+  def show_mail
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def send_mail
     begin
-      UserMailer.reminder_email.deliver_now
+      UserMailer.reminder_email(params[:recipient], message: params[:message], subject: params[:subject]).deliver_now
       redirect_to admin_path, notice: I18n.t('success_message_sending')
     rescue Exception  => e
       Rails.logger.error('VolunteersController#send_mail') do

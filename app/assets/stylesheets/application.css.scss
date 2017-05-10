@@ -32,6 +32,15 @@
 
  @import "font-awesome";
 
+#mail-fieldset {
+  margin: 130px 350px;
+  width: 600px;
+}
+
+.mail-text{
+  height: 200px !important;
+}
+
 .nav-ayto {
   height: 80px;
 }
@@ -57,7 +66,7 @@
 
 #ayto-nw-logo {
   height: 65px;
-  margin: 10px;
+  margin: 10px 30px;
 }
 
  #ayto-logo {
