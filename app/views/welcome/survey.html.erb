@@ -171,10 +171,10 @@
                 <th>Tiempo máximo</th>
               </thead>
               <tbody id="other-tasks">
-                <tr>
+                <tr class="task-row">
                   <td>
                     <td>
-                      <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Tarea 1">
+                      <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Otra tarea">
                     </td>
                   </td>
                   <td>
@@ -211,9 +211,10 @@
 
 <script>
     $("#add-task").click(function() {
-      taskTemplate = '<tr><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Tarea 1"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
-
-      $("#other-tasks").append(taskTemplate);
+      taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Otra tarea"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
+      if($(".task-row").length < 3) {
+        $("#other-tasks").append(taskTemplate);
+      }
     })
 
     $("#submit-survey").click(function() {
