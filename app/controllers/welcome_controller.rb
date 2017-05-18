@@ -33,7 +33,7 @@ class WelcomeController < ApplicationController
       Rails.logger.error('VolunteersController#send_mail') do
         "Error sending Email: \n#{e}"
       end
-      redirect_to admin_path, alert: I18n.t('alert_message_sending')
+      redirect_to tracking_path, alert: I18n.t('alert_message_sending')
     end
   end
 end
