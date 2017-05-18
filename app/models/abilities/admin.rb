@@ -3,6 +3,7 @@ module Abilities
     include CanCan::Ability
 
     def initialize(user)
+      cannot :settings, WelcomeController
     end
 
   end
