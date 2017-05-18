@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  get '/admin', to: 'welcome#admin'
+  get '/admin_panel', to: 'welcome#admin_panel'
+  get '/settings', to: 'welcome#settings'
+  get '/tracking', to: 'welcome#tracking'
   get '/survey', to: 'welcome#survey'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'

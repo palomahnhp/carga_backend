@@ -32,8 +32,25 @@
 
  @import "font-awesome";
 
+#ayto-logo-admin {
+  width: 60%;
+  margin-left: 75px;
+}
+
+footer {
+  height: 100px;
+}
+
+.mail-icon-user {
+  margin-left: 20px;
+}
+
+.mail-icon-users {
+  margin-left: 20px;
+}
+
 #mail-fieldset {
-  margin: 130px 350px;
+  margin: 130px 290px;
   width: 600px;
 }
 
@@ -50,7 +67,7 @@
 }
 
 .element-style {
-   margin-top: 100px;
+   margin-top: 150px;
  }
 
 .org-panel {
@@ -2564,7 +2581,7 @@
    width: 100%;
    padding: 0;
    margin-bottom: 20px;
-   font-size: 21px;
+   font-size: 28px;
    line-height: inherit;
    color: #555555;
    border: 0;
