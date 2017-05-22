@@ -35,8 +35,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'savon'
 # Authorization
 gem 'cancancan'
-# Authentication
-gem 'devise'
 
 gem 'rails-i18n'
 gem 'responders'

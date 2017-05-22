@@ -4,9 +4,17 @@
       <img id="ayto-logo-admin" src="/assets/ayto.png">
     </div>
     <div class="row">
-      <a href="/survey" class="btn btn-success btn-lg btn-index">Encuesta</a>
-      <a href="/settings" class="btn btn-info btn-lg btn-index">Configuración</a>
-      <a href="/tracking" class="btn btn-info btn-lg btn-index">Seguimiento</a>
+      <% if @current_user.admin_role? %>
+        <div class="col-md-12 col-md-offset-2">
+          <a href="/survey" class="btn btn-success btn-lg btn-index">Encuesta</a>
+          <a href="/tracking" class="btn btn-info btn-lg btn-index">Seguimiento</a>
+        </div>
+      <% end %>
+      <% if @current_user.superadmin_role? %>
+        <a href="/survey" class="btn btn-success btn-lg btn-index">Encuesta</a>
+        <a href="/settings" class="btn btn-info btn-lg btn-index">Configuración</a>
+        <a href="/tracking" class="btn btn-info btn-lg btn-index">Seguimiento</a>
+      <% end %>
     </div>
   </div>
 </div>

@@ -26,9 +26,7 @@ class LoginManager
           name:                  login_data[:name],
           last_name:             login_data[:last_name],
           last_name_alt:         login_data[:last_name_alt],
-          official_position:     login_data[:official_position],
-          password:              login_data[:document],
-          password_confirmation: login_data[:document]
+          official_position:     login_data[:official_position]
         )
         copy_errors_from!(user) unless user.save
       end

@@ -7,21 +7,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate!, unless: 'user_authenticated?'
-  before_action :block_devise_views, unless: 'use_devise_authentication?'
   before_action :set_page_params, only: [:index]
-  after_action :update_record_history, only: [:create, :update, :destroy], unless: 'devise_controller?'
-
-  helper_method :use_devise_authentication?, :cast_as_boolean
 
   rescue_from CanCan::AccessDenied do |_exception|
     respond_to do |format|
       format.html { redirect_to root_path, alert: I18n.t('messages.access_denied') }
       format.json { render json: {error: I18n.t('messages.access_denied')}, status: :forbidden }
     end
-  end
-
-  def cast_as_boolean(boolean_string)
-    ActiveRecord::Type::Boolean.new.type_cast_from_user boolean_string
   end
 
   def uweb_authenticated?
@@ -63,21 +55,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def block_devise_views
-    redirect_to root_path if devise_controller?
-  end
-
-  def use_devise_authentication?
-  end
-
   def user_authenticated?
     session[:uweb_user_data]
     current_user.present?
-  end
-
-  # Devise: Where to redirect users once they have logged in
-  def after_sign_in_path_for(resource)
-    root_path
   end
 
   def set_page_params
