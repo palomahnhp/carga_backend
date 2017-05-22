@@ -171,7 +171,7 @@
                 <th>Tiempo máximo</th>
               </thead>
               <tbody id="other-tasks">
-                <tr class="task-row">
+                <tr>
                   <td>
                     <td>
                       <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Otra tarea">
@@ -196,6 +196,7 @@
               </tbody>
             </table>
           </div>
+          <button type="reset" class="btn btn-danger pull-right" id="remove-task">Eliminar tarea</button>
           <button type="reset" class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
         </div>
       </fieldset>
@@ -212,8 +213,14 @@
 <script>
     $("#add-task").click(function() {
       taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Otra tarea"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
-      if($(".task-row").length < 3) {
+      if($(".task-row").length < 2) {
         $("#other-tasks").append(taskTemplate);
+      }
+    })
+
+    $("#remove-task").click(function() {
+      if($(".task-row").length >= 1) {
+        $(".task-row").last().remove()
       }
     })
 
