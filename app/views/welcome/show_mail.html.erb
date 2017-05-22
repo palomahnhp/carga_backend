@@ -1,3 +1,4 @@
+<% if can? :settings, @current_user %>
 <form class="form-horizontal" id="mail-fieldset" action="/send_mail" method="get">
   <fieldset>
     <legend>Enviar correo electrónico</legend>
@@ -35,3 +36,4 @@
     </div>
   </fieldset>
 </form>
+<% end %>
