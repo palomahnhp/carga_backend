@@ -1,3 +1,4 @@
+<% if can? :settings, @current_user %>
 <div class="row element-style">
   <div class="col-md-8 col-md-offset-2">
     <form class="form-horizontal">
@@ -153,6 +154,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 <script>
     $(".mail-icon-user").click(function(){

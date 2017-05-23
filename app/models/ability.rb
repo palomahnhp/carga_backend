@@ -6,9 +6,15 @@ class Ability
     user ||= User.new
     if user.superadmin_role?
       can :manage, :all
-    end
     elsif user.admin_role?
+      can :manage, :all
+      cannot :settings
+    else
+      cannot :settings
+      cannot :tracking
+      cannot :show_mail
+      cannot :admin_panel
     end
-    elsif user.respondent_role?
-    end
+
+  end
 end
