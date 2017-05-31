@@ -5,13 +5,13 @@
     </div>
     <div class="row">
       <div class="col-md-11 col-md-offset-1">
-        <% if @current_user.respondent_role? %>
+        <% if @current_user && @current_user.respondent_role? %>
         	<a href="/survey" class="btn btn-success btn-lg btn-index-enter">Encuesta</a>
         <% end %>
-        <% if @current_user.superadmin_role?%>
+        <% if @current_user && @current_user.superadmin_role?%>
   	       <a href="/admin_panel" class="btn btn-info btn-lg btn-index-enter">Super Admin</a>
         <% end %>
-        <% if @current_user.admin_role? %>
+        <% if @current_user && @current_user.admin_role? %>
   	       <a href="/admin_panel" class="btn btn-info btn-lg btn-index-enter">Admin</a>
         <% end %>
       </div>
