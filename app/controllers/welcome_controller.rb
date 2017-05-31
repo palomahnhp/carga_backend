@@ -20,6 +20,13 @@ class WelcomeController < ApplicationController
   end
 
   def show_mail
+    unit = Unit.find_by(id: 1)
+    @group_recipient = []
+    unit.users.each do |user|
+      @group_recipient << user.email
+    end
+    user = User.find_by(id: 1)
+    @recipient = user.email
     respond_to do |format|
       format.html
     end

@@ -11,18 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523065211) do
+ActiveRecord::Schema.define(version: 20170524102355) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
+    t.integer  "response_level"
     t.boolean  "active"
     t.boolean  "pending"
     t.boolean  "completed"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer  "unit_id"
     t.string   "name"
     t.string   "email"
     t.string   "last_name"
@@ -36,5 +44,7 @@ ActiveRecord::Schema.define(version: 20170523065211) do
     t.boolean  "admin_role",        default: false
     t.boolean  "respondent_role",   default: true
   end
+
+  add_index "users", ["unit_id"], name: "index_users_on_unit_id"
 
 end
