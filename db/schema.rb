@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524102355) do
+ActiveRecord::Schema.define(version: 20170531115800) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20170524102355) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -31,13 +36,16 @@ ActiveRecord::Schema.define(version: 20170524102355) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "unit_id"
+    t.string   "login"
     t.string   "name"
-    t.string   "email"
     t.string   "last_name"
     t.string   "last_name_alt"
+    t.string   "document"
+    t.string   "email"
+    t.string   "phone_number"
     t.string   "official_position"
-    t.string   "login"
-    t.string   "locale"
+    t.string   "unit_name"
+    t.string   "personal_number"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.boolean  "superadmin_role",   default: false
