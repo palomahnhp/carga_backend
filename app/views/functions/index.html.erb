@@ -17,6 +17,7 @@
                     <tr>
                       <th>Número</th>
                       <th>Nombre</th>
+                      <th>Puesto</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -29,6 +30,19 @@
                           </td>
                           <td>
                             <input type="text" class="form-control" id="inputDefault" name="name" value="<%= function.name %>">
+                          </td>
+                          <td>
+                            <select class="form-control" id="select" name="position_id">
+                              <% Position.all.each do |position| %>
+                              <option value="<%= position.id %>"
+                                <% if position.id == function.position_id %>
+                                   selected="selected"
+                                <% end %>
+                                >
+                                <%= position.name %>
+                              </option>
+                              <% end %>
+                            </select>
                           </td>
                           <td>
                             <input type="hidden"value="<%= function.id %>" name="id"/>

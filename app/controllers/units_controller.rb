@@ -19,6 +19,16 @@ class UnitsController < ApplicationController
 
   def delete
     @unit = Unit.find(params[:id])
+    if @unit.positions
+      @unit.positions.each do |position|
+        if position.functions
+          position.functions.each do |function|
+            function.destroy
+          end
+        end
+        position.destroy
+      end
+    end
     @unit.destroy
     redirect_to action: :index
   end
