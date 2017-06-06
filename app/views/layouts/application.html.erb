@@ -6,8 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <header>
@@ -23,6 +23,7 @@
         <%if @current_user%>
           <p><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
           <p><%= @current_user.official_position %></p>
+          <p><%= @current_user.unit_name %></p>
         <%end%>
       </a>
     </div>
