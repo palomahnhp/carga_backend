@@ -4,17 +4,23 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
   get '/admin_panel', to: 'welcome#admin_panel'
   get '/settings', to: 'welcome#settings'
   get '/settings_campaigns', to: 'welcome#settings_campaigns'
-  get '/positions', to: 'positions#index'
-  get '/positions/new', to: 'positions#new'
-  get '/units', to: 'units#index'
-  get '/units/new', to: 'units#new'
   get '/tracking', to: 'welcome#tracking'
   get '/survey', to: 'welcome#survey'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
+
+  get '/positions', to: 'positions#index'
+  get '/positions/delete', to: 'positions#delete'
+  get '/positions/new', to: 'positions#new'
+
+  get '/units', to: 'units#index'
+  get '/units/delete', to: 'units#delete'
+  get '/units/new', to: 'units#new'
+
 
   post '/positions/update', to: 'positions#update'
   post '/positions/create', to: 'positions#create'
