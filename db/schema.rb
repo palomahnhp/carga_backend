@@ -45,7 +45,14 @@ ActiveRecord::Schema.define(version: 20170606093122) do
 
   create_table "units", force: :cascade do |t|
     t.string   "name"
+    t.string   "alias"
     t.string   "unit_number"
+    t.string   "cod_area"
+    t.string   "area_name"
+    t.string   "cod_dir"
+    t.string   "dir_name"
+    t.string   "cod_subdir"
+    t.string   "subdir_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
