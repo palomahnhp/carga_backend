@@ -17,6 +17,7 @@
                     <tr>
                       <th>Número</th>
                       <th>Nombre</th>
+                      <th>Unidad</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -29,6 +30,19 @@
                           </td>
                           <td>
                             <input type="text" class="form-control" id="inputDefault" name="name" value="<%= position.name %>">
+                          </td>
+                          <td>
+                            <select class="form-control" id="select" name="position_id">
+                              <% Unit.all.each do |unit| %>
+                              <option value="<%= unit.id %>"
+                                <% if unit.id == position.unit_id %>
+                                   selected="selected"
+                                <% end %>
+                                >
+                                <%= unit.name %>
+                              </option>
+                              <% end %>
+                            </select>
                           </td>
                           <td>
                             <input type="hidden"value="<%= position.id %>" name="id"/>

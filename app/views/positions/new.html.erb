@@ -18,6 +18,7 @@
                 <tr>
                   <th>Número</th>
                   <th>Nombre</th>
+                  <th>Unidad</th>
                 </tr>
               </thead>
               <tbody>
@@ -27,6 +28,13 @@
                       </td>
                       <td>
                         <input type="text" class="form-control" id="inputDefault" name="name">
+                      </td>
+                      <td>
+                        <select class="form-control" id="select" name="unit_id">
+                          <% Unit.all.each do |unit| %>
+                          <option value="<%= unit.id %>"><%= unit.name %></option>
+                          <% end %>
+                        </select>
                       </td>
                     </tr>
               </tbody>

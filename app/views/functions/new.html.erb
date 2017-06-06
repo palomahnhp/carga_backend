@@ -18,6 +18,7 @@
                 <tr>
                   <th>Número</th>
                   <th>Nombre</th>
+                  <th>Puesto</th>
                 </tr>
               </thead>
               <tbody>
@@ -27,6 +28,13 @@
                       </td>
                       <td>
                         <input type="text" class="form-control" id="inputDefault" name="name">
+                      </td>
+                      <td>
+                        <select class="form-control" id="select" name="position_id">
+                          <% Position.all.each do |position| %>
+                          <option value="<%= position.id %>"><%= position.name %></option>
+                          <% end %>
+                        </select>
                       </td>
                     </tr>
               </tbody>
