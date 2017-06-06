@@ -6,6 +6,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.boolean :active
       t.boolean :pending
       t.boolean :completed
+      
       t.timestamps null: false
     end
   end

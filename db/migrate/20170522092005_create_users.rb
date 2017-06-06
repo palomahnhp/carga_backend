@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.belongs_to :unit, index: true
+      t.belongs_to :position, index: true
       t.string :login
       t.string :name
       t.string :last_name
@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :official_position
       t.string :unit_name
       t.string :personal_number
+
       t.timestamps null: false
     end
   end

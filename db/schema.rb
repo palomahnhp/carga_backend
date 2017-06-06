@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531115800) do
+ActiveRecord::Schema.define(version: 20170606093122) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -23,12 +23,25 @@ ActiveRecord::Schema.define(version: 20170531115800) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "functions", force: :cascade do |t|
+    t.integer  "position_id"
+    t.string   "name"
+    t.string   "function_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "functions", ["position_id"], name: "index_functions_on_position_id"
+
   create_table "positions", force: :cascade do |t|
+    t.integer  "unit_id"
     t.string   "name"
     t.string   "position_number"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "positions", ["unit_id"], name: "index_positions_on_unit_id"
 
   create_table "units", force: :cascade do |t|
     t.string   "name"
@@ -38,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170531115800) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "unit_id"
+    t.integer  "position_id"
     t.string   "login"
     t.string   "name"
     t.string   "last_name"
@@ -56,6 +69,6 @@ ActiveRecord::Schema.define(version: 20170531115800) do
     t.boolean  "respondent_role",   default: true
   end
 
-  add_index "users", ["unit_id"], name: "index_users_on_unit_id"
+  add_index "users", ["position_id"], name: "index_users_on_position_id"
 
 end
