@@ -10,8 +10,27 @@
           <a href="/units" class="btn btn-info btn-lg btn-index">Unidades</a>
           <a href="/positions" class="btn btn-info btn-lg btn-index">Puestos</a>
           <a href="/functions" class="btn btn-info btn-lg btn-index">Funciones</a>
+          <a id="respondents-wip" class="btn btn-danger btn-lg btn-index">Encuestados</a>
+          <a id="responses-wip" class="btn btn-danger btn-lg btn-index">Respuestas</a>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
+
+<script>
+    $('#respondents-wip').click(function(){
+        swal(
+            'Oops...',
+            'Estamos trabajando en ello...!',
+            'error'
+        )
+    });
+    $('#responses-wip').click(function(){
+        swal(
+            'Oops...',
+            'Estamos trabajando en ello...!',
+            'error'
+        )
+    });
+</script>
