@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+  #prototype until structure and association info is revealed.
+  #when we get the info, change welcome controller methods to their own controllers
+
   def index
     @current_user
   end
@@ -8,6 +11,10 @@ class WelcomeController < ApplicationController
   end
 
   def settings
+    @current_user
+  end
+
+  def settings_campaigns
     @current_user
   end
 

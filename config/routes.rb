@@ -6,11 +6,20 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/admin_panel', to: 'welcome#admin_panel'
   get '/settings', to: 'welcome#settings'
+  get '/settings_campaigns', to: 'welcome#settings_campaigns'
+  get '/positions', to: 'positions#index'
+  get '/positions/new', to: 'positions#new'
+  get '/units', to: 'units#index'
+  get '/units/new', to: 'units#new'
   get '/tracking', to: 'welcome#tracking'
   get '/survey', to: 'welcome#survey'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
 
+  post '/positions/update', to: 'positions#update'
+  post '/positions/create', to: 'positions#create'
+  post '/units/update', to: 'units#update'
+  post '/units/create', to: 'units#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

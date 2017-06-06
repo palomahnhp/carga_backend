@@ -22,11 +22,15 @@ class LoginManager
       ActiveRecord::Base.transaction do
         self.user = User.new(
           login:                 login_data[:login],
-          email:                 login_data[:email],
           name:                  login_data[:name],
           last_name:             login_data[:last_name],
           last_name_alt:         login_data[:last_name_alt],
-          official_position:     login_data[:official_position]
+          document:              login_data[:document],
+          email:                 login_data[:email],
+          official_position:     login_data[:official_position],
+          unit_name:             login_data[:unit_name],
+          personal_number:       login_data[:personal_number],
+          phone_number:          login_data[:phone_number]
         )
         copy_errors_from!(user) unless user.save
       end
