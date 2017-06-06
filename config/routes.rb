@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
 
+  get '/functions', to: 'functions#index'
+  get '/functions/delete', to: 'functions#delete'
+  get '/functions/new', to: 'functions#new'
+
   get '/positions', to: 'positions#index'
   get '/positions/delete', to: 'positions#delete'
   get '/positions/new', to: 'positions#new'
@@ -22,8 +26,12 @@ Rails.application.routes.draw do
   get '/units/new', to: 'units#new'
 
 
+  post '/functions/update', to: 'functions#update'
+  post '/functions/create', to: 'functions#create'
+
   post '/positions/update', to: 'positions#update'
   post '/positions/create', to: 'positions#create'
+
   post '/units/update', to: 'units#update'
   post '/units/create', to: 'units#create'
   # Example of regular route:
