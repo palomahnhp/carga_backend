@@ -17,6 +17,12 @@ class PositionsController < ApplicationController
     redirect_to action: :index
   end
 
+  def delete
+    @position = Position.find(params[:id])
+    @position.destroy
+    redirect_to action: :index
+  end
+
   private
 
   def position_params

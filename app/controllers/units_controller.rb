@@ -17,6 +17,12 @@ class UnitsController < ApplicationController
     redirect_to action: :index
   end
 
+  def delete
+    @unit = Unit.find(params[:id])
+    @unit.destroy
+    redirect_to action: :index
+  end
+
   private
 
   def unit_params
