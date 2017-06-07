@@ -23,74 +23,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><%= Unit.first.name %></td>
-                    <td>40%</td>
-                    <td>
-                      <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                      </div>
-                    </td>
-                    <td>
-                      <a data-toggle="modal" href="#user-list">
-                        <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
-                      </a>
-                      <a href="/show_mail">
-                        <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><%= Unit.second.name %></td>
-                    <td>30%</td>
-                    <td>
-                      <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-success" style="width: 30%"></div>
-                      </div>
-                    </td>
-                    <td>
-                      <a data-toggle="modal" href="#user-list">
-                        <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
-                      </a>
-                      <a href="/show_mail">
-                        <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Unidad 3</td>
-                    <td>10%</td>
-                    <td>
-                      <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-success" style="width: 10%"></div>
-                      </div>
-                    </td>
-                    <td>
-                      <a data-toggle="modal" href="#user-list">
-                        <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
-                      </a>
-                      <a href="/show_mail">
-                        <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Unidad 4</td>
-                    <td>80%</td>
-                    <td>
-                      <div class="progress progress-striped">
-                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
-                      </div>
-                    </td>
-                    <td>
-                      <a data-toggle="modal" href="#user-list">
-                        <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
-                      </a>
-                      <a href="/show_mail">
-                        <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  <% Unit.all.each do |unit| %>
+                    <tr>
+                      <td><%= unit.name %></td>
+                      <td><%= response_level = Random.rand(101) %>%</td>
+                      <td>
+                        <div class="progress progress-striped">
+                          <div class="progress-bar progress-bar-success" style="width: <%= response_level %>%"></div>
+                        </div>
+                      </td>
+                      <td>
+                        <a data-toggle="modal" href="#user-list">
+                          <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
+                        </a>
+                        <a href="/show_mail">
+                          <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
             </div>
@@ -114,7 +65,7 @@
         <h4 class="modal-title">Lista de usuarios</h4>
       </div>
       <div class="modal-body">
-        <% Unit.first.users.each do |each| %>
+        <% User.all.each do |each| %>
         <div class="radio">
           <label>
             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
