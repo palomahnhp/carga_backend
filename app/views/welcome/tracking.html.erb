@@ -50,7 +50,7 @@
       </fieldset>
     </form>
     <div class="col-md-6">
-      <a href="/admin_panel">
+      <a href="/">
         <button type="submit" class="btn btn-info">Volver</button>
       </a>
     </div>
@@ -65,13 +65,15 @@
         <h4 class="modal-title">Lista de usuarios</h4>
       </div>
       <div class="modal-body">
-        <% User.all.each do |each| %>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-            <%= each.name %> <%= each.last_name %> <%= each.last_name_alt %>
-          </label>
-        </div>
+        <% Unit.first.positions.each do |x| %>
+          <% x.users.each do |z| %>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                <%= z.name %> <%= z.last_name %> <%= z.last_name_alt %>
+              </label>
+            </div>
+          <%end%>
         <%end%>
       </div>
       <div class="modal-footer">

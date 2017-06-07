@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get '/settings', to: 'welcome#settings'
   get '/settings_campaigns', to: 'welcome#settings_campaigns'
   get '/tracking', to: 'welcome#tracking'
-  get '/survey', to: 'welcome#survey'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
 
@@ -25,6 +24,9 @@ Rails.application.routes.draw do
   get '/units/delete', to: 'units#delete'
   get '/units/new', to: 'units#new'
 
+  get '/surveys', to: 'surveys#index'
+  get '/surveys/show', to: 'surveys#show'
+
 
   post '/functions/update', to: 'functions#update'
   post '/functions/create', to: 'functions#create'
@@ -34,6 +36,10 @@ Rails.application.routes.draw do
 
   post '/units/update', to: 'units#update'
   post '/units/create', to: 'units#create'
+
+  post '/surveys/submit_survey', to: 'surveys#submit_survey'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
