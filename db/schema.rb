@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606093122) do
+ActiveRecord::Schema.define(version: 20170607075012) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
     t.integer  "response_level"
-    t.boolean  "active"
-    t.boolean  "pending"
-    t.boolean  "completed"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "active",         default: false
+    t.boolean  "pending",        default: true
+    t.boolean  "completed",      default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "functions", force: :cascade do |t|
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20170606093122) do
   end
 
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id"
+
+  create_table "surveys", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "units", force: :cascade do |t|
     t.string   "name"

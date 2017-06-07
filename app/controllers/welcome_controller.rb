@@ -6,10 +6,6 @@ class WelcomeController < ApplicationController
     @current_user
   end
 
-  def survey
-    @current_user
-  end
-
   def settings
     @current_user
   end
@@ -22,15 +18,13 @@ class WelcomeController < ApplicationController
     @current_user
   end
 
-  def admin_panel
-    @current_user
-  end
-
   def show_mail
     unit = Unit.find_by(id: 1)
     @group_recipient = []
-    unit.users.each do |user|
-      @group_recipient << user.email
+    unit.positions.each do |position|
+      position.users.each do |user|
+        @group_recipient << user.email
+      end
     end
     user = User.find_by(id: 1)
     @recipient = user.email

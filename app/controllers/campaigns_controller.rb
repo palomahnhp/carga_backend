@@ -1,19 +1,31 @@
 class CampaignsController < ApplicationController
   def index
-  end
-
-  def new
+    @campaigns = Campaign.all
   end
 
   def create
+    @campaign = Campaign.create(name: params[:name])
+    if @campaign.save
+      puts 'campaign saved'
+    end
+    redirect_to action: :index
   end
 
   def update
+    @campaign = Campaign.find(params[:id])
+    @campaign.update_attributes(name: params[:name])
+    redirect_to action: :index
   end
 
   def delete
+    @campaign = Campaign.find(params[:id])
+    @campaign.destroy
+    redirect_to action: :index
   end
 
-  def show
+  private
+
+  def campaign_params
+  params.require(:campaign).permit(:name)
   end
 end

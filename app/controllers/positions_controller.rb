@@ -20,7 +20,7 @@ class PositionsController < ApplicationController
   def delete
     @position = Position.find(params[:id])
     if @position.functions
-      position.functions.each do |function|
+      @position.functions.each do |function|
         function.destroy
       end
     end
