@@ -11,19 +11,18 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <header>
-  <nav class="navbar navbar nav-ayto">
+  <nav class="navbar navbar-default nav-ayto">
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="/" >
-        <img id="ayto-nw-logo" src="/assets/madrid.svg">
+        <img id="ayto-nw-logo" src="/assets/ayto-mad.png">
       </a>
     </div>
     <div class="navbar-right">
       <a class="navbar-brand">
         <%if @current_user%>
-          <p><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
-          <p><%= @current_user.official_position %></p>
-          <p><%= @current_user.unit_name %></p>
+          <p class="brand-font"><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %>, <%= @current_user.official_position %></p>
+          <p class="brand-font"><%= @current_user.unit_name %></p>
         <%end%>
       </a>
     </div>
