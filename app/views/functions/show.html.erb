@@ -212,7 +212,7 @@
 
 <script>
     $("#add-task").click(function() {
-      taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" placeholder="Otra tarea"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
+      taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" name="name" placeholder="Otra tarea"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
       if($(".task-row").length < 2) {
         $("#other-tasks").append(taskTemplate);
       }
