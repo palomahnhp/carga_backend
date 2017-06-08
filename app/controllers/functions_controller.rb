@@ -23,6 +23,12 @@ class FunctionsController < ApplicationController
     redirect_to action: :index
   end
 
+  def show
+  end
+
+  def submit_survey
+  end
+
   private
 
   def function_params

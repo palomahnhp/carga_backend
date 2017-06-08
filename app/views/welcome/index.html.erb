@@ -11,16 +11,14 @@
       <% end %>
       <% if @current_user && @current_user.admin_role? %>
         <div class="col-md-11 col-md-offset-2">
-          <a href="/surveys" class="btn btn-success btn-lg btn-index">Encuestas</a>
-          <a href="/tracking" class="btn btn-info btn-lg btn-index">Seguimiento</a>
+          <a href="/surveys" class="btn btn-success btn-lg btn-a">Encuestas</a>
+          <a href="/tracking" class="btn btn-default btn-lg btn-a">Seguimiento</a>
         </div>
       <% end %>
       <% if @current_user && @current_user.superadmin_role? %>
-        <div class="col-md-12">
-          <a href="/surveys" class="btn btn-success btn-lg btn-index">Encuestas</a>
-          <a href="/settings" class="btn btn-info btn-lg btn-index">Configuración</a>
-          <a href="/tracking" class="btn btn-info btn-lg btn-index">Seguimiento</a>
-        </div>
+          <a href="/surveys" class="btn btn-success btn-lg btn-a">Encuestas</a>
+          <a href="/settings" class="btn btn-default btn-lg btn-a">Configuración</a>
+          <a href="/tracking" class="btn btn-default btn-lg btn-a">Seguimiento</a>
       <% end %>
     </div>
   </div>

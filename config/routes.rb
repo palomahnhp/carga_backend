@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
   get '/functions/new', to: 'functions#new'
+  get '/functions/show', to: 'functions#show'
 
   get '/positions', to: 'positions#index'
   get '/positions/delete', to: 'positions#delete'
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   get '/units/new', to: 'units#new'
 
   get '/surveys', to: 'surveys#index'
-  get '/surveys/show', to: 'surveys#show'
 
   get '/campaigns', to: 'campaigns#index'
   get '/campaigns/delete', to: 'campaigns#delete'
@@ -33,14 +33,13 @@ Rails.application.routes.draw do
 
   post '/functions/update', to: 'functions#update'
   post '/functions/create', to: 'functions#create'
+  post '/functions/submit_survey', to: 'functions#submit_survey'
 
   post '/positions/update', to: 'positions#update'
   post '/positions/create', to: 'positions#create'
 
   post '/units/update', to: 'units#update'
   post '/units/create', to: 'units#create'
-
-  post '/surveys/submit_survey', to: 'surveys#submit_survey'
 
   post '/campaigns/update', to: 'campaigns#update'
   post '/campaigns/create', to: 'campaigns#create'
