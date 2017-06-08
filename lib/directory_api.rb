@@ -13,7 +13,7 @@ class DirectoryApi
   end
 
   def directory
-    #you can integrate directory with uweb adding these lines into uweb authenticator + get_d_user_data + client(rename it to d_client and change also d_client in d_response instead of client)
+    #you can integrate directory with uweb adding these lines into uweb authenticator + get_d_user_data + client(rename it to d_client and change also to d_client in d_response instead of client)
     d_operation         = :datos_empleados
     d_response          = client.call(d_operation.to_sym, message: { aplicacion: Rails.application.secrets.directorio_application_key, i_pernr: nil, i_nif: nil, i_ayre: @user_params[:login]}).body
     d_parsed_response   = parser.parse(d_response[(d_operation.to_s + '_response').to_sym][(d_operation.to_s + '_return').to_sym])

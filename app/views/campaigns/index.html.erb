@@ -26,14 +26,13 @@
                       <form action="/campaigns/update" method="POST">
                         <tr>
                           <td>
-                            <input type="text" class="form-control" id="inputDefault" name="campaign_number" value="<%= campaign.name %>">
+                            <input type="text" class="form-control" id="inputDefault" name="name" value="<%= campaign.name %>">
                           </td>
-                          <% if campaign && campaign.active == true %>
                             <td>
                               <select class="form-control" id="select">
-                                <option selected="selected">Activa</option>
-                                <option> Pendiente... </option>
-                                <option> Completada</option>
+                                <option> Completada </option>
+                                <option selected="selected"> Activa </option>
+                                <option> Pendiente...</option>
                               </select>
                             </td>
                             <td>
@@ -41,33 +40,6 @@
                                 <div class="progress-bar progress-bar-success" style="width: 50%"></div>
                               </div>
                             </td>
-                          <% elsif campaign && campaign.pending == true %>
-                            <td>
-                              <select class="form-control" id="select">
-                                <option selected="selected">Pendiente...</option>
-                                <option> Activa </option>
-                                <option> Completada</option>
-                              </select>
-                            </td>
-                            <td>
-                              <div class="progress progress-striped campaign-progress">
-                                <div class="progress-bar progress-bar-success" style="width: 0%"></div>
-                              </div>
-                            </td>
-                          <% elsif campaign && campaign.completed == true %>
-                            <td>
-                              <select class="form-control" id="select">
-                                <option selected="selected">Completada</option>
-                                <option> Activa </option>
-                                <option> Pendiente...</option>
-                              </select>
-                            </td>
-                            <td>
-                              <div class="progress progress-striped campaign-progress">
-                                <div class="progress-bar progress-bar-success" style="width: 100%"></div>
-                              </div>
-                            </td>
-                          <% end %>
                           <td>
                             <input type="hidden"value="<%= campaign.id %>" name="id"/>
                             <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>

@@ -26,6 +26,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-  params.require(:campaign).permit(:name)
+  params.require(:campaign).permit(:name, :active, :pending, :completed)
   end
 end
