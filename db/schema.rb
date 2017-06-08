@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607075012) do
+ActiveRecord::Schema.define(version: 20170608101103) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20170607075012) do
     t.integer  "position_id"
     t.string   "name"
     t.string   "function_number"
+    t.boolean  "num_task"
+    t.boolean  "not_norm"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -43,12 +45,23 @@ ActiveRecord::Schema.define(version: 20170607075012) do
 
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id"
 
-  create_table "surveys", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "responses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "function_id"
+    t.string   "time_per"
+    t.string   "num_task"
+    t.string   "min_time"
+    t.string   "avg_time"
+    t.string   "max_time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
+  add_index "responses", ["function_id"], name: "index_responses_on_function_id"
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
+
   create_table "units", force: :cascade do |t|
+    t.integer  "campaign_id"
     t.string   "name"
     t.string   "alias"
     t.string   "unit_number"
@@ -61,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170607075012) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "units", ["campaign_id"], name: "index_units_on_campaign_id"
 
   create_table "users", force: :cascade do |t|
     t.integer  "position_id"

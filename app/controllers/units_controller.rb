@@ -4,7 +4,7 @@ class UnitsController < ApplicationController
   end
 
   def create
-    @unit = Unit.create(unit_number: params[:unit_number], name: params[:name])
+    @unit = Unit.create(unit_number: params[:unit_number], name: params[:name], campaign_id: params[:campaign_id])
     if @unit.save
       puts 'unit saved'
     end
@@ -13,7 +13,7 @@ class UnitsController < ApplicationController
 
   def update
     @unit = Unit.find(params[:id])
-    @unit.update_attributes(unit_number: params[:unit_number], name: params[:name])
+    @unit.update_attributes(unit_number: params[:unit_number], name: params[:name], campaign_id: params[:campaign_id])
     redirect_to action: :index
   end
 
@@ -36,6 +36,6 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-  params.require(:unit).permit(:unit_number, :name)
+  params.require(:unit).permit(:unit_number, :name, :campaign_id)
   end
 end
