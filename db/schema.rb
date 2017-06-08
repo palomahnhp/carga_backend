@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170608101103) do
   add_index "responses", ["user_id"], name: "index_responses_on_user_id"
 
   create_table "units", force: :cascade do |t|
+    t.integer  "campaign_id"
     t.string   "name"
     t.string   "alias"
     t.string   "unit_number"
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170608101103) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "units", ["campaign_id"], name: "index_units_on_campaign_id"
 
   create_table "users", force: :cascade do |t|
     t.integer  "position_id"
