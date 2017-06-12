@@ -17,7 +17,7 @@
                     <tr>
                       <th>Campaña</th>
                       <th>Estado</th>
-                      <th>Nivel de respuesta</th>
+                      <th>Barra de estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -28,11 +28,12 @@
                           <td>
                             <input type="text" class="form-control" id="inputDefault" name="name" value="<%= campaign.name %>">
                           </td>
+                          <% if campaign.status == 'active' %>
                             <td>
-                              <select class="form-control" id="select">
-                                <option> Completada </option>
-                                <option selected="selected"> Activa </option>
-                                <option> Pendiente...</option>
+                              <select class="form-control" name="status" id="select">
+                                <option value = "0"> Borrador </option>
+                                <option value = "1" selected = "selected"> Activa </option>
+                                <option value = "2"> Finalizada</option>
                               </select>
                             </td>
                             <td>
@@ -40,6 +41,33 @@
                                 <div class="progress-bar progress-bar-success" style="width: 50%"></div>
                               </div>
                             </td>
+                          <% elsif campaign.status == 'completed' %>
+                            <td>
+                              <select class="form-control" name="status" id="select">
+                                <option value = "0"> Borrador </option>
+                                <option value = "1"> Activa </option>
+                                <option value = "2" selected = "selected"> Finalizada</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="progress progress-striped campaign-progress">
+                                <div class="progress-bar progress-bar-success" style="width: 100%"></div>
+                              </div>
+                            </td>
+                          <% else %>
+                            <td>
+                              <select class="form-control" name="status" id="select">
+                                <option value = "0" selected = "selected"> Borrador </option>
+                                <option value = "1"> Activa </option>
+                                <option value = "2"> Finalizada</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div class="progress progress-striped campaign-progress">
+                                <div class="progress-bar progress-bar-success" style="width: 0%"></div>
+                              </div>
+                            </td>
+                          <% end %>
                           <td>
                             <input type="hidden"value="<%= campaign.id %>" name="id"/>
                             <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
