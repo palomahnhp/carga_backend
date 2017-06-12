@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
 
+  get '/users', to: 'users#index'
+
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
   get '/functions/new', to: 'functions#new'
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   get '/campaigns/delete', to: 'campaigns#delete'
   get '/campaigns/new', to: 'campaigns#new'
 
+  post '/users/update', to: 'users#update'
 
   post '/functions/update', to: 'functions#update'
   post '/functions/create', to: 'functions#create'
