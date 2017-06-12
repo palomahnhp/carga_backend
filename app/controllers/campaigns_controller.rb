@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.create(name: params[:name])
+    @campaign = Campaign.create(name: params[:name], status: params[:status].to_f)
     if @campaign.save
       puts 'campaign saved'
     end
@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:id])
-    @campaign.update_attributes(name: params[:name])
+    @campaign.update_attributes(name: params[:name], status: params[:status].to_f)
     redirect_to action: :index
   end
 
@@ -26,6 +26,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-  params.require(:campaign).permit(:name, :active, :pending, :completed)
+  params.require(:campaign).permit(:name, :status)
   end
 end
