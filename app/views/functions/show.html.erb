@@ -6,7 +6,7 @@
     <form class="form-horizontal">
       <fieldset>
         <div class="row">
-          <legend class="col-lg-12">Encuesta 1</legend>
+          <legend class="col-lg-12"><%= @current_user.position.unit.campaign.name %></legend>
         </div>
         <div class="form-group org-panel">
           <div class="row">
@@ -52,17 +52,18 @@
                 <th>Tiempo máximo</th>
               </thead>
               <tbody>
+                <% @current_user.position.functions.each do |function| %>
                 <tr>
                   <td>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
-                        Análisis
+                        <input type="radio" name="optionsRadios" id="optionsRadios2">
+                        <%= function.name %>
                       </label>
                     </div>
                   </td>
                   <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
+                    <input class="form-control input-sm" type="text" name="time_per" id="inputSmall">
                   </td>
                   <td>
                     <input class="form-control input-sm" type="text" id="inputSmall">
@@ -77,80 +78,7 @@
                     <input class="form-control input-sm" type="text" id="inputSmall">
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Desarrollo
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Gestión
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Resolución de incidencias
-                      </label>
-                    </div>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
