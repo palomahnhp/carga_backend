@@ -4,7 +4,11 @@ class PositionsController < ApplicationController
   end
 
   def create
-    @position = Position.create(position_number: params[:position_number], name: params[:name], unit_id: params[:unit_id])
+    @position = Position.create(
+    position_number: params[:position_number],
+    name:            params[:name],
+    unit_id:         params[:unit_id]
+    )
     if @position.save
       puts 'position saved'
     end
@@ -13,7 +17,11 @@ class PositionsController < ApplicationController
 
   def update
     @position = Position.find(params[:id])
-    @position.update_attributes(position_number: params[:position_number], name: params[:name], unit_id: params[:unit_id])
+    @position.update_attributes(
+      position_number: params[:position_number],
+      name:            params[:name],
+      unit_id:         params[:unit_id]
+      )
     redirect_to action: :index
   end
 
