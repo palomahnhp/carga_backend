@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(document: params[:document], email: params[:email], phone_number: params[:phone_number])
+    @user.update_attributes(
+      document:     params[:document], 
+      email:        params[:email],
+      phone_number: params[:phone_number]
+      )
     redirect_to action: :index
   end
 

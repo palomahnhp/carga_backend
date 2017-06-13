@@ -4,7 +4,11 @@ class FunctionsController < ApplicationController
   end
 
   def create
-    @function = Function.create(function_number: params[:function_number], name: params[:name], position_id: params[:position_id])
+    @function = Function.create(
+      function_number: params[:function_number],
+      name:            params[:name],
+      position_id:     params[:position_id]
+      )
     if @function.save
       puts 'function saved'
     end
@@ -13,7 +17,11 @@ class FunctionsController < ApplicationController
 
   def update
     @function = Function.find(params[:id])
-    @function.update_attributes(function_number: params[:function_number], name: params[:name], position_id: params[:position_id])
+    @function.update_attributes(
+      function_number: params[:function_number],
+      name:            params[:name],
+      position_id:     params[:position_id]
+    )
     redirect_to action: :index
   end
 
