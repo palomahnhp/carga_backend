@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
   get '/functions/new', to: 'functions#new'
-  get '/functions/show', to: 'functions#show'
 
   get '/positions', to: 'positions#index'
   get '/positions/delete', to: 'positions#delete'
@@ -27,6 +26,8 @@ Rails.application.routes.draw do
   get '/units/new', to: 'units#new'
 
   get '/surveys', to: 'surveys#index'
+
+  get '/responses/show', to: 'responses#show'
 
   get '/campaigns', to: 'campaigns#index'
   get '/campaigns/delete', to: 'campaigns#delete'
