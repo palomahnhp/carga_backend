@@ -32,7 +32,7 @@
                             <input type="text" class="form-control" id="inputDefault" name="name" value="<%= position.name %>">
                           </td>
                           <td>
-                            <select class="form-control" id="select" name="position_id">
+                            <select class="form-control" id="select" name="unit_id">
                               <% Unit.all.each do |unit| %>
                               <option value="<%= unit.id %>"
                                 <% if unit.id == position.unit_id %>
