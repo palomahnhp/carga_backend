@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get '/surveys', to: 'surveys#index'
 
+  get '/responses', to: 'responses#index'
   get '/responses/show', to: 'responses#show'
 
   get '/campaigns', to: 'campaigns#index'

@@ -1,4 +1,8 @@
 class ResponsesController < ApplicationController
+  def index
+    @responses = Response.all
+  end
+
   def show
   end
 
