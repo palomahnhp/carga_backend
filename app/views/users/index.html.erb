@@ -16,7 +16,7 @@
                   <thead>
                     <tr>
                       <th>Número</th>
-                      <th>NIF</th>
+                      <th>Puestos</th>
                       <th>Email</th>
                       <th>Teléfono</th>
                       <th>Acciones</th>
@@ -30,7 +30,13 @@
                             <input type="text" class="form-control" id="inputDefault" name="user_number" value="<%= user.name %> <%= user.last_name %>">
                           </td>
                           <td>
-                            <input type="text" class="form-control" id="inputDefault" name="document" value="<%= user.document %>">
+                            <select class="form-control">
+                              <% user.position.each do |position| %>
+                              <option>
+                                <%= position.name %>
+                              </option>
+                              <% end %>
+                            </select>
                           </td>
                           <td>
                             <input type="text" class="form-control" id="inputDefault" name="email" value="<%= user.email %>">

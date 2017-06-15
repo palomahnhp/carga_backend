@@ -3,9 +3,6 @@ class ResponsesController < ApplicationController
     @responses = Response.all
   end
 
-  def show
-  end
-
   def create
     @response = Response.create(
       user_id:     current_user.id,
