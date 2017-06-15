@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608101103) do
+ActiveRecord::Schema.define(version: 20170615074235) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(version: 20170608101103) do
   end
 
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id"
+
+  create_table "positions_users", force: :cascade do |t|
+    t.integer "position_id"
+    t.integer "user_id"
+  end
 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
@@ -75,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170608101103) do
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id"
 
   create_table "users", force: :cascade do |t|
-    t.integer  "position_id"
     t.string   "login"
     t.string   "name"
     t.string   "last_name"
@@ -92,7 +96,5 @@ ActiveRecord::Schema.define(version: 20170608101103) do
     t.boolean  "admin_role",        default: false
     t.boolean  "respondent_role",   default: true
   end
-
-  add_index "users", ["position_id"], name: "index_users_on_position_id"
 
 end

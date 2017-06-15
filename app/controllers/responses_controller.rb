@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
-  def show
+  def index
+    @responses = Response.all
   end
 
   def create

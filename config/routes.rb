@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   get '/units/new', to: 'units#new'
 
   get '/surveys', to: 'surveys#index'
+  get '/surveys/show', to: 'surveys#show'
 
-  get '/responses/show', to: 'responses#show'
+  get '/responses', to: 'responses#index'
 
   get '/campaigns', to: 'campaigns#index'
   get '/campaigns/delete', to: 'campaigns#delete'
