@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170615074235) do
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id"
 
   create_table "users", force: :cascade do |t|
-    t.integer  "position_id"
     t.string   "login"
     t.string   "name"
     t.string   "last_name"
@@ -97,7 +96,5 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.boolean  "admin_role",        default: false
     t.boolean  "respondent_role",   default: true
   end
-
-  add_index "users", ["position_id"], name: "index_users_on_position_id"
 
 end
