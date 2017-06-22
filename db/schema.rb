@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170615074235) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "campaigns", force: :cascade do |t|
     t.string   "name"
     t.integer  "status",     default: 0
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "functions", ["position_id"], name: "index_functions_on_position_id"
+  add_index "functions", ["position_id"], name: "index_functions_on_position_id", using: :btree
 
   create_table "positions", force: :cascade do |t|
     t.integer  "unit_id"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "positions", ["unit_id"], name: "index_positions_on_unit_id"
+  add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
 
   create_table "positions_users", force: :cascade do |t|
     t.integer "position_id"
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "responses", ["function_id"], name: "index_responses_on_function_id"
-  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
+  add_index "responses", ["function_id"], name: "index_responses_on_function_id", using: :btree
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
 
   create_table "units", force: :cascade do |t|
     t.integer  "campaign_id"
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "units", ["campaign_id"], name: "index_units_on_campaign_id"
+  add_index "units", ["campaign_id"], name: "index_units_on_campaign_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
