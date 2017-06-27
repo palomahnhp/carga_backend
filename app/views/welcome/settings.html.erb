@@ -1,6 +1,6 @@
 <% if can? :settings, @current_user %>
   <div class="row element-style">
-    <div class="col-md-5 col-md-offset-3">
+    <div class="col-md-5 col-md-offset-4 settings-menu">
       <div class="row">
         <div class="col-md-5 col-md-offset-3">
           <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -15,6 +15,11 @@
           <a href="/users" class="btn btn-default btn-lg btn-index">Encuestados</a>
           <a href="/responses" class="btn btn-primary btn-lg btn-index">Respuestas</a>
         <% end %>
+      </div>
+      <div class="col-md-6">
+        <a href="/admin">
+          <button type="submit" class="btn btn-primary btn-settings">Volver</button>
+        </a>
       </div>
     </div>
   </div>

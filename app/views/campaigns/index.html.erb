@@ -17,7 +17,6 @@
                     <tr>
                       <th>Campaña</th>
                       <th>Estado</th>
-                      <th>Barra de estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -36,11 +35,6 @@
                                 <option value = "2"> Finalizada</option>
                               </select>
                             </td>
-                            <td>
-                              <div class="progress progress-striped campaign-progress">
-                                <div class="progress-bar progress-bar-success" style="width: 50%"></div>
-                              </div>
-                            </td>
                           <% elsif campaign.status == 'completed' %>
                             <td>
                               <select class="form-control" name="status" id="select">
@@ -49,11 +43,6 @@
                                 <option value = "2" selected = "selected"> Finalizada</option>
                               </select>
                             </td>
-                            <td>
-                              <div class="progress progress-striped campaign-progress">
-                                <div class="progress-bar progress-bar-success" style="width: 100%"></div>
-                              </div>
-                            </td>
                           <% else %>
                             <td>
                               <select class="form-control" name="status" id="select">
@@ -61,11 +50,6 @@
                                 <option value = "1"> Activa </option>
                                 <option value = "2"> Finalizada</option>
                               </select>
-                            </td>
-                            <td>
-                              <div class="progress progress-striped campaign-progress">
-                                <div class="progress-bar progress-bar-success" style="width: 0%"></div>
-                              </div>
                             </td>
                           <% end %>
                           <td>
