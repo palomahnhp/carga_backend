@@ -28,13 +28,15 @@
                             <% user_name          = User.find(find_user).name %>
                             <% user_last_name     = User.find(find_user).last_name %>
                             <% user_last_name_alt = User.find(find_user).last_name_alt %>
-                            <% user_position      = User.find(find_user).position.name %>
+                            <% find_function      = Function.find(response.function_id) %>
+                            <% find_position      = find_function.position_id %>
+                            <% position_name      = Position.find(find_position).name %>
 
                             <p>
                               <%= user_name %> <%= user_last_name %> <%= user_last_name_alt %>
                             </p>
                             <p>
-                              <%= user_position %>
+                              <%= position_name %>
                             </p>
                           </td>
                           <td>
@@ -67,16 +69,3 @@
   </div>
 </div>
 <% end %>
-
-<script>
-    (function(){
-        if( window.localStorage ){
-            if( !localStorage.getItem( 'firstLoad' ) ){
-              localStorage[ 'firstLoad' ] = true;
-              window.location.reload();
-            }
-        else
-          localStorage.removeItem( 'firstLoad' );
-        }
-    })();
-</script>

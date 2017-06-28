@@ -33,6 +33,9 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def admin
+  end
+
   def send_mail
     begin
       UserMailer.reminder_email(params[:recipient], message: params[:message], subject: params[:subject]).deliver_now

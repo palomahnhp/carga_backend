@@ -34,7 +34,19 @@
 
 #ayto-logo-admin {
   width: 60%;
-  margin-left: 75px;
+  margin-left: 140px;
+}
+
+.btn-back-menu{
+  margin: 20px 80px;
+}
+
+.settings-menu{
+  margin-left: 30% !important;
+}
+
+.btn-settings{
+  margin: 20px -30px;
 }
 
 .campaign-progress {
@@ -111,11 +123,20 @@
 
 .btn-index-a {
   margin-top: 10%;
-  margin-left: 15px;
+  margin-left: 75px;
+}
+
+.survey-icon{
+  margin-left: 175px !important;
 }
 
 .btn-a {
   margin-top: 10%;
+  width: 190px;
+}
+
+.btn-surveys{
+  margin: 3px 132px;
 }
 
 #ayto-nw-logo {
@@ -159,12 +180,15 @@ html {
 body {
   margin: 0;
 }
+footer{
+  display: block;
+  padding: 15px;
+}
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 main,

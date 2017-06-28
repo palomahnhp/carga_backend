@@ -1,9 +1,17 @@
 <div class="row element-style">
   <div class="col-md-8 col-md-offset-2">
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <div class="'has-error alert alert-danger alert-dismissable'">
+          <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+          <%= error %>
+        </div>
+      <% end%>
+    <% end%>
     <div class="progress progress-striped active">
       <div class="progress-bar progress-bar-success" style="width: <%= Random.rand(101) %>%"></div>
     </div>
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="/surveys/create" method="POST">
       <fieldset>
         <div class="row">
           <legend class="col-lg-12"><%= @current_user.positions.first.unit.campaign.name %></legend>
@@ -58,6 +66,7 @@
                     <div>
                       <p>
                         <%= function.name %>
+                        <input type="hidden" class="form-control input-sm task" type="text" id="inputSmall" value="<%= function.id %>" name="function_id">
                       </p>
                     </div>
                   </td>
@@ -127,13 +136,14 @@
           <button type="reset" class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
         </div>
       </fieldset>
-    </form>
       <div class="col-md-7">
         <a href="/surveys">
           <button type="reset" class="btn btn-primary">Cancelar</button>
         </a>
+        <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
         <button type="submit" class="btn btn-success" id="submit-survey">Enviar encuesta</button>
-    </div>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -151,7 +161,7 @@
       }
     })
 
-    $("#submit-survey").click(function() {
-      swal("Gracias!", "La encuesta se ha enviado correctamente!", "success");
-    })
+    // $("#submit-survey").click(function() {
+    //   swal("Gracias!", "La encuesta se ha enviado correctamente!", "success");
+    // })
 </script>

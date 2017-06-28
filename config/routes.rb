@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/tracking', to: 'welcome#tracking'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
+  get '/admin', to: 'welcome#admin'
 
   get '/users', to: 'users#index'
 
@@ -35,6 +36,8 @@ Rails.application.routes.draw do
   get '/campaigns/new', to: 'campaigns#new'
 
   post '/users/update', to: 'users#update'
+
+  post '/surveys/create', to: 'surveys#create'
 
   post '/functions/update', to: 'functions#update'
   post '/functions/create', to: 'functions#create'
