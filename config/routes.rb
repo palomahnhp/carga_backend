@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   post '/users/update', to: 'users#update'
 
+  post '/surveys/create', to: 'surveys#create'
+
   post '/functions/update', to: 'functions#update'
   post '/functions/create', to: 'functions#create'
   post '/functions/submit_survey', to: 'functions#submit_survey'

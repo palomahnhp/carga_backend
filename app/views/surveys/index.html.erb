@@ -1,8 +1,8 @@
-<% if @current_user.positions == [] %>
+<% if @current_user.positions == [] || @current_user.responses != [] || @current_user.positions.first.unit.campaign.status != "active"  %>
   <div class="row element-style">
     <div class="col-md-5 col-md-offset-3">
       <div class="row">
-        <div class="col-md-5 col-md-offset-4">
+        <div class="col-md-5 col-md-offset-4 survey-icon">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </div>
       </div>
@@ -20,7 +20,7 @@
   <div class="row element-style">
     <div class="col-md-5 col-md-offset-3">
       <div class="row">
-        <div class="col-md-5 col-md-offset-4">
+        <div class="col-md-5 col-md-offset-4 survey-icon">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </div>
       </div>
@@ -33,6 +33,11 @@
               </a></li>
             <% end %>
           </ul>
+        </div>
+        <div class="col-md-6">
+          <a href="/">
+            <button type="submit" class="btn btn-primary btn-surveys">Volver</button>
+          </a>
         </div>
       </div>
     </div>
