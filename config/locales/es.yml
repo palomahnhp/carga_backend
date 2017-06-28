@@ -1,7 +1,6 @@
 es:
   welcome:
     title: Bienvenido!
-    main_text: Esta es la página de Administración del Voluntariado de Madrid
   humanize:
     "true":  "Sí"
     "false": "No"
@@ -149,6 +148,7 @@ es:
     entity_subscribe: Alta de entidad
     entity_unsubscribe: Baja de entidad
   errors:
+    format: "%{message}"
     missing_required_fields: Faltan datos obligatorios
     request_form_no_longer_exists: 'La %{request_type} ya no existe'
     request_form_must_be_at_processing: 'La solicitud tiene que estar en estado "en trámite"'
