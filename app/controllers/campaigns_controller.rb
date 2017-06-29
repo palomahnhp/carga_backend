@@ -1,6 +1,15 @@
 class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.all
+    if params[:search]
+      @campaigns = Campaign.search(params[:search])
+    else
+      @campaigns = Campaign.all
+    end
+  end
+
+  def show
+    @campaign = Campaign.find(params[:id])
   end
 
   def create
