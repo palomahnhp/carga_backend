@@ -11,6 +11,10 @@ class CampaignsController < ApplicationController
     redirect_to action: :index
   end
 
+  def edit
+    @campaign = Campaign.find(params[:id])
+  end
+
   def update
     @campaign = Campaign.find(params[:id])
     @campaign.update_attributes(name: params[:name], status: params[:status].to_f)

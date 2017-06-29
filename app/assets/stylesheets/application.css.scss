@@ -354,7 +354,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
+td {
+  vertical-align: middle !important;
+  padding: 0;
+}
+
 th {
   padding: 0;
 }

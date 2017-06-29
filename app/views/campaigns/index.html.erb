@@ -22,46 +22,29 @@
                   </thead>
                   <tbody>
                     <% @campaigns.each do |campaign| %>
-                      <form action="/campaigns/update" method="POST">
                         <tr>
                           <td>
-                            <input type="text" class="form-control" id="inputDefault" name="name" value="<%= campaign.name %>">
+                            <%= campaign.name %>
                           </td>
                           <% if campaign.status == 'active' %>
                             <td>
-                              <select class="form-control" name="status" id="select">
-                                <option value = "0"> Borrador </option>
-                                <option value = "1" selected = "selected"> Activa </option>
-                                <option value = "2"> Finalizada</option>
-                              </select>
+                            En curso
                             </td>
                           <% elsif campaign.status == 'completed' %>
                             <td>
-                              <select class="form-control" name="status" id="select">
-                                <option value = "0"> Borrador </option>
-                                <option value = "1"> Activa </option>
-                                <option value = "2" selected = "selected"> Finalizada</option>
-                              </select>
+                             Finalizada
                             </td>
                           <% else %>
                             <td>
-                              <select class="form-control" name="status" id="select">
-                                <option value = "0" selected = "selected"> Borrador </option>
-                                <option value = "1"> Activa </option>
-                                <option value = "2"> Finalizada</option>
-                              </select>
+                              En borrador
                             </td>
                           <% end %>
                           <td>
-                            <input type="hidden"value="<%= campaign.id %>" name="id"/>
-                            <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                            <button class="btn btn-default save-changes" type="submit" >Guardar cambios</button>
                             <button type="button" class="btn btn-default">
-                              <%= link_to "Eliminar", {action: 'delete',id: campaign.id} %>
+                              <%= link_to "Editar campaña", {action: 'edit',id: campaign.id} %>
                             </button>
                           </td>
                         </tr>
-                      </form>
                     <% end %>
                   </tbody>
                 </table>
@@ -82,16 +65,3 @@
   </div>
 </div>
 <% end %>
-
-<script>
-    (function(){
-        if( window.localStorage ){
-            if( !localStorage.getItem( 'firstLoad' ) ){
-              localStorage[ 'firstLoad' ] = true;
-              window.location.reload();
-            }
-        else
-          localStorage.removeItem( 'firstLoad' );
-        }
-    })();
-</script>

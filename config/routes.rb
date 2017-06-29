@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/campaigns', to: 'campaigns#index'
   get '/campaigns/delete', to: 'campaigns#delete'
   get '/campaigns/new', to: 'campaigns#new'
+  get '/campaigns/edit', to: 'campaigns#edit' 
 
   post '/users/update', to: 'users#update'
 
