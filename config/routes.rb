@@ -18,14 +18,20 @@ Rails.application.routes.draw do
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
   get '/functions/new', to: 'functions#new'
+  get '/functions/edit', to: 'functions#edit'
+  get '/functions/show', to: 'functions#show'
 
   get '/positions', to: 'positions#index'
   get '/positions/delete', to: 'positions#delete'
   get '/positions/new', to: 'positions#new'
+  get '/positions/edit', to: 'positions#edit'
+  get '/positions/show', to: 'positions#show'
 
   get '/units', to: 'units#index'
   get '/units/delete', to: 'units#delete'
   get '/units/new', to: 'units#new'
+  get '/units/edit', to: 'units#edit'
+  get '/units/show', to: 'units#show'
 
   get '/surveys', to: 'surveys#index'
   get '/surveys/show', to: 'surveys#show'

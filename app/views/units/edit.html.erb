@@ -6,14 +6,14 @@
         <legend class="col-lg-12">Configuración de Unidad</legend>
       </div>
       <div class="form-group org-panel">
-        <form action="/units/create" method="POST">
+        <form action="/units/update" method="POST">
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
                 <b>Número de unidad: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="unit_number">
+                <input type="text" class="form-control" id="inputDefault" name="unit_number" value="<%= @unit.unit_number %>">
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
                 <b>Descripción de unidad: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="name">
+                <input type="text" class="form-control" id="inputDefault" name="name" value="<%= @unit.name %>">
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
                 <b>Descripción breve: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="alias">
+                <input type="text" class="form-control" id="inputDefault" name="alias" value="<%= @unit.alias %>">
               </div>
             </div>
           </div>
@@ -48,7 +48,13 @@
               <div class="col-md-4">
                 <select class="form-control" id="select" name="campaign_id">
                   <% Campaign.all.each do |campaign| %>
-                  <option value="<%= campaign.id %>"><%= campaign.name %></option>
+                  <option value="<%= campaign.id %>"
+                    <% if campaign.id == @unit.campaign_id %>
+                       selected="selected"
+                    <% end %>
+                    >
+                    <%= campaign.name %>
+                  </option>
                   <% end %>
                 </select>
               </div>
@@ -61,7 +67,7 @@
                 <b>Código Área: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_area">
+                <input type="text" class="form-control" id="inputDefault" name="cod_area" value="<%= @unit.cod_area %>">
               </div>
             </div>
           </div>
@@ -72,7 +78,7 @@
                 <b>Descripción Área: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="area_name">
+                <input type="text" class="form-control" id="inputDefault" name="area_name" value="<%= @unit.area_name %>">
               </div>
             </div>
           </div>
@@ -83,7 +89,7 @@
                 <b>Código Dirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_dir">
+                <input type="text" class="form-control" id="inputDefault" name="cod_dir" value="<%= @unit.cod_dir %>">
               </div>
             </div>
           </div>
@@ -94,7 +100,7 @@
                 <b>Descripción Dirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="dir_name">
+                <input type="text" class="form-control" id="inputDefault" name="dir_name" value="<%= @unit.dir_name %>">
               </div>
             </div>
           </div>
@@ -105,7 +111,7 @@
                 <b>Código Subdirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_subdir">
+                <input type="text" class="form-control" id="inputDefault" name="cod_subdir" value="<%= @unit.cod_subdir %>">
               </div>
             </div>
           </div>
@@ -116,15 +122,19 @@
                 <b>Descripción Subdirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="subdir_name">
+                <input type="text" class="form-control" id="inputDefault" name="subdir_name" value="<%= @unit.subdir_name %>">
               </div>
             </div>
           </div>
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">
+              <input type="hidden"value="<%= @unit.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Crear Unidad</button>
+              <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
+              <button type="button" class="btn btn-danger">
+                <%= link_to "Eliminar Unidad", {action: 'delete',id: @unit.id}, class: "link-delete" %>
+              </button>
             </div>
           </div>
         </form>

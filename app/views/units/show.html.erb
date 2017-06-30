@@ -6,14 +6,14 @@
         <legend class="col-lg-12">Configuración de Unidad</legend>
       </div>
       <div class="form-group org-panel">
-        <form action="/units/create" method="POST">
+        <form action="/units/update" method="POST">
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
                 <b>Número de unidad: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="unit_number">
+                <p><%= @unit.unit_number %>
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
                 <b>Descripción de unidad: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="name">
+                <p><%= @unit.name %></p>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
                 <b>Descripción breve: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="alias">
+                <p><%= @unit.alias %></p>
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@
                 <b>Campaña: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select" name="campaign_id">
-                  <% Campaign.all.each do |campaign| %>
-                  <option value="<%= campaign.id %>"><%= campaign.name %></option>
+                <% Campaign.all.each do |campaign| %>
+                  <% if campaign.id == @unit.campaign_id %>
+                   <p><%= campaign.name %></p>
                   <% end %>
-                </select>
+                <% end %>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
                 <b>Código Área: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_area">
+                <p><%= @unit.cod_area %></p>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@
                 <b>Descripción Área: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="area_name">
+                <p><%= @unit.area_name %></p>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
                 <b>Código Dirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_dir">
+                <p><%= @unit.cod_dir %></p>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
                 <b>Descripción Dirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="dir_name">
+                <p><%= @unit.dir_name %></p>
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@
                 <b>Código Subdirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="cod_subdir">
+                <p><%= @unit.cod_subdir %></p>
               </div>
             </div>
           </div>
@@ -116,15 +116,8 @@
                 <b>Descripción Subdirección: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="subdir_name">
+                <p><%= @unit.subdir_name %></p>
               </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-md-6">
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Crear Unidad</button>
             </div>
           </div>
         </form>
