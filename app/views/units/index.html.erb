@@ -60,8 +60,8 @@
                             <%= unit.subdir_name %>
                           </td>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search'), action: 'show', id: unit.id) %>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;'), action: 'edit', id: unit.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: unit.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: unit.id) %>
                           </td>
                         </tr>
                     <% end %>

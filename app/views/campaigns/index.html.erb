@@ -62,8 +62,8 @@
                             </td>
                           <% end %>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search'), action: 'show', id: campaign.id) %>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;'), action: 'edit', id: campaign.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: campaign.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: campaign.id) %>
                           </td>
                         </tr>
                     <% end %>
