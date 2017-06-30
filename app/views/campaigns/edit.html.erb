@@ -54,9 +54,9 @@
                       <td>
                         <input type="hidden"value="<%= @campaign.id %>" name="id"/>
                         <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                        <button class="btn btn-default save-changes" type="submit" >Guardar cambios</button>
-                        <button type="button" class="btn btn-default">
-                          <%= link_to "Eliminar", {action: 'delete',id: @campaign.id} %>
+                        <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
+                        <button type="button" class="btn btn-danger">
+                          <%= link_to "Eliminar Campaña", {action: 'delete',id: @campaign.id}, class: "link-delete" %>
                         </button>
                       </td>
                     </tr>
