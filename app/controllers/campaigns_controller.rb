@@ -2,9 +2,9 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.all
     if params[:search]
-      @campaigns = Campaign.search(params[:search])
+      @campaigns = Campaign.search(params[:search]).order('id DESC')
     else
-      @campaigns = Campaign.all
+      @campaigns = Campaign.all.order('id DESC')
     end
   end
 
