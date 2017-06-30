@@ -35,6 +35,8 @@
                     <th>Id</th>
                     <th>Nº Unidad</th>
                     <th>Unidad</th>
+                    <th>Dirección</th>
+                    <th>Subdirección</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -50,6 +52,12 @@
                           </td>
                           <td>
                             <%= unit.name %>
+                          </td>
+                          <td>
+                            <%= unit.dir_name %>
+                          </td>
+                          <td>
+                            <%= unit.subdir_name %>
                           </td>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search'), action: 'show', id: unit.id) %>
