@@ -37,6 +37,15 @@
   margin-left: 140px;
 }
 
+.search-btn {
+  border-radius: 50px !important;
+  margin-left: 5px;
+}
+
+.search-input {
+  width: 70% !important;
+}
+
 .btn-back-menu{
   margin: 20px 80px;
 }
@@ -354,7 +363,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
+td {
+  vertical-align: middle !important;
+  padding: 0;
+}
+
 th {
   padding: 0;
 }

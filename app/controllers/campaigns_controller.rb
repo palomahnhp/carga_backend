@@ -1,6 +1,15 @@
 class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.all
+    if params[:search]
+      @campaigns = Campaign.search(params[:search]).order('id DESC')
+    else
+      @campaigns = Campaign.all.order('id DESC')
+    end
+  end
+
+  def show
+    @campaign = Campaign.find(params[:id])
   end
 
   def create
@@ -9,6 +18,10 @@ class CampaignsController < ApplicationController
       puts 'campaign saved'
     end
     redirect_to action: :index
+  end
+
+  def edit
+    @campaign = Campaign.find(params[:id])
   end
 
   def update

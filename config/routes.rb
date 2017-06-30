@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'welcome#admin'
 
   get '/users', to: 'users#index'
+  get '/users/edit', to: 'users#edit'
 
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
   get '/campaigns', to: 'campaigns#index'
   get '/campaigns/delete', to: 'campaigns#delete'
   get '/campaigns/new', to: 'campaigns#new'
+  get '/campaigns/edit', to: 'campaigns#edit'
+  get '/campaigns/show', to: 'campaigns#show'
 
   post '/users/update', to: 'users#update'
 
