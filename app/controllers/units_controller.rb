@@ -16,6 +16,9 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
   end
 
+  def new
+  end
+
   def create
     @unit = Unit.create(
       unit_number: params[:unit_number],

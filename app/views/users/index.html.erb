@@ -3,63 +3,65 @@
   <div class="col-md-11 form-style">
       <fieldset>
         <div class="row">
-          <legend class="col-lg-12">Configuración</legend>
+          <legend class="col-lg-12">Administración de usuarios</legend>
         </div>
         <div class="form-group org-panel">
           <div class="row">
-            <label for="select" class="col-lg-12 control-label">Configuración de personal</label>
+            <div class="col-lg-12">
+              <div class="col-lg-2">
+                <a href="/users/new">
+                  <button type="button" class="btn btn-success">Añadir Usuario</button>
+                </a>
+              </div>
+              <div class="col-lg-4 pull-right">
+                <%= form_tag(users_path, method: "get", id: "search-form") do%>
+                <%= text_field_tag :search, params[:search], class:"form-control search-input col-lg-2", placeholder: "Buscar unidad" %>
+                <%= submit_tag "Buscar", class:"btn btn-primary search-btn" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group org-panel">
+          <div class="row">
+            <label for="select" class="col-lg-12 control-label">Lista de usuarios</label>
             <hr>
           </div>
           <div class="row">
             <div class="col-lg-12">
-                <table class="table table-striped table-hover ">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Usuario</th>
-                      <th>Puestos</th>
-                      <th>Email</th>
-                      <th>Teléfono</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @users.present? %>
                     <% @users.each do |user| %>
                         <tr>
                           <td>
                             <%= user.id %>
                           </td>
                           <td>
-                           <%= user.name %>
-                           <%= user.last_name %>
-                           <% if user.last_name_alt %>
-                            <%= user.last_name_alt %>
-                           <% end %>
-                          </td>
-                          <td>
-                            <select class="form-control">
-                              <% user.positions.each do |position| %>
-                              <option>
-                                <%= position.name %>
-                              </option>
-                              <% end %>
-                            </select>
+                            <%= user.name %> <%= user.last_name %> <%= user.last_name_alt %>
                           </td>
                           <td>
                             <%= user.email %>
                           </td>
                           <td>
-                            <%= user.phone_number %>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-default">
-                              <%= link_to "Editar usuario", {action: 'edit',id: user.id} %>
-                            </button>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: user.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: user.id) %>
                           </td>
                         </tr>
                     <% end %>
-                  </tbody>
-                </table>
+                  <% else %>
+                    <p>No existe ningún usuario que contenga el término "<%= params[:search] %>".</p>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
