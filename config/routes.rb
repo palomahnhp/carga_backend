@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
   get '/users/edit', to: 'users#edit'
+  get '/users/new', to: 'users#new'
+  get '/users/show', to: 'users#show'
 
   get '/functions', to: 'functions#index'
   get '/functions/delete', to: 'functions#delete'
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
   get '/campaigns/show', to: 'campaigns#show'
 
   post '/users/update', to: 'users#update'
+  post '/users/create', to: 'users#create'
 
   post '/surveys/create', to: 'surveys#create'
 

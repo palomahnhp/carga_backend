@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    if params[:search]
+      @users = User.search(params[:search]).order('id DESC')
+    else
+      @users = User.all.order('id DESC')
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -15,6 +24,20 @@ class UsersController < ApplicationController
       last_name_alt: params[:last_name_alt],
       document:      params[:document],
       email:         params[:email],
+      login:         params[:login],
+      phone_number:  params[:phone_number]
+      )
+    redirect_to action: :index
+  end
+
+  def create
+    @user.update_attributes(
+      name:          params[:name],
+      last_name:     params[:last_name],
+      last_name_alt: params[:last_name_alt],
+      document:      params[:document],
+      email:         params[:email],
+      login:         params[:login],
       phone_number:  params[:phone_number]
       )
     redirect_to action: :index
@@ -23,6 +46,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-  params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :phone_number)
+  params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number)
   end
 end
