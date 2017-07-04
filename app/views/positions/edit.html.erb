@@ -41,6 +41,27 @@
           </div>
           <hr>
           <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Unidad: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select" name="unit_id">
+                  <% Unit.all.each do |unit| %>
+                  <option value="<%= unit.id %>"
+                    <% if unit.id == @position.unit_id %>
+                       selected="selected"
+                    <% end %>
+                    >
+                    <%= unit.name %>
+                  </option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
             <div class="col-md-6">
               <input type="hidden"value="<%= @position.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
