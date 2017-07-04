@@ -1,6 +1,19 @@
 class PositionsController < ApplicationController
   def index
     @positions = Position.all
+    if params[:search]
+      @positions = Position.search(params[:search]).order('id DESC')
+    else
+      @positions = Position.all.order('id DESC')
+    end
+  end
+
+  def show
+    @position = Position.find(params[:id])
+  end
+
+  def edit
+    @position = Position.find(params[:id])
   end
 
   def create
@@ -39,6 +52,6 @@ class PositionsController < ApplicationController
   private
 
   def position_params
-  params.require(:position).permit(:position_number, :name, :unit_id)
+    params.require(:position).permit(:position_number, :name, :unit_id)
   end
 end

@@ -4,4 +4,8 @@ class Position < ActiveRecord::Base
   belongs_to :unit
   validates :name, :position_number, presence: true
   validates :position_number, presence: true, uniqueness: true
+
+  def self.search(search)
+    self.where("name ILIKE ?", "%#{search}%")
+  end
 end
