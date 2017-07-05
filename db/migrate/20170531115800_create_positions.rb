@@ -4,6 +4,7 @@ class CreatePositions < ActiveRecord::Migration
       t.belongs_to :unit, index: true
       t.string :name
       t.string :position_number
+      t.string :description
 
       t.timestamps null: false
     end

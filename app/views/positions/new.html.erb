@@ -35,7 +35,7 @@
                 <b>Descripción: </b>
               </div>
               <div class="col-md-4">
-                <p>Descripción del Puesto*</p>
+                <input type="text" class="form-control" id="inputDefault" name="description">
               </div>
             </div>
           </div>
@@ -54,6 +54,13 @@
                   <% end %>
                 </select>
               </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-md-6">
+              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+              <button class="btn btn-success save-changes" type="submit" >Crear Puesto</button>
             </div>
           </div>
         </form>

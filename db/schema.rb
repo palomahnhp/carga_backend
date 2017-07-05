@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170615074235) do
     t.integer  "unit_id"
     t.string   "name"
     t.string   "position_number"
+    t.string   "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
