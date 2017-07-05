@@ -133,6 +133,10 @@
   width: 30%;
 }
 
+.btn {
+  border-radius: 100px !important;
+}
+
 .btn-index {
   margin-top: 10%;
   width: 30%;
@@ -819,6 +823,9 @@ th {
 }
 .glyphicon-retweet:before {
   content: "\e115";
+}
+.glyphicon-shopping-cart:before {
+  content: "\e116";
 }
 .glyphicon-shopping-cart:before {
   content: "\e116";

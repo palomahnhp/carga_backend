@@ -48,7 +48,7 @@
               <div class="col-md-4">
                 <select class="form-control" id="select" name="unit_id">
                   <% Unit.all.each do |unit| %>
-                    <option value="unit.id">
+                    <option value="<%= unit.id %>">
                       <%= unit.name %>
                     </option>
                   <% end %>
