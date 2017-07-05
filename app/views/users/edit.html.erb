@@ -75,15 +75,17 @@
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control">
-                  <% Position.all.each do |position| %>
-                    <option value=""
-                      <% if position.id == @user.positions.first.id %>
-                        selected="selected"
-                      <% end %>
-                    ><%= position.name %></option>
-                  <% end %>
-                </select>
+                <% if @user.positions != [] %>
+                  <select class="form-control">
+                    <% Position.all.each do |position| %>
+                      <option value=""
+                        <% if position.id == @user.positions.first.id %>
+                          selected="selected"
+                        <% end %>
+                      ><%= position.name %></option>
+                    <% end %>
+                  </select>
+                <% end %>
               </div>
             </div>
           </div>
