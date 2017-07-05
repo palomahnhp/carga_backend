@@ -6,14 +6,14 @@
         <legend class="col-lg-12">Vista de Función</legend>
       </div>
       <div class="form-group org-panel">
-        <form action="/functions/create" method="POST">
+        <form action="/functions/update" method="POST">
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
                 <b>Número de función: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="function_number">
+                <input type="text" class="form-control" id="inputDefault" name="function_number" value="<%= @function.function_number %>">
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
                 <b>Función: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="name">
+                <input type="text" class="form-control" id="inputDefault" name="name" value="<%= @function.name %>">
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
               </div>
               <div class="col-md-4">
                 <select class="form-control" id="select">
-                  <option value="">Tipo 1</option>
+                  <option value="" selected="selected">Tipo 1</option>
                   <option value="">Tipo 2</option>
                   <option value="">Tipo 3</option>
                 </select>
@@ -51,7 +51,7 @@
               </div>
               <div class="col-md-4">
                 <select class="form-control" id="select">
-                  <option value="">Sí</option>
+                  <option value="" selected="selected">Sí</option>
                   <option value="">No</option>
                 </select>
               </div>
@@ -60,8 +60,12 @@
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">
+              <input type="hidden"value="<%= @function.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Crear Función</button>
+              <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
+              <button type="button" class="btn btn-danger">
+                <%= link_to "Eliminar Función", {action: 'delete',id: @function.id}, class: "link-delete" %>
+              </button>
             </div>
           </div>
         </form>

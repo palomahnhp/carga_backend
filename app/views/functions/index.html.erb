@@ -3,65 +3,69 @@
   <div class="col-md-11 form-style">
       <fieldset>
         <div class="row">
-          <legend class="col-lg-12">Configuración</legend>
+          <legend class="col-lg-12">Administración de funciones</legend>
         </div>
         <div class="form-group org-panel">
           <div class="row">
-            <label for="select" class="col-lg-12 control-label">Configuración de funciones</label>
+            <div class="col-lg-12">
+              <div class="col-lg-2">
+                <a href="/functions/new">
+                  <button type="button" class="btn btn-success">Añadir Función</button>
+                </a>
+              </div>
+              <div class="col-lg-4 pull-right">
+                <%= form_tag(functions_path, method: "get", id: "search-form") do%>
+                <%= text_field_tag :search, params[:search], class:"form-control search-input col-lg-2", placeholder: "Buscar función" %>
+                <%= submit_tag "Buscar", class:"btn btn-primary search-btn" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group org-panel">
+          <div class="row">
+            <label for="select" class="col-lg-12 control-label">Lista de funciones</label>
             <hr>
           </div>
           <div class="row">
             <div class="col-lg-12">
-                <table class="table table-striped table-hover ">
-                  <thead>
-                    <tr>
-                      <th>Número</th>
-                      <th>Nombre</th>
-                      <th>Puesto</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Nº Funcion</th>
+                    <th>Función</th>
+                    <th>Tipo de puesto</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @functions.present? %>
                     <% @functions.each do |function| %>
-                      <form action="/functions/update" method="POST">
                         <tr>
                           <td>
-                            <input type="text" class="form-control" id="inputDefault" name="function_number" value="<%= function.function_number %>">
+                            <%= function.id %>
                           </td>
                           <td>
-                            <input type="text" class="form-control" id="inputDefault" name="name" value="<%= function.name %>">
+                            <%= function.function_number %>
                           </td>
                           <td>
-                            <select class="form-control" id="select" name="position_id">
-                              <% Position.all.each do |position| %>
-                              <option value="<%= position.id %>"
-                                <% if position.id == function.position_id %>
-                                   selected="selected"
-                                <% end %>
-                                >
-                                <%= position.name %>
-                              </option>
-                              <% end %>
-                            </select>
+                            <%= function.name %>
                           </td>
                           <td>
-                            <input type="hidden"value="<%= function.id %>" name="id"/>
-                            <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                            <button class="btn btn-default save-changes" type="submit" >Guardar cambios</button>
-                            <button type="button" class="btn btn-default">
-                              <%= link_to "Eliminar", {action: 'delete',id: function.id} %>
-                            </button>
+                            Tipo 1
+                          </td>
+                          <td>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: function.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: function.id) %>
                           </td>
                         </tr>
-                      </form>
                     <% end %>
-                  </tbody>
-                </table>
-              <div class="col-md-6">
-                <a href="/functions/new">
-                  <button type="button" class="btn btn-success">Añadir función</button>
-                </a>
-              </div>
+                  <% else %>
+                    <p>No existe ninguna función que contenga el término "<%= params[:search] %>".</p>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -74,16 +78,3 @@
   </div>
 </div>
 <% end %>
-
-<script>
-    (function(){
-        if( window.localStorage ){
-            if( !localStorage.getItem( 'firstLoad' ) ){
-              localStorage[ 'firstLoad' ] = true;
-              window.location.reload();
-            }
-        else
-          localStorage.removeItem( 'firstLoad' );
-        }
-    })();
-</script>

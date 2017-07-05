@@ -6,14 +6,14 @@
         <legend class="col-lg-12">Vista de Función</legend>
       </div>
       <div class="form-group org-panel">
-        <form action="/functions/create" method="POST">
+        <form action="/functions/update" method="POST">
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
                 <b>Número de función: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="function_number">
+                <p><%= @function.function_number %>
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@
                 <b>Función: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="name">
+                <p><%= @function.name %></p>
               </div>
             </div>
           </div>
@@ -32,14 +32,10 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Tipo de puesto: </b>
+                <b>Tipo puesto: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select">
-                  <option value="">Tipo 1</option>
-                  <option value="">Tipo 2</option>
-                  <option value="">Tipo 3</option>
-                </select>
+                <p>Tipo 1</p>
               </div>
             </div>
           </div>
@@ -50,18 +46,8 @@
                 <b>Se contabiliza: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select">
-                  <option value="">Sí</option>
-                  <option value="">No</option>
-                </select>
+                <p>Sí</p>
               </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-md-6">
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Crear Función</button>
             </div>
           </div>
         </form>
