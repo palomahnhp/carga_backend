@@ -1,56 +1,77 @@
 <% if can? :settings, @current_user %>
 <div class="row element-style">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-11 form-style">
     <fieldset>
       <div class="row">
-        <legend class="col-lg-12">Configuración</legend>
+        <legend class="col-lg-12">Vista de Función</legend>
       </div>
       <div class="form-group org-panel">
-        <div class="row">
-          <label for="select" class="col-lg-12 control-label">Creación de funciones</label>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <form action="/functions/create" method="POST" >
-            <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>Número</th>
-                  <th>Nombre</th>
-                  <th>Puesto</th>
-                </tr>
-              </thead>
-              <tbody>
-                    <tr>
-                      <td>
-                        <input type="text" class="form-control" id="inputDefault" name="function_number">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" id="inputDefault" name="name">
-                      </td>
-                      <td>
-                        <select class="form-control" id="select" name="position_id">
-                          <% Position.all.each do |position| %>
-                          <option value="<%= position.id %>"><%= position.name %></option>
-                          <% end %>
-                        </select>
-                      </td>
-                    </tr>
-              </tbody>
-            </table>
-            <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-            <button class="btn btn-success save-changes" type="submit" >Crear función</button>
-            </form>
+        <form action="/functions/create" method="POST">
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Número de función: </b>
+              </div>
+              <div class="col-md-4">
+                  <input type="text" class="form-control" id="inputDefault" name="function_number">
+              </div>
+            </div>
           </div>
-        </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Función: </b>
+              </div>
+              <div class="col-md-4">
+                  <input type="text" class="form-control" id="inputDefault" name="name">
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Tipo de puesto: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select">
+                  <option value="">Tipo 1</option>
+                  <option value="">Tipo 2</option>
+                  <option value="">Tipo 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Se contabiliza: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select">
+                  <option value="">Sí</option>
+                  <option value="">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-md-6">
+              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+              <button class="btn btn-success save-changes" type="submit" >Crear Función</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <a href="/functions">
+          <button type="submit" class="btn btn-primary">Volver</button>
+        </a>
       </div>
     </fieldset>
-    <div class="col-md-6">
-      <a href="/functions">
-        <button type="submit" class="btn btn-primary">Volver</button>
-      </a>
-    </div>
   </div>
 </div>
 <% end %>

@@ -20,6 +20,7 @@ class PositionsController < ApplicationController
     @position = Position.create(
     position_number: params[:position_number],
     name:            params[:name],
+    description:     params[:description],
     unit_id:         params[:unit_id]
     )
     if @position.save
@@ -33,6 +34,7 @@ class PositionsController < ApplicationController
     @position.update_attributes(
       position_number: params[:position_number],
       name:            params[:name],
+      description:     params[:description],
       unit_id:         params[:unit_id]
       )
     redirect_to action: :index
@@ -52,6 +54,6 @@ class PositionsController < ApplicationController
   private
 
   def position_params
-    params.require(:position).permit(:position_number, :name, :unit_id)
+    params.require(:position).permit(:position_number, :name, :unit_id, :description)
   end
 end

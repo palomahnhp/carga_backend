@@ -75,7 +75,15 @@
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault">
+                <select class="form-control">
+                  <% Position.all.each do |position| %>
+                    <option value=""
+                      <% if position.id == @user.positions.first.id %>
+                        selected="selected"
+                      <% end %>
+                    ><%= position.name %></option>
+                  <% end %>
+                </select>
               </div>
             </div>
           </div>
@@ -116,10 +124,24 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Perfil: </b>
+                <b>Perfil*: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault">
+                <select class="form-control" name="">
+                  <% if @user.superadmin_role == true %>
+                    <option value="" selected="selected">Superadministrador</option>
+                    <option value="">Administrador</option>
+                    <option value="">Encuestado</option>
+                  <% elsif @user.admin_role == true %>
+                    <option value="">Superadministrador</option>
+                    <option value="" selected="selected">Administrador</option>
+                    <option value="">Encuestado</option>
+                  <% else %>
+                    <option value="">Superadministrador</option>
+                    <option value="">Administrador</option>
+                    <option value="" selected="selected">Encuestado</option>
+                  <% end %>
+                </select>
               </div>
             </div>
           </div>

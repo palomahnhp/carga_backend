@@ -3,17 +3,17 @@
   <div class="col-md-11 form-style">
     <fieldset>
       <div class="row">
-        <legend class="col-lg-12">Vista de Puesto</legend>
+        <legend class="col-lg-12">Vista de Función</legend>
       </div>
       <div class="form-group org-panel">
-        <form action="/positions/update" method="POST">
+        <form action="/functions/update" method="POST">
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Número de puesto: </b>
+                <b>Número de función: </b>
               </div>
               <div class="col-md-4">
-                <p><%= @position.position_number %>
+                <p><%= @function.function_number %>
               </div>
             </div>
           </div>
@@ -21,21 +21,10 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Puesto: </b>
+                <b>Función: </b>
               </div>
               <div class="col-md-4">
-                <p><%= @position.name %></p>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Descripción: </b>
-              </div>
-              <div class="col-md-4">
-                <p><%= @position.description %></p>
+                <p><%= @function.name %></p>
               </div>
             </div>
           </div>
@@ -43,17 +32,28 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Unidad: </b>
+                <b>Tipo puesto: </b>
               </div>
               <div class="col-md-4">
-                <p><%= @position.unit.name %></p>
+                <p>Tipo 1</p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Se contabiliza: </b>
+              </div>
+              <div class="col-md-4">
+                <p>Sí</p>
               </div>
             </div>
           </div>
         </form>
       </div>
       <div class="col-md-6">
-        <a href="/positions">
+        <a href="/functions">
           <button type="submit" class="btn btn-primary">Volver</button>
         </a>
       </div>

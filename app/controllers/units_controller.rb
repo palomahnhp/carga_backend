@@ -29,8 +29,8 @@ class UnitsController < ApplicationController
       area_name:   params[:area_name],
       cod_dir:     params[:cod_dir],
       dir_name:    params[:dir_name],
-      cod_subdir:  params[:campaign_id],
-      subdir_name: params[:dir_name]
+      cod_subdir:  params[:cod_subdir],
+      subdir_name: params[:subdir_name]
       )
     if @unit.save
       puts 'unit saved'

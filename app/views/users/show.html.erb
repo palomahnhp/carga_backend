@@ -46,14 +46,9 @@
                 <b>Tipo de documento: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control">
-                  <option>
-                    DNI
-                  </option>
-                  <option>
-                    Otro
-                  </option>
-                </select>
+                <% if @user.document? %>
+                  <p>DNI</p>
+                <% end %>
               </div>
             </div>
           </div>
@@ -75,7 +70,9 @@
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault">
+                <% @user.positions.each do |position| %>
+                  <p><%= position.name %></p><br>
+                <% end %>
               </div>
             </div>
           </div>
@@ -119,16 +116,14 @@
                 <b>Perfil: </b>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault">
+                <% if @user.superadmin_role == true %>
+                  <p>Superadministrador</p>
+                <% elsif @user.admin_role == true %>
+                  <p>Administrador</p>
+                <% else %>
+                  <p>Encuestado</p>
+                <% end %>
               </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-md-6">
-              <input type="hidden"value="<%= @user.id %>" name="id"/>
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
             </div>
           </div>
         </form>

@@ -1,6 +1,19 @@
 class FunctionsController < ApplicationController
   def index
     @functions = Function.all
+    if params[:search]
+      @functions = Function.search(params[:search]).order('id DESC')
+    else
+      @functions = Function.all.order('id DESC')
+    end
+  end
+
+  def show
+    @function = Function.find(params[:id])
+  end
+
+  def edit
+    @function = Function.find(params[:id])
   end
 
   def create
