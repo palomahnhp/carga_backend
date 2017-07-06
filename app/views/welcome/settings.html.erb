@@ -1,26 +1,81 @@
 <% if can? :settings, @current_user %>
   <div class="row element-style">
-    <div class="col-md-5 col-md-offset-4 settings-menu">
-      <div class="row">
-        <div class="col-md-5 col-md-offset-3">
-          <i class="fa fa-cogs" aria-hidden="true"></i>
-        </div>
-      </div>
       <div class="row">
         <% if @current_user.superadmin_role? %>
-          <a href="/campaigns" class="btn btn-default btn-lg btn-index">Campañas</a>
-          <a href="/units" class="btn btn-default btn-lg btn-index">Unidades</a>
-          <a href="/positions" class="btn btn-default btn-lg btn-index">Puestos</a>
-          <a href="/functions" class="btn btn-default btn-lg btn-index">Funciones</a>
-          <a href="/users" class="btn btn-default btn-lg btn-index">Usuarios</a>
-          <a href="/responses" class="btn btn-default btn-lg btn-index">Respuestas</a>
+          <div class="col-md-11 form-style">
+            <div class="main-title">
+              <h1>Configuración</h1>
+            </div>
+            <hr>
+            <div class="settings-panel">
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="campaigns-icon" class="fa fa-flag"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Campañas</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="units-icon" class="fa fa-users"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Unidades</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="positions-icon" class="fa fa-briefcase"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Puestos</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="functions-icon" class="fa fa-list"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Funciones</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="users-icon" class="fa fa-user-circle-o"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Usuarios</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 settings-col">
+                <div class="thumbnail">
+                  <div>
+                    <i id="responses-icon" class="fa fa-book"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Respuestas</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a href="/admin">
+                  <button type="submit" class="btn btn-primary btn-settings">Volver</button>
+                </a>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
-      <div class="col-md-6">
-        <a href="/admin">
-          <button type="submit" class="btn btn-primary btn-settings">Volver</button>
-        </a>
-      </div>
-    </div>
   </div>
 <% end %>

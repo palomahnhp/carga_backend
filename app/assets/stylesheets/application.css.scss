@@ -36,6 +36,22 @@
   color: #fff;
 }
 
+#h4-settings {
+  text-align: center;
+}
+
+.main-title {
+  margin-left: 80px;
+}
+
+.settings-panel {
+  width: 90%;
+  height: 285px;
+  margin-left: 6.5%;
+  background-color: lightcyan;
+  border-radius: 9px;
+}
+
 .edit-row {
   margin-bottom: 15px;
 }
@@ -67,7 +83,7 @@
 }
 
 .btn-settings{
-  margin: 20px -30px;
+  margin: 3% 1%;
 }
 
 .campaign-progress {
@@ -5204,13 +5220,15 @@ a.badge:focus {
   }
 }
 .thumbnail {
+  text-align: center;
+  font-size: 70px;
+  margin-top: 20px;
+  width:120px;
   display: block;
   padding: 4px;
-  margin-bottom: 21px;
   line-height: 1.42857143;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 0;
+  background-color: lightgoldenrodyellow;
+  border-radius: 25px;
   -webkit-transition: border 0.2s ease-in-out;
   -o-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
