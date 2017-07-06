@@ -1,157 +1,133 @@
 <% if can? :settings, @current_user %>
-<div class="row element-style">
-  <div class="col-md-11 form-style">
-    <fieldset>
-      <div class="row">
-        <legend class="col-lg-12">Configuración de Usuario</legend>
-      </div>
-      <div class="form-group org-panel">
-        <form action="/users/create" method="POST">
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Nombre: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="name" >
-              </div>
-            </div>
-          </div>
+  <div class="row element-style">
+    <div class="col-md-11 form-style">
+      <fieldset>
+        <div class="row">
+          <legend class="col-lg-12">Configuración de Usuario</legend>
+        </div>
+        <div class="form-group org-panel">
           <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Primer apellido: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="last_name">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Segundo apellido: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="last_name_alt">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Tipo de documento: </b>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control">
-                  <option>
-                    DNI
-                  </option>
-                  <option>
-                    Otro
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Documento: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="document">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Puesto: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Código Ayre: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="login">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Email: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="email">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Teléfono: </b>
-              </div>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="inputDefault" name="phone_number">
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Perfil*: </b>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control" name="">
-                  <% if @user.superadmin_role == true %>
-                    <option value="" selected="selected">Superadministrador</option>
-                    <option value="">Administrador</option>
-                    <option value="">Encuestado</option>
-                  <% elsif @user.admin_role == true %>
-                    <option value="">Superadministrador</option>
-                    <option value="" selected="selected">Administrador</option>
-                    <option value="">Encuestado</option>
-                  <% else %>
-                    <option value="">Superadministrador</option>
-                    <option value="">Administrador</option>
-                    <option value="" selected="selected">Encuestado</option>
-                  <% end %>
-                </select>
+          <form action="/users/create" method="POST">
+            <div class="row edit-row">
+              <div class="col-lg-12">
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Nombre: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="name">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Primer apellido: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="last_name">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Segundo apellido: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="last_name_alt">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Código Ayre: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input class="form-control" id="disabledInput" type="text" disabled="">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Puesto: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input class="form-control" id="disabledInput" type="text" disabled="">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Perfil: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-control" name="">
+                          <option value="">Superadministrador</option>
+                          <option value="">Administrador</option>
+                          <option value="" selected="selected">Encuestado</option>
+                       </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 edit-bottom-panel">
+                  <div class="row bottom-panel">
+                    <div class="col-md-5">
+                      <b>Email: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="email">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Teléfono: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="phone_number">
+                    </div>
+                  </div>
+                  <div class="row bottom-panel">
+                    <div class="col-md-5">
+                      <b>Tipo de documento: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-control">
+                        <option>
+                          DNI
+                        </option>
+                        <option>
+                          Otro
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Documento: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="inputDefault" name="document">
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-md-6">
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
+            <hr>
+            <div class="row edit-row">
+              <div class="col-md-6">
+                <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                <button class="btn btn-success save-changes" type="submit" >Crear Usuario</button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <a href="/users">
-          <button type="submit" class="btn btn-primary">Volver</button>
-        </a>
-      </div>
-    </fieldset>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <a href="/users">
+            <button type="submit" class="btn btn-primary">Volver</button>
+          </a>
+        </div>
+      </fieldset>
+    </div>
   </div>
-</div>
 <% end %>

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user.update_attributes(
+    User.create(
       name:          params[:name],
       last_name:     params[:last_name],
       last_name_alt: params[:last_name_alt],

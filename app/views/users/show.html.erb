@@ -49,16 +49,6 @@
                 </div>
                 <div class="row">
                   <div class="col-md-5">
-                    <b>Puesto: </b>
-                  </div>
-                  <div class="col-md-7">
-                    <% @user.positions.each do |position| %>
-                      <p><%= position.name %></p><br>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-5">
                     <b>Perfil: </b>
                   </div>
                   <div class="col-md-7">
@@ -68,6 +58,16 @@
                       <p>Administrador</p>
                     <% else %>
                       <p>Encuestado</p>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    <b>Puesto: </b>
+                  </div>
+                  <div class="col-md-7">
+                    <% @user.positions.each do |position| %>
+                      <p><%= position.name %></p><br>
                     <% end %>
                   </div>
                 </div>
@@ -90,6 +90,7 @@
                     <%= @user.phone_number %>
                   </div>
                 </div>
+
                 <div class="row bottom-panel">
                   <div class="col-md-5">
                     <b>Tipo de documento: </b>
@@ -100,6 +101,7 @@
                     <% end %>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-5">
                     <b>Documento: </b>
