@@ -3,6 +3,6 @@ class Unit < ActiveRecord::Base
   belongs_to :campaign
 
   def self.search(search)
-    self.where("name ILIKE ?", "%#{search}%")
+    self.where("(name || dir_name || subdir_name) ILIKE ?", "%#{search}%")
   end
 end
