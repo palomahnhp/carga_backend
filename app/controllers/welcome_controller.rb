@@ -18,6 +18,10 @@ class WelcomeController < ApplicationController
     @current_user
   end
 
+  def tracking_panel
+    @current_user
+  end
+
   def show_mail
     unit = Unit.find_by(id: 1)
     @group_recipient = []

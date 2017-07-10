@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/tracking', to: 'welcome#tracking'
   get '/send_mail', to: 'welcome#send_mail'
   get '/show_mail', to: 'welcome#show_mail'
+  get '/tracking_panel', to: 'welcome#tracking_panel'
   get '/admin', to: 'welcome#admin'
 
   get '/users', to: 'users#index'
