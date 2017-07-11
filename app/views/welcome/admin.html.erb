@@ -1,24 +1,43 @@
-<div class="row element-style">
-  <div class="col-md-5 col-md-offset-3">
-    <div class="row">
-      <img id="ayto-logo-admin" src="/assets/ayto.png">
-    </div>
-    <% if @current_user && @current_user.admin_role? %>
-      <div class="col-md-10 col-md-offset-3">
-        <a href="/tracking" class="btn btn-primary btn-lg btn-a">Seguimiento</a>
+<% if @current_user %>
+  <div class="row element-style">
+      <div class="row">
+        <div class="col-md-11 form-style">
+          <div class="main-title">
+            <h1>Panel de administración</h1>
+          </div>
+          <br>
+          <div class="welcome-settings-panel">
+            <div class="col-md-6 settings-col">
+              <a href="/settings">
+                <div class="thumbnail welcome-panel-left">
+                  <div>
+                    <i id="admin-icons" class="fa fa-cog"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Configuración</h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-6 settings-col">
+              <a href="/tracking">
+                <div class="thumbnail welcome-panel">
+                  <div>
+                    <i id="admin-icons" class="fa fa-map-marker"></i>
+                  </div>
+                  <div class="caption">
+                    <h4 id="h4-settings">Seguimiento</h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="/">
+                <button type="submit" class="btn btn-primary btn-back-menu">Volver</button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    <% end %>
-      <% if @current_user && @current_user.superadmin_role? %>
-      <div class="col-md-11 col-md-offset-2">
-          <a href="/settings" class="btn btn-default btn-lg btn-a">Configuración</a>
-          <a href="/tracking" class="btn btn-default btn-lg btn-a">Seguimiento</a>
-      </div>
-      <% end %>
-      <div class="col-md-6">
-        <a href="/">
-          <button type="submit" class="btn btn-primary btn-back-menu">Volver</button>
-        </a>
-      </div>
-    </div>
   </div>
-</div>
+<% end %>

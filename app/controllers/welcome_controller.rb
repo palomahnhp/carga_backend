@@ -3,7 +3,12 @@ class WelcomeController < ApplicationController
   #when we get the info, change welcome controller methods to their own controllers
 
   def index
-    @current_user
+    @d = DateTime.now
+    if @d.hour > 12
+      @greeting = "Buenas tardes"
+    else
+      @greeting = "Buenos días"
+    end
   end
 
   def settings
@@ -15,6 +20,10 @@ class WelcomeController < ApplicationController
   end
 
   def tracking
+    @current_user
+  end
+
+  def tracking_panel
     @current_user
   end
 

@@ -5,13 +5,13 @@
     </div>
     <% if @current_user && @current_user.admin_role? %>
     <div class="col-md-11 col-md-offset-2">
-        <a href="/show_mail" class="btn btn-default btn-lg btn-a">Enviar recordatorio</a>
+        <a href="/show_mail" class="btn btn-default btn-lg btn-a">Recordatorio</a>
         <a href="/tracking" class="btn btn-default btn-lg btn-a">Seguimiento</a>
     </div>
     <% end %>
       <% if @current_user && @current_user.superadmin_role? %>
       <div class="col-md-11 col-md-offset-2">
-          <a href="/show_mail" class="btn btn-default btn-lg btn-a">Enviar recordatorio</a>
+          <a href="/show_mail" class="btn btn-default btn-lg btn-a">Recordatorio</a>
           <a href="/tracking" class="btn btn-default btn-lg btn-a">Seguimiento</a>
       </div>
       <% end %>

@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     elsif user.admin_role?
       can :manage, :all
-      cannot :settings
+      can :settings
     else
       cannot :settings
       cannot :tracking

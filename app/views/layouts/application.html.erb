@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="icon" href="/assets/favicon.ico">
-  <title>Ancarga</title>
+  <title>Ancar Areas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -15,9 +15,23 @@
   <nav class="navbar navbar-default nav-ayto">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="/" >
-        <img id="ayto-nw-logo" src="/assets/ayto-mad.png">
-      </a>
+      <div class="header-container">
+        <a href="/" >
+          <i id="home-icon" class="fa fa-home" aria-hidden="true" title="Inicio"></i>
+        </a>
+      </div>
+      <% if @current_user && (@current_user.superadmin_role? || @current_user.admin_role?)%>
+        <div class="header-container">
+          <a href="/settings" >
+            <i id="home-icon" class="fa fa-cog" aria-hidden="true" title="Configuración"></i>
+          </a>
+        </div>
+        <div class="header-container">
+          <a href="/tracking" >
+            <i id="home-icon" class="fa fa-map-marker" aria-hidden="true" title="Seguimiento"></i>
+          </a>
+        </div>
+      <% end %>
     </div>
     <div class="navbar-right">
       <a class="navbar-brand">
