@@ -39,9 +39,24 @@
 #h4-settings {
   text-align: center;
 }
+.welcome-panel {
+  width: 200px !important;
+}
+
+.welcome-panel-left {
+  width: 200px !important;
+}
 
 .main-title {
-  margin-left: 80px;
+  margin-left: 28%;
+}
+
+.welcome-settings-panel {
+  width: 43%;
+  height: 267px;
+  margin-left: 27.5%;
+  background-color: lightblue;
+  border-radius: 9px;
 }
 
 .settings-panel {
@@ -75,7 +90,7 @@
 }
 
 .btn-back-menu{
-  margin: 20px 80px;
+  margin: 33px 4px;
 }
 
 .settings-menu{
@@ -129,6 +144,11 @@
   margin-top: 25px;
 }
 
+#admin-icons {
+  font-size: 125px;
+  margin-top: 25px;
+}
+
 .nav-ayto {
   height: 65px;
 }
@@ -142,7 +162,7 @@
  }
 
 .org-panel {
-  background:   gainsboro;
+  background: lavender;
   border-radius: 5px;
   padding: 10px;
 }
@@ -216,6 +236,10 @@
    margin-top: 50px;
  }
 
+ .settings-title {
+   margin-left: 9%;
+ }
+
  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
 /*!
  * bootswatch v3.3.7
@@ -237,6 +261,7 @@ html {
 }
 body {
   margin: 0;
+  background-color: aliceblue !important;
 }
 footer{
   display: block;
