@@ -23,7 +23,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% Unit.all.each do |unit| %>
+                  <% @units.each do |unit| %>
                     <tr>
                       <td><%= unit.name %></td>
                       <td><%= response_level = Random.rand(101) %>%</td>
@@ -36,9 +36,8 @@
                         <a data-toggle="modal" href="#user-list">
                           <i class="fa fa-user fa-6 mail-icon-user" aria-hidden="true"></i>
                         </a>
-                        <a href="/show_mail">
+                          <!-- <%= link_to(content_tag(:i, nil,  class:'fa fa-users fa-6 mail-icon-users', style: 'margin-left:5px;', title: 'Grupo'), action: 'group_mail', id: unit.id) %> -->
                           <i class="fa fa-users fa-6 mail-icon-users" aria-hidden="true"></i>
-                        </a>
                       </td>
                     </tr>
                   <% end %>
@@ -65,7 +64,7 @@
         <h4 class="modal-title">Lista de usuarios</h4>
       </div>
       <div class="modal-body">
-        <% Unit.first.positions.each do |x| %>
+        <% unit.positions.each do |x| %>
           <% x.users.each do |z| %>
             <div class="radio">
               <label>

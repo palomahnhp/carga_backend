@@ -6,6 +6,8 @@ class WelcomeController < ApplicationController
     @d = DateTime.now
     if @d.hour > 12
       @greeting = "Buenas tardes"
+    elsif @d.hour > 21
+      @greeting = "Buenas noches"
     else
       @greeting = "Buenos días"
     end
@@ -20,7 +22,7 @@ class WelcomeController < ApplicationController
   end
 
   def tracking
-    @current_user
+    @units = Unit.all
   end
 
   def tracking_panel
@@ -28,14 +30,14 @@ class WelcomeController < ApplicationController
   end
 
   def show_mail
-    unit = Unit.find_by(id: 1)
-    @group_recipient = []
-    unit.positions.each do |position|
-      position.users.each do |user|
-        @group_recipient << user.email
-      end
+    @user = User.find(params[:id])
+    @recipient = user.email
+    respond_to do |format|
+      format.html
     end
-    user = User.find_by(id: 1)
+  end
+
+  def group_mail
     @recipient = user.email
     respond_to do |format|
       format.html
