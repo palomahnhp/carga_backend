@@ -1,0 +1,39 @@
+<% if can? :settings, @current_user %>
+<form class="form-horizontal" id="mail-fieldset" action="/units/send_mails" method="get">
+  <fieldset>
+    <legend>Enviar correo electrónico</legend>
+    <div class="form-group">
+      <label for="disabledInput" class="col-lg-2 control-label">Remitente</label>
+      <div class="col-lg-10">
+        <input name="sender" type="text" class="form-control" id="disabledInput" placeholder="noreply@madrid.es" disabled="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Destinatarios (BCC)</label>
+      <div class="col-lg-10">
+        <input name="bcc" type="text" class="form-control" value="<% @recipient.each do |x| %><%= x %>, <% end %>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Asunto</label>
+      <div class="col-lg-10">
+        <input name="subject" class="form-control" id="inputEmail" placeholder="Asunto ...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Mensaje</label>
+      <div class="col-lg-10">
+        <textarea name="message" class="form-control mail-text" rows="3" placeholder="Escriba su mensaje..."></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <a href="/units/tracking">
+          <button type="reset" class="btn btn-primary">Cancelar</button>
+        </a>
+        <button type="submit" class="btn btn-success">Enviar</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<% end %>

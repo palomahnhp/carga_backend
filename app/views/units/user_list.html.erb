@@ -1,0 +1,52 @@
+<div class="row element-style">
+  <div class="col-md-11 form-style">
+      <fieldset>
+        <div class="row">
+          <legend class="col-lg-12">Lista de usuarios</legend>
+        </div>
+        <div class="form-group org-panel">
+          <div class="row">
+            <label for="select" class="col-lg-12 control-label"><%= @unit.name %></label>
+            <hr>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Recordatorio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr>
+                          <td>
+                            <%= user.id %>
+                          </td>
+                          <td>
+                            <%= user.name %> <%= user.last_name %> <%= user.last_name_alt %>
+                          </td>
+                          <td>
+                            <%= user.email %>
+                          </td>
+                          <td>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-envelope', title: 'Enviar recordatorio'), action: 'show_mail', id: user.id) %>
+                          </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    <div class="col-md-6">
+      <a href="/units/tracking">
+        <button type="submit" class="btn btn-primary">Volver</button>
+      </a>
+    </div>
+  </div>
+  </div>

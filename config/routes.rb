@@ -7,11 +7,7 @@ Rails.application.routes.draw do
 
   get '/admin_panel', to: 'welcome#admin_panel'
   get '/settings', to: 'welcome#settings'
-  get '/tracking', to: 'welcome#tracking'
-  get '/send_mail', to: 'welcome#send_mail'
-  get '/show_mail', to: 'welcome#show_mail'
   get '/group_mail', to: 'welcome#group_mail'
-  get '/tracking_panel', to: 'welcome#tracking_panel'
   get '/admin', to: 'welcome#admin'
 
   get '/users', to: 'users#index'
@@ -36,6 +32,12 @@ Rails.application.routes.draw do
   get '/units/new', to: 'units#new'
   get '/units/edit', to: 'units#edit'
   get '/units/show', to: 'units#show'
+  get '/units/tracking', to: 'units#tracking'
+  get '/units/show_mail', to: 'units#show_mail'
+  get '/units/send_mail', to: 'units#send_mail'
+  get '/units/group_mail', to: 'units#group_mail'
+  get '/units/send_mails', to: 'units#send_mails'
+  get '/units/user_list', to: 'units#user_list'
 
   get '/surveys', to: 'surveys#index'
   get '/surveys/show', to: 'surveys#show'
