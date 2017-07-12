@@ -1,5 +1,5 @@
 <% if can? :settings, @current_user %>
-<form class="form-horizontal" id="mail-fieldset" action="/send_mail" method="get">
+<form class="form-horizontal" id="mail-fieldset" action="/units/send_mail" method="get">
   <fieldset>
     <legend>Enviar correo electrónico</legend>
     <div class="form-group">
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <a href="/tracking">
+        <a href="/units/tracking">
           <button type="reset" class="btn btn-primary">Cancelar</button>
         </a>
         <button type="submit" class="btn btn-success">Enviar</button>

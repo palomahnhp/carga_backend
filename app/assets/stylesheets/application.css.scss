@@ -39,6 +39,15 @@
 #h4-settings {
   text-align: center;
 }
+
+.tracking-icon {
+  margin-left: 15px;
+}
+
+.tracking-bar {
+  width: 70%;
+}
+
 .welcome-panel {
   width: 200px !important;
 }
@@ -48,7 +57,7 @@
 }
 
 .main-title {
-  margin-left: 28%;
+  margin-left: 30%;
 }
 
 .welcome-settings-panel {
@@ -261,7 +270,6 @@ html {
 }
 body {
   margin: 0;
-  background-color: aliceblue !important;
 }
 footer{
   display: block;
@@ -5271,7 +5279,7 @@ a.badge:focus {
   display: block;
   padding: 4px;
   line-height: 1.42857143;
-  background-color: ivory;
+  background-color: lightgoldenrodyellow;
   border-radius: 25px;
   -webkit-transition: border 0.2s ease-in-out;
   -o-transition: border 0.2s ease-in-out;

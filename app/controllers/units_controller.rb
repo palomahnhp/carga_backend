@@ -8,6 +8,10 @@ class UnitsController < ApplicationController
     end
   end
 
+  def tracking
+    @units = Unit.all
+  end
+
   def show
     @unit = Unit.find(params[:id])
   end
@@ -69,6 +73,47 @@ class UnitsController < ApplicationController
     end
     @unit.destroy
     redirect_to action: :index
+  end
+
+  def user_list
+    @unit = Unit.find(params[:id])
+    @users = []
+    @unit.positions.each do |position|
+      position.users.each do |user|
+        @users << user
+      end
+    end
+  end
+
+  def show_mail
+    @user = User.find(params[:id])
+    @recipient = @user.email
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def send_mail
+    UserMailer.reminder_email(params[:recipient], message: params[:message], subject: params[:subject]).deliver_now
+    redirect_to action: :tracking
+  end
+
+  def group_mail
+    unit = Unit.find(params[:id])
+    @recipient = []
+    unit.positions.each do |position|
+      position.users.each do |user|
+        @recipient << user.email
+      end
+    end
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def send_mails
+    UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: params[:message], subject: params[:subject]).deliver_now
+    redirect_to action: :tracking
   end
 
   private
