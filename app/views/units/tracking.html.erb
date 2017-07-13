@@ -26,7 +26,15 @@
                   <% @units.each do |unit| %>
                     <tr>
                       <td><%= unit.name %></td>
-                      <td><%= response_level = Random.rand(101) %>%</td>
+                      <% unit_users = []%>
+                      <% unit_responses = 0%>
+                      <% unit.positions.each do |position| %>
+                        <% position.users.each do |user|%>
+                          <% unit_users << user%>
+                          <% unit_responses = user.responses.count + unit_responses %>
+                        <% end %>
+                      <% end %>
+                      <td><%= response_level = (unit_responses*100)/(unit_users).count %>%</td>
                       <td>
                         <div class="progress progress-striped tracking-bar">
                           <div class="progress-bar progress-bar-success" style="width: <%= response_level %>%"></div>
