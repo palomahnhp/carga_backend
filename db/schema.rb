@@ -25,15 +25,17 @@ ActiveRecord::Schema.define(version: 20170705095552) do
 
   create_table "functions", force: :cascade do |t|
     t.integer  "position_id"
+    t.integer  "position_type_id"
     t.string   "name"
     t.string   "function_number"
     t.boolean  "num_task"
     t.boolean  "not_norm"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "functions", ["position_id"], name: "index_functions_on_position_id", using: :btree
+  add_index "functions", ["position_type_id"], name: "index_functions_on_position_type_id", using: :btree
 
   create_table "position_types", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -41,14 +43,16 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   end
 
   create_table "positions", force: :cascade do |t|
+    t.integer  "position_type_id"
     t.integer  "unit_id"
     t.string   "name"
     t.string   "position_number"
     t.string   "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
+  add_index "positions", ["position_type_id"], name: "index_positions_on_position_type_id", using: :btree
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
 
   create_table "positions_users", force: :cascade do |t|

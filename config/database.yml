@@ -1,17 +1,21 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+
 default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: ancar_areas_development
+development: &development
+  adapter: postgresql
+  timeout: 5000
+  port: 5444
+  encoding: unicode
+  reconnect: false
+  database: ancar_areas
+  pool: 5
+  username: ancar_areas_owner
+  password: zTmcNDZxM4fB
+  host: pgcorpdesa01.munimadrid.es
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,6 +24,11 @@ test:
   <<: *default
   database: ancar_areas_test
 
+staging:
+  <<: *development
+
+preproduction:
+  <<: *development
+
 production:
-  <<: *default
-  database: ancar_areas_pro
+  <<: *development
