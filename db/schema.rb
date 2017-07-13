@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   add_index "functions", ["position_type_id"], name: "index_functions_on_position_type_id", using: :btree
 
   create_table "position_types", force: :cascade do |t|
+    t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
