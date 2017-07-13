@@ -26,11 +26,11 @@
                   <% @units.each do |unit| %>
                     <tr>
                       <td><%= unit.name %></td>
-                      <% unit_users = []%>
-                      <% unit_responses = 0%>
+                      <% unit_users = [] %>
+                      <% unit_responses = 0 %>
                       <% unit.positions.each do |position| %>
-                        <% position.users.each do |user|%>
-                          <% unit_users << user%>
+                        <% position.users.each do |user| %>
+                          <% unit_users << user %>
                           <% unit_responses = user.responses.count + unit_responses %>
                         <% end %>
                       <% end %>
