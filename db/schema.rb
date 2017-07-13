@@ -56,6 +56,11 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   add_index "positions", ["position_type_id"], name: "index_positions_on_position_type_id", using: :btree
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
 
+  create_table "positions_users", force: :cascade do |t|
+    t.integer "position_id"
+    t.integer "user_id"
+  end
+
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "function_id"
