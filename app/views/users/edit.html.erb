@@ -52,7 +52,21 @@
                       <b>Perfil: </b>
                     </div>
                     <div class="col-md-7">
-                      Superadministrador: <input type="checkbox" name="superadmin_role" value="true">
+                      <select class="form-control" name="role">
+                        <% if @user.superadmin_role == true %>
+                          <option name="role" value="1" selected="selected">Superadministrador</option>
+                          <option value="2">Administrador</option>
+                          <option value="3">Encuestado</option>
+                        <% elsif @user.admin_role == true %>
+                          <option value="1">Superadministrador</option>
+                          <option value="2" selected="selected">Administrador</option>
+                          <option value="3">Encuestado</option>
+                        <% else %>
+                          <option value="1">Superadministrador</option>
+                          <option value="2">Administrador</option>
+                          <option value="3" selected="selected">Encuestado</option>
+                        <% end %>
+                       </select>
                     </div>
                   </div>
                   <div class="row">
