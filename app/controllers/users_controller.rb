@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @positions = Position.all
   end
 
   def update
@@ -43,6 +44,10 @@ class UsersController < ApplicationController
       admin_role:      admin_role,
       respondent_role: respondent_role
       )
+    unless params[:position] == ""
+      @position = Position.find_by(name: params[:position])
+      @user.positions << @position
+    end
     redirect_to action: :index
   end
 
@@ -62,6 +67,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-  params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :superadmin_role, :admin_role, :respondent_role)
+    params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :superadmin_role, :admin_role, :respondent_role)
   end
 end

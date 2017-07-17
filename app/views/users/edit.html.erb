@@ -75,9 +75,9 @@
                     </div>
                     <div class="col-md-7">
                       <% if @user.positions != [] %>
-                        <select class="form-control">
-                          <% Position.all.each do |position| %>
-                            <option value=""
+                        <select class="form-control" name="position">
+                          <% @positions.each do |position| %>
+                            <option value="<%=position.name%>"
                               <% if position.id == @user.positions.first.id %>
                                 selected="selected"
                               <% end %>
@@ -85,7 +85,12 @@
                           <% end %>
                         </select>
                       <% else %>
-                         <input class="form-control" id="disabledInput" type="text" disabled="">
+                      <select class="form-control" name="position">
+                        <option></option>
+                        <% @positions.each do |position| %>
+                          <option value="<%=position.name%>"><%= position.name %></option>
+                        <% end %>
+                      </select>
                       <% end %>
                     </div>
                   </div>
