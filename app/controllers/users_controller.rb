@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       last_name_alt: params[:last_name_alt],
       document:      params[:document],
       email:         params[:email],
-      login:         params[:login],
+      login:         params[:ayre],
       phone_number:  params[:phone_number]
       )
     redirect_to action: :index
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       last_name_alt: params[:last_name_alt],
       document:      params[:document],
       email:         params[:email],
-      login:         params[:login],
+      login:         params[:ayre],
       phone_number:  params[:phone_number]
       )
     redirect_to action: :index
