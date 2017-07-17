@@ -52,19 +52,19 @@
                       <b>Perfil: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" name="">
+                      <select class="form-control" name="role">
                         <% if @user.superadmin_role == true %>
-                          <option value="" selected="selected">Superadministrador</option>
-                          <option value="">Administrador</option>
-                          <option value="">Encuestado</option>
+                          <option name="role" value="1" selected="selected">Superadministrador</option>
+                          <option value="2">Administrador</option>
+                          <option value="3">Encuestado</option>
                         <% elsif @user.admin_role == true %>
-                          <option value="">Superadministrador</option>
-                          <option value="" selected="selected">Administrador</option>
-                          <option value="">Encuestado</option>
+                          <option value="1">Superadministrador</option>
+                          <option value="2" selected="selected">Administrador</option>
+                          <option value="3">Encuestado</option>
                         <% else %>
-                          <option value="">Superadministrador</option>
-                          <option value="">Administrador</option>
-                          <option value="" selected="selected">Encuestado</option>
+                          <option value="1">Superadministrador</option>
+                          <option value="2">Administrador</option>
+                          <option value="3" selected="selected">Encuestado</option>
                         <% end %>
                        </select>
                     </div>
@@ -75,9 +75,9 @@
                     </div>
                     <div class="col-md-7">
                       <% if @user.positions != [] %>
-                        <select class="form-control">
-                          <% Position.all.each do |position| %>
-                            <option value=""
+                        <select class="form-control" name="position">
+                          <% @positions.each do |position| %>
+                            <option value="<%=position.name%>"
                               <% if position.id == @user.positions.first.id %>
                                 selected="selected"
                               <% end %>
@@ -85,7 +85,12 @@
                           <% end %>
                         </select>
                       <% else %>
-                         <input class="form-control" id="disabledInput" type="text" disabled="">
+                      <select class="form-control" name="position">
+                        <option></option>
+                        <% @positions.each do |position| %>
+                          <option value="<%=position.name%>"><%= position.name %></option>
+                        <% end %>
+                      </select>
                       <% end %>
                     </div>
                   </div>
@@ -117,9 +122,6 @@
                         <option>
                           DNI
                         </option>
-                        <option>
-                          Otro
-                        </option>
                       </select>
                     </div>
                   </div>
@@ -140,7 +142,7 @@
               <div class="col-md-6">
                 <input type="hidden"value="<%= @user.id %>" name="id"/>
                 <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
+                <button class="btn btn-primary save-changes" type="submit" >Guardar cambios</button>
               </div>
             </div>
           </form>

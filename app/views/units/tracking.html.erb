@@ -34,7 +34,11 @@
                           <% unit_responses = user.responses.count + unit_responses %>
                         <% end %>
                       <% end %>
-                      <td><%= response_level = (unit_responses*100)/(unit_users).count %>%</td>
+                      <% if unit_users != [] %>
+                        <td><%= response_level = (unit_responses*100)/(unit_users).count %>%</td>
+                      <% else %>
+                        <td><%= response_level = 0 %>%</td>
+                      <% end %>
                       <td>
                         <div class="progress progress-striped tracking-bar">
                           <div class="progress-bar progress-bar-success" style="width: <%= response_level %>%"></div>

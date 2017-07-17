@@ -55,18 +55,6 @@
                       <input class="form-control" type="text" disabled="">
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <b>Perfil: </b>
-                    </div>
-                    <div class="col-md-7">
-                      <select class="form-control" name="">
-                          <option value="">Superadministrador</option>
-                          <option value="">Administrador</option>
-                          <option value="" selected="selected">Encuestado</option>
-                       </select>
-                    </div>
-                  </div>
                 </div>
 
                 <div class="col-md-6 edit-bottom-panel">
@@ -117,7 +105,7 @@
             <div class="row edit-row">
               <div class="col-md-6">
                 <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button class="btn btn-success save-changes" type="submit" >Crear Usuario</button>
+                <button class="btn btn-primary save-changes" type="submit" >Crear Usuario</button>
               </div>
             </div>
           </form>

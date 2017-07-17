@@ -28,7 +28,7 @@
         <div class="col-md-12 col-md-offset-2">
           <ul>
             <% @current_user.positions.each do |position| %>
-              <li><a href="/surveys/show" id="btn-surveys" class="btn btn-success btn-lg btn-a">
+              <li><a href="/surveys/show" id="btn-surveys" class="btn btn-primary btn-lg btn-a">
                 <%= position.name %>
               </a></li>
             <% end %>
