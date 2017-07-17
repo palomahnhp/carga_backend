@@ -62,8 +62,8 @@
             <div class="col-md-6">
               <input type="hidden"value="<%= @function.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-success save-changes" type="submit" >Guardar cambios</button>
-              <button type="button" class="btn btn-danger">
+              <button class="btn btn-primary save-changes" type="submit" >Guardar cambios</button>
+              <button type="button" class="btn btn-primary">
                 <%= link_to "Eliminar Función", {action: 'delete',id: @function.id}, class: "link-delete" %>
               </button>
             </div>
