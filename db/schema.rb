@@ -38,9 +38,7 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   add_index "functions", ["position_type_id"], name: "index_functions_on_position_type_id", using: :btree
 
   create_table "position_types", force: :cascade do |t|
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "description"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -57,8 +55,10 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
 
   create_table "positions_users", force: :cascade do |t|
-    t.integer "position_id"
-    t.integer "user_id"
+    t.integer  "position_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "responses", force: :cascade do |t|
