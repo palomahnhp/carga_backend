@@ -7,7 +7,8 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
+server "rorappdesa08A.munimadrid.es"
+set :deploy_to, "/aytomad/app/ancar_areas"
 
 # role-based syntax
 # ==================
