@@ -62,6 +62,25 @@
           </div>
           <hr>
           <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Tipo de puesto: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select" name="position_type_id">
+                  <% PositionType.all.each do |x| %>
+                    <% if @position.position_type_id == x.id%>
+                      <option value="<%= x.id %>" selected="selected"><%= x.description %></option>
+                    <% else %>
+                      <option value="<%= x.id %>"><%= x.description %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
             <div class="col-md-6">
               <input type="hidden"value="<%= @position.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
