@@ -35,10 +35,14 @@
                 <b>Tipo de puesto: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select">
-                  <option value="" selected="selected">Tipo 1</option>
-                  <option value="">Tipo 2</option>
-                  <option value="">Tipo 3</option>
+                <select class="form-control" id="select" name="position_type_id">
+                  <% PositionType.all.each do |x| %>
+                    <% if @function.position_type_id == x.id%>
+                      <option value="<%= x.id %>" selected="selected"><%= x.description %></option>
+                    <% else %>
+                      <option value="<%= x.id %>"><%= x.description %></option>
+                    <% end %>
+                  <% end %>
                 </select>
               </div>
             </div>
@@ -50,9 +54,14 @@
                 <b>Se contabiliza: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select">
-                  <option value="" selected="selected">Sí</option>
-                  <option value="">No</option>
+                <select class="form-control" id="select" name="num_task">
+                  <% if @function.num_task == true %>
+                    <option value="true" selected="selected">Sí</option>
+                    <option value="false">No</option>
+                  <% else %>
+                    <option value="false" selected="selected">No</option>
+                    <option value="true">Sí</option>
+                  <% end %>
                 </select>
               </div>
             </div>

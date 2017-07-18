@@ -53,7 +53,7 @@
                             <%= function.name %>
                           </td>
                           <td>
-                            Tipo 1
+                            <%= function.position_type.description %>
                           </td>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: function.id) %>

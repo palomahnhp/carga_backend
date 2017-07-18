@@ -35,7 +35,7 @@
                 <b>Tipo puesto: </b>
               </div>
               <div class="col-md-4">
-                <p>Tipo 1</p>
+                <p><%= @function.position_type.description %></p>
               </div>
             </div>
           </div>
@@ -46,7 +46,11 @@
                 <b>Se contabiliza: </b>
               </div>
               <div class="col-md-4">
-                <p>Sí</p>
+                <% if @function.num_task == true %>
+                  <p>Sí</p>
+                <% else %>
+                  <p>No</p>
+                <% end %>
               </div>
             </div>
           </div>
