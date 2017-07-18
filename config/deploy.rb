@@ -1,10 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
 
-require 'capistrano/ext/multistage'
-
-set :default_stage, "staging"
-
 set :application, "ancar_areas"
 set :repo_url, 'https://bitbucket.org/ancarga/carga_backend.git'
 
