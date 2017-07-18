@@ -58,9 +58,25 @@
           </div>
           <hr>
           <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Tipo de puesto: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select" name="position_type_id">
+                  <option></option>
+                  <% PositionType.all.each do |x| %>
+                    <option value="<%= x.id %>"><%= x.description %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row edit-row">
             <div class="col-md-6">
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-              <button class="btn btn-primarys save-changes" type="submit" >Crear Puesto</button>
+              <button class="btn btn-primary save-changes" type="submit" >Crear Puesto</button>
             </div>
           </div>
         </form>
