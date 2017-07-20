@@ -14,7 +14,7 @@ set :application, 'ancar_areas'
 set :server_name, deploysecret(:server_name)
 set :full_app_name, fetch(:application)
 # If ssh access is restricted, probably you need to use https access
-set :repo_url, 'https://bitbucket.org/ancarga/carga_backend.git'
+set :repo_url, 'https://dnacenta:Everis01@bitbucket.org/ancarga/carga_backend.git'
 
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
 
@@ -22,8 +22,8 @@ set :log_level, :info
 set :pty, true
 set :use_sudo, false
 
-set :linked_files, %w{config/database.yml config/secrets.yml}
-set :linked_dirs, %w{log tmp public/system public/assets}
+# set :linked_files, %w{config/database.yml config/secrets.yml}
+# set :linked_dirs, %w{log tmp public/system public/assets}
 
 set :keep_releases, 10
 
