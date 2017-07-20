@@ -14,7 +14,7 @@ set :application, 'ancar_areas'
 set :server_name, deploysecret(:server_name)
 set :full_app_name, fetch(:application)
 # If ssh access is restricted, probably you need to use https access
-set :repo_url, 'https://bitbucket.org/ancarga/carga_backend.git'
+set :repo_url, 'https://dnacenta@bitbucket.org/ancarga/carga_backend.git'
 
 set :scm, :git
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
