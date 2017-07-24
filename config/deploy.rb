@@ -11,7 +11,7 @@ set :rails_env, fetch(:stage)
 set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
 
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
-before 'deploy', 'rvm1:install_ruby' # install Ruby and create gemset (both if missing)
+before 'deploy', 'rvm1:install:ruby' # install Ruby and create gemset (both if missing)
 
 set :application, 'ancar_areas'
 set :server_name, deploysecret(:server_name)
