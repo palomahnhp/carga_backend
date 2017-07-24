@@ -13,9 +13,6 @@ set :rvm_ruby_string, :local        # use the same ruby as used locally for depl
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
 before 'deploy', 'rvm1:install_ruby' # install Ruby and create gemset (both if missing)
 
-set :rvm_ruby_version, '2.2.7'
-set :rvm_type, :user
-
 set :application, 'ancar_areas'
 set :server_name, deploysecret(:server_name)
 set :full_app_name, fetch(:application)
@@ -32,8 +29,6 @@ set :use_sudo, false
 # set :linked_dirs, %w{log tmp public/system public/assets}
 
 set :keep_releases, 10
-
-set :local_user, ENV['USER']
 
 ## Run test before deploy
 # set :tests, ["spec"]
