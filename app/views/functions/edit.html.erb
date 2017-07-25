@@ -32,6 +32,24 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
+                <b>Puesto: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="select" name="position_type_id">
+                  <% Position.all.each do |position| %>
+                    <% if @function.position_id == position.id%>
+                      <option value="<%= position.id %>" selected="selected"><%= position.name %></option>
+                    <% else %>
+                      <option value="<%= position.id %>"><%= position.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
                 <b>Tipo de puesto: </b>
               </div>
               <div class="col-md-4">
@@ -46,7 +64,7 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
           <hr>
           <div class="row edit-row">
             <div class="col-lg-12">

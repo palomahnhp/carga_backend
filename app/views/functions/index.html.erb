@@ -35,7 +35,7 @@
                     <th>Id</th>
                     <th>Nº Funcion</th>
                     <th>Función</th>
-                    <th>Tipo de puesto</th>
+                    <th>Puesto</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -53,7 +53,9 @@
                             <%= function.name %>
                           </td>
                           <td>
-                            <%= function.position_type.description %>
+                            <% if function.position %>
+                              <%= function.position.name %>
+                            <% end %>
                           </td>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: function.id) %>
