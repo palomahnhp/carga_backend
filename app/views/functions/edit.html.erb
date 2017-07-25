@@ -35,8 +35,9 @@
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select" name="position_type_id">
+                <select class="form-control" id="select" name="position_id">
                   <% Position.all.each do |position| %>
+                    <option></option>
                     <% if @function.position_id == position.id%>
                       <option value="<%= position.id %>" selected="selected"><%= position.name %></option>
                     <% else %>
