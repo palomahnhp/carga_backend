@@ -51,10 +51,10 @@
               <thead>
                 <th>Tarea</th>
                 <th>% Tiempo</th>
-                <th>Nº de tareas</th>
+                <!-- <th>Nº de tareas</th>
                 <th>Tiempo mínimo</th>
                 <th>Tiempo medio</th>
-                <th>Tiempo máximo</th>
+                <th>Tiempo máximo</th> -->
               </thead>
               <tbody>
                 <% @current_user.positions.first.functions.each do |function| %>
@@ -70,7 +70,7 @@
                   <td>
                     <input class="form-control input-sm" type="text" name="time_per" id="inputSmall">
                   </td>
-                  <td>
+                  <!-- <td>
                     <input class="form-control input-sm" type="text" name="num_task" id="inputSmall">
                   </td>
                   <td>
@@ -81,14 +81,14 @@
                   </td>
                   <td>
                     <input class="form-control input-sm" type="text" name="max_time" id="inputSmall">
-                  </td>
+                  </td> -->
                 </tr>
                 <% end %>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div class="row">
             <label class="col-lg-12 control-label">Otras tareas realizadas: </label>
           </div>
@@ -131,7 +131,7 @@
           </div>
           <button type="reset" class="btn btn-primary pull-right" id="remove-task">Eliminar tarea</button>
           <button type="reset" class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
-        </div>
+        </div> -->
       </fieldset>
       <div class="col-md-7">
         <a href="/surveys">
