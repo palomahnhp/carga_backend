@@ -1,10 +1,39 @@
 class SurveysController < ApplicationController
   def index
-    @current_user
+    @positions = @current_user.positions.all
+
+    if @current_user.positions
+      fun_col = []
+      res_col = []
+      @current_user.positions.each do |position|
+        position.functions.each do |function|
+          @current_user.responses.each do |response|
+            if response.function_id == function.id
+              @p_id = position.id
+            end
+          end
+        end
+      end
+      @current_user.responses.each do |response|
+        res_col << response.function_id
+      end
+      @current_user.positions.each do |position|
+        position.functions.each do |function|
+          fun_col << function.id
+        end
+      end
+      if (fun_col != []) && (fun_col == res_col)
+        @render = false
+      else
+        @render = true
+      end
+    else
+      @render = false
+    end
   end
 
   def show
-    @current_user
+    @position = Position.find(params[:id])
   end
 
   def create
@@ -18,7 +47,7 @@ class SurveysController < ApplicationController
       max_time:    params[:max_time]
       )
     if @response.save
-      redirect_to action: :index
+      redirect_to :back
       puts 'survey sent'
     else
       if @response.errors
@@ -26,10 +55,8 @@ class SurveysController < ApplicationController
         @response.errors.full_messages.each do |error|
           @errors << error
         end
-        puts @response.errors.full_messages.to_s
         puts @errors
-        puts "****************************************"
-        redirect_to action: :show
+        redirect_to :back
       end
     end
   end

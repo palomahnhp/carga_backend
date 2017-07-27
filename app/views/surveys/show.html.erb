@@ -8,67 +8,70 @@
         </div>
       <% end%>
     <% end%>
-    <form class="form-horizontal" action="/surveys/create" method="POST">
-      <fieldset>
+    <fieldset>
+      <div class="row">
+        <legend class="col-lg-12"><%= @position.unit.campaign.name %></legend>
+      </div>
+      <div class="form-group org-panel">
         <div class="row">
-          <legend class="col-lg-12"><%= @current_user.positions.first.unit.campaign.name %></legend>
+          <label for="select" class="col-lg-12 control-label">Instrucciones de cumplimentación de la encuesta</label>
+          <hr>
         </div>
-        <div class="form-group org-panel">
-          <div class="row">
-            <label for="select" class="col-lg-12 control-label">Instrucciones de cumplimentación de la encuesta</label>
-            <hr>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <table class="table table-striped table-hover ">
-                <thead>
-                  <th></th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Instrucción 1...</td>
-                  </tr>
-                  <tr>
-                    <td>Instrucción 2...</td>
-                  </tr>
-                  <tr>
-                    <td>Instrucción 3...</td>
-                  </tr>
-                  <tr>
-                    <td>Instrucción 4...</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <label class="col-lg-12 control-label">¿En qué ha destinado el tiempo el último trimestre?</label>
-          </div>
-          <div class="row">
+        <div class="row">
+          <div class="col-lg-12">
             <table class="table table-striped table-hover ">
               <thead>
-                <th>Tarea</th>
-                <th>% Tiempo</th>
-                <!-- <th>Nº de tareas</th>
-                <th>Tiempo mínimo</th>
-                <th>Tiempo medio</th>
-                <th>Tiempo máximo</th> -->
+                <th></th>
               </thead>
               <tbody>
-                <% @current_user.positions.first.functions.each do |function| %>
+                <tr>
+                  <td>Instrucción 1. Responder en orden las preguntas.</td>
+                </tr>
+                <tr>
+                  <td>Instrucción 2. Confirmar función por función.</td>
+                </tr>
+                <tr>
+                  <td>Instrucción 3...</td>
+                </tr>
+                <tr>
+                  <td>Instrucción 4...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row question-mark">
+          <h4 class="col-lg-12 control-label question">¿En qué ha destinado el tiempo el último trimestre?</h4>
+        </div>
+        <div class="row">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <th>Tarea</th>
+              <th>% Tiempo</th>
+              <!-- <th>Nº de tareas</th>
+              <th>Tiempo mínimo</th>
+              <th>Tiempo medio</th>
+              <th>Tiempo máximo</th> -->
+            </thead>
+            <tbody>
+              <% @position.functions.each do |function| %>
                 <tr>
                   <td>
                     <div>
                       <p>
                         <%= function.name %>
-                        <input type="hidden" class="form-control input-sm task" type="text" id="inputSmall" value="<%= function.id %>" name="function_id">
                       </p>
                     </div>
                   </td>
                   <td>
-                    <input class="form-control input-sm" type="text" name="time_per" id="inputSmall">
+                  <form class="form-horizontal survey-form" action="/surveys/create" method="POST">
+                    <input class="form-control input-sm" type="text" name="time_per" id="survey-input">
+                    <input type="hidden" class="form-control input-sm task" type="text" id="inputSmall" value="<%= function.id %>" name="function_id">
+                    <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <button class="btn btn-success save-response" type="submit" >Confirmar</button>
+                  </form>
                   </td>
                   <!-- <td>
                     <input class="form-control input-sm" type="text" name="num_task" id="inputSmall">
@@ -83,64 +86,64 @@
                     <input class="form-control input-sm" type="text" name="max_time" id="inputSmall">
                   </td> -->
                 </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-        <!-- <div class="form-group">
-          <div class="row">
-            <label class="col-lg-12 control-label">Otras tareas realizadas: </label>
-          </div>
-          <div class="row">
-            <table class="table table-striped table-hover ">
-              <thead>
-                <th></th>
-                <th>Tarea</th>
-                <th>% Tiempo</th>
-                <th>Nº de tareas</th>
-                <th>Tiempo mínimo</th>
-                <th>Tiempo medio</th>
-                <th>Tiempo máximo</th>
-              </thead>
-              <tbody id="other-tasks">
-                <tr>
-                  <td>
-                    <td>
-                      <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Otra tarea">
-                    </td>
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                  <td>
-                    <input class="form-control input-sm" type="text" id="inputSmall">
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button type="reset" class="btn btn-primary pull-right" id="remove-task">Eliminar tarea</button>
-          <button type="reset" class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
-        </div> -->
-      </fieldset>
-      <div class="col-md-7">
-        <a href="/surveys">
-          <button type="reset" class="btn btn-primary">Cancelar</button>
-        </a>
-        <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-        <button type="submit" class="btn btn-primary" id="submit-survey">Enviar encuesta</button>
       </div>
-    </form>
+      <!-- <div class="form-group">
+        <div class="row">
+          <label class="col-lg-12 control-label">Otras tareas realizadas: </label>
+        </div>
+        <div class="row">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <th></th>
+              <th>Tarea</th>
+              <th>% Tiempo</th>
+              <th>Nº de tareas</th>
+              <th>Tiempo mínimo</th>
+              <th>Tiempo medio</th>
+              <th>Tiempo máximo</th>
+            </thead>
+            <tbody id="other-tasks">
+              <tr>
+                <td>
+                  <td>
+                    <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Otra tarea">
+                  </td>
+                </td>
+                <td>
+                  <input class="form-control input-sm" type="text" id="inputSmall">
+                </td>
+                <td>
+                  <input class="form-control input-sm" type="text" id="inputSmall">
+                </td>
+                <td>
+                  <input class="form-control input-sm" type="text" id="inputSmall">
+                </td>
+                <td>
+                  <input class="form-control input-sm" type="text" id="inputSmall">
+                </td>
+                <td>
+                  <input class="form-control input-sm" type="text" id="inputSmall">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="reset" class="btn btn-primary pull-right" id="remove-task">Eliminar tarea</button>
+        <button type="reset" class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
+      </div> -->
+    </fieldset>
+    <div class="col-md-7">
+      <a href="/surveys">
+        <button type="reset" class="btn btn-primary">Cancelar</button>
+      </a>
+      <a href="/surveys">
+        <button type="button" class="btn btn-primary" id="submit-survey">Terminar encuesta</button>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -157,8 +160,4 @@
         $(".task-row").last().remove()
       }
     })
-
-    // $("#submit-survey").click(function() {
-    //   swal("Gracias!", "La encuesta se ha enviado correctamente!", "success");
-    // })
 </script>

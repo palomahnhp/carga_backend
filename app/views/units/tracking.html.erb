@@ -31,7 +31,9 @@
                       <% unit.positions.each do |position| %>
                         <% position.users.each do |user| %>
                           <% unit_users << user %>
-                          <% unit_responses = user.responses.count + unit_responses %>
+                          <% if user.responses != [] %>
+                            <% unit_responses = 1 + unit_responses %>
+                          <% end %>
                         <% end %>
                       <% end %>
                       <% if unit_users != [] %>
