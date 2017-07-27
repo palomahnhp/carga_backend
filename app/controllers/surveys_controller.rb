@@ -34,6 +34,18 @@ class SurveysController < ApplicationController
 
   def show
     @position = Position.find(params[:id])
+    @pos_functions = []
+    @position.functions.each do |function|
+      @pos_functions << function
+      @current_user.responses.each do |response|
+        if response.function_id == function.id
+          @pos_functions.delete(function)
+        end
+      end
+    end
+    if @pos_functions == []
+      redirect_to action: :index
+    end
   end
 
   def create
