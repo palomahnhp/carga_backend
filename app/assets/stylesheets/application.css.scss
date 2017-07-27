@@ -60,6 +60,11 @@
   margin-left: 30%;
 }
 
+.save-response {
+  margin-left: 35px;
+  height: 42px;
+}
+
 .welcome-settings-panel {
   width: 43%;
   height: 267px;
@@ -162,6 +167,11 @@
   height: 65px;
 }
 
+.survey-form{
+  display: flex;
+  align-items: center;
+}
+
 .label-admin {
   text-align: left;
 }
@@ -174,6 +184,22 @@
   background: lavender;
   border-radius: 5px;
   padding: 10px;
+  margin-bottom: 65px !important;
+}
+
+.org-panel-instructions {
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 65px !important;
+}
+
+.question-mark {
+  margin-bottom: 25px;
+}
+
+.question {
+  font-weight: 600;
 }
 
 .btn-index-enter {
@@ -203,6 +229,7 @@
 
 .survey-icon{
   margin-left: 175px !important;
+  margin-bottom: 30px !important;
 }
 
 .btn-a {
@@ -245,8 +272,45 @@
    margin-top: 50px;
  }
 
+ #survey-input {
+    height: 50px;
+    padding: 5px 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    border-radius: 20px;
+    text-align: center;
+    width: 25%;
+ }
+
  .settings-title {
    margin-left: 9%;
+ }
+
+ button.accordion {
+     background-color: #eee;
+     color: #444;
+     cursor: pointer;
+     padding: 18px;
+     width: 100%;
+     border: none;
+     text-align: left;
+     outline: none;
+     font-weight: bold;
+     font-size: 15px;
+     transition: 0.4s;
+     border-radius: 20px;
+ }
+
+ button.accordion.active, button.accordion:hover {
+     background-color: #ddd;
+ }
+
+ div.panel-instructions {
+     padding: 0 18px;
+     background-color: white;
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.2s ease-out;
  }
 
  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
@@ -3381,8 +3445,8 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #2780e3;
-  border-color: #2780e3;
+  background-color: #3b5998;
+  border-color: #3b5998;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3438,8 +3502,8 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success {
   color: #ffffff;
-  background-color: #3fb618;
-  border-color: #3fb618;
+  background-color: #0B610B;
+  border-color: #0B610B;
 }
 .btn-success:focus,
 .btn-success.focus {
