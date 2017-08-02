@@ -27,7 +27,6 @@ class LoginManager
           last_name_alt:         login_data[:last_name_alt],
           document:              login_data[:document],
           email:                 login_data[:email],
-          personal_number:       login_data[:personal_number],
           phone_number:          login_data[:phone_number]
         )
         copy_errors_from!(user) unless user.save

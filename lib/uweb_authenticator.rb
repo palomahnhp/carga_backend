@@ -57,8 +57,7 @@ class UwebAuthenticator
         last_name_alt:     user_data['APELLIDO2_USUARIO'],
         document:          user_data['DNI'],
         phone_number:      user_data['TELEFONO'],
-        email:             user_data['MAIL'],
-        personal_number:   user_data['NUM_PERSONAL']
+        email:             user_data['MAIL']
       }
     end
 
