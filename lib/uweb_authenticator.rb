@@ -58,8 +58,6 @@ class UwebAuthenticator
         document:          user_data['DNI'],
         phone_number:      user_data['TELEFONO'],
         email:             user_data['MAIL'],
-        official_position: user_data['CARGO'],
-        unit_name:         user_data['UNIDAD'],
         personal_number:   user_data['NUM_PERSONAL']
       }
     end

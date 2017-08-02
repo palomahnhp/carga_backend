@@ -18,11 +18,8 @@ class FunctionsController < ApplicationController
 
   def create
     @function = Function.create(
-      function_number:      params[:function_number],
       name:                 params[:name],
-      position_id:          params[:position_id],
-      num_task:             params[:num_task],
-      position_type_id:     params[:position_type_id]
+      position_id:          params[:position_id]
       )
     if @function.save
       puts 'function saved'
@@ -33,11 +30,8 @@ class FunctionsController < ApplicationController
   def update
     @function = Function.find(params[:id])
     @function.update_attributes(
-      function_number:      params[:function_number],
       name:                 params[:name],
-      position_id:          params[:position_id],
-      num_task:             params[:num_task],
-      position_type_id:     params[:position_type_id]
+      position_id:          params[:position_id]
     )
     redirect_to action: :index
   end
@@ -51,6 +45,6 @@ class FunctionsController < ApplicationController
   private
 
   def function_params
-  params.require(:function).permit(:function_number, :name, :position_id, :position_type_id, :num_task)
+  params.require(:function).permit(:name, :position_id)
   end
 end

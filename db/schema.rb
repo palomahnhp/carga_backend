@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170608101103) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "position_id"
-    t.integer  "user_num",        default: 0
+    t.string   "user_num"
     t.string   "login"
     t.string   "name"
     t.string   "last_name"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170608101103) do
     t.string   "email"
     t.string   "phone_number"
     t.string   "personal_number"
+    t.integer  "user_role",       default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
