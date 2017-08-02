@@ -27,8 +27,6 @@ class LoginManager
           last_name_alt:         login_data[:last_name_alt],
           document:              login_data[:document],
           email:                 login_data[:email],
-          official_position:     login_data[:official_position],
-          unit_name:             login_data[:unit_name],
           personal_number:       login_data[:personal_number],
           phone_number:          login_data[:phone_number]
         )

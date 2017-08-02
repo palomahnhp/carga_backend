@@ -18,19 +18,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:role] == "1"
-      superadmin_role = true
-      admin_role      = false
-      respondent_role = false
-    elsif params[:role] == "2"
-      superadmin_role = false
-      admin_role      = true
-      respondent_role = false
-    else
-      superadmin_role = false
-      admin_role      = false
-      respondent_role = true
-    end
     @user = User.find(params[:id])
     @user.update_attributes(
       name:            params[:name],
@@ -40,14 +27,9 @@ class UsersController < ApplicationController
       email:           params[:email],
       login:           params[:ayre],
       phone_number:    params[:phone_number],
-      superadmin_role: superadmin_role,
-      admin_role:      admin_role,
-      respondent_role: respondent_role
+      user_role:       params[:role].to_i,
+      position_id:     params[:position].to_i
       )
-    unless params[:position] == ""
-      @position = Position.find_by(name: params[:position])
-      @user.positions << @position
-    end
     redirect_to action: :index
   end
 
@@ -67,6 +49,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :superadmin_role, :admin_role, :respondent_role)
+    params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id)
   end
 end

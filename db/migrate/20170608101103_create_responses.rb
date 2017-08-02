@@ -1,8 +1,8 @@
 class CreateResponses < ActiveRecord::Migration
   def change
     create_table :responses do |t|
-      t.belongs_to :user, index: true
-      t.belongs_to :function, index: true
+      t.references :user, index: true, foreign_key: true
+      t.references :function, index: true, foreign_key: true
       t.string :time_per
       t.string :num_task
       t.string :min_time

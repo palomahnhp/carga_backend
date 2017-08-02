@@ -19,7 +19,7 @@
                 </div>
               </a>
             </div>
-            <% if @current_user.superadmin_role? || @current_user.admin_role? %>
+            <% if @current_user.superadmin? || @current_user.admin? %>
               <div class="col-md-6 settings-col">
                 <a href="/admin">
                   <div class="thumbnail welcome-panel">

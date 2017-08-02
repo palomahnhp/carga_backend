@@ -37,8 +37,8 @@
               <div class="col-md-4">
                 <select class="form-control" id="select" name="unit_id">
                   <% Unit.all.each do |unit| %>
-                  <option value="<%= unit.id %>"
-                    <% if unit.id == @position.unit_id %>
+                  <option value="<%= unit.unit_number %>"
+                    <% if unit.unit_number == @position.unit_id.to_s %>
                        selected="selected"
                     <% end %>
                     >
@@ -49,25 +49,6 @@
               </div>
             </div>
           </div>
-          <hr>
-          <!-- <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Tipo de puesto: </b>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control" id="select" name="position_type_id">
-                  <% PositionType.all.each do |x| %>
-                    <% if @position.position_type_id == x.id%>
-                      <option value="<%= x.id %>" selected="selected"><%= x.description %></option>
-                    <% else %>
-                      <option value="<%= x.id %>"><%= x.description %></option>
-                    <% end %>
-                  <% end %>
-                </select>
-              </div>
-            </div>
-          </div> -->
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">

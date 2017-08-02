@@ -10,17 +10,6 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
-                <b>Número de función: </b>
-              </div>
-              <div class="col-md-4">
-                <p><%= @function.function_number %>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
                 <b>Función: </b>
               </div>
               <div class="col-md-4">
@@ -40,31 +29,6 @@
                       <%= @function.position.name %>
                   <% end %>
                 </p>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Tipo puesto: </b>
-              </div>
-              <div class="col-md-4">
-                <p><%= @function.position_type.description %></p>
-              </div>
-            </div>
-          </div> -->
-          <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Se contabiliza: </b>
-              </div>
-              <div class="col-md-4">
-                <% if @function.num_task == true %>
-                  <p>Sí</p>
-                <% else %>
-                  <p>No</p>
-                <% end %>
               </div>
             </div>
           </div>

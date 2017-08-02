@@ -35,25 +35,11 @@
                 <b>Unidad: </b>
               </div>
               <div class="col-md-4">
-                <p><%= @position.unit.name %></p>
+                <p><%= Unit.find_by(unit_number: @position.unit_id).name %></p>
               </div>
             </div>
           </div>
           <hr>
-          <!-- <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Tipo puesto: </b>
-              </div>
-              <div class="col-md-4">
-                <% if true %>
-                  <p><%= @position.position_type.description %></p>
-                <% else %>
-                  <p>No se ha especificado ningún tipo</p>
-                <% end %>
-              </div>
-            </div>
-          </div> -->
         </form>
       </div>
       <div class="col-md-6">

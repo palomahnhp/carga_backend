@@ -52,9 +52,9 @@
                     <b>Perfil: </b>
                   </div>
                   <div class="col-md-7">
-                    <% if @user.superadmin_role == true %>
+                    <% if @user.superadmin? %>
                       <p>Superadministrador</p>
-                    <% elsif @user.admin_role == true %>
+                    <% elsif @user.admin? %>
                       <p>Administrador</p>
                     <% else %>
                       <p>Encuestado</p>
@@ -66,9 +66,7 @@
                     <b>Puesto: </b>
                   </div>
                   <div class="col-md-7">
-                    <% @user.positions.each do |position| %>
-                      <p><%= position.name %></p><br>
-                    <% end %>
+                    <%= @user.position.name %>
                   </div>
                 </div>
               </div>

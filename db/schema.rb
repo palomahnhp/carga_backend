@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705095552) do
+ActiveRecord::Schema.define(version: 20170608101103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,41 +25,23 @@ ActiveRecord::Schema.define(version: 20170705095552) do
 
   create_table "functions", force: :cascade do |t|
     t.integer  "position_id"
-    t.integer  "position_type_id"
     t.string   "name"
-    t.string   "function_number"
-    t.boolean  "num_task"
     t.boolean  "not_norm"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "functions", ["position_id"], name: "index_functions_on_position_id", using: :btree
-  add_index "functions", ["position_type_id"], name: "index_functions_on_position_type_id", using: :btree
-
-  create_table "position_types", force: :cascade do |t|
-    t.string "description"
-  end
-
-  create_table "positions", force: :cascade do |t|
-    t.integer  "position_type_id"
-    t.integer  "unit_id"
-    t.string   "name"
-    t.string   "position_number"
-    t.string   "description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "positions", ["position_type_id"], name: "index_positions_on_position_type_id", using: :btree
-  add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
-
-  create_table "positions_users", force: :cascade do |t|
-    t.integer  "position_id"
-    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "functions", ["position_id"], name: "index_functions_on_position_id", using: :btree
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "unit_id"
+    t.string   "name"
+    t.string   "position_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "positions", ["unit_id"], name: "index_positions_on_unit_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
@@ -94,6 +76,8 @@ ActiveRecord::Schema.define(version: 20170705095552) do
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.integer  "position_id"
+    t.string   "user_num"
     t.string   "login"
     t.string   "name"
     t.string   "last_name"
@@ -101,14 +85,15 @@ ActiveRecord::Schema.define(version: 20170705095552) do
     t.string   "document"
     t.string   "email"
     t.string   "phone_number"
-    t.string   "official_position"
-    t.string   "unit_name"
     t.string   "personal_number"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.boolean  "superadmin_role",   default: false
-    t.boolean  "admin_role",        default: false
-    t.boolean  "respondent_role",   default: true
+    t.integer  "user_role",       default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
+  add_index "users", ["position_id"], name: "index_users_on_position_id", using: :btree
+
+  add_foreign_key "responses", "functions"
+  add_foreign_key "responses", "users"
+  add_foreign_key "units", "campaigns"
 end
