@@ -35,7 +35,6 @@
                     <th>Id</th>
                     <th>Nº Puesto</th>
                     <th>Puesto</th>
-                    <th>Descripción</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -51,9 +50,6 @@
                           </td>
                           <td>
                             <%= position.name %>
-                          </td>
-                          <td>
-                            <%= position.description %>
                           </td>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: position.id) %>
