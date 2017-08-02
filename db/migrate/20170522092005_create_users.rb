@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :phone_number
       t.string :personal_number
-      t.column :user_num, :integer, default: 0
+      t.column :user_role, :integer, default: 0
 
       t.timestamps null: false
     end
