@@ -52,9 +52,9 @@ namespace :deploy do
   # Compile assets locally and then rsync
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
-  # Restart unicorn
-  after 'deploy:publishing', 'deploy:restart'
-  after 'deploy:restart', 'sidekiq:restart'
+  # # Restart unicorn
+  # after 'deploy:publishing', 'deploy:restart'
+  # after 'deploy:restart', 'sidekiq:restart'
 end
 
 
