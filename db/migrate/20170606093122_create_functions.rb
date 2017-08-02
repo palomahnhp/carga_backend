@@ -2,7 +2,6 @@ class CreateFunctions < ActiveRecord::Migration
   def change
     create_table :functions do |t|
       t.belongs_to :position, index: true
-      t.belongs_to :position_type, index: true
       t.string :name
       t.boolean :not_norm
 
