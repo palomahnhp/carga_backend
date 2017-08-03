@@ -27,16 +27,15 @@
       <div class="row">
         <div class="col-md-12 col-md-offset-2">
           <ul>
-            <% @current_user.positions.each do |position| %>
-              <% if position.unit.campaign.status == "active" && position.id != @p_id %>
-                <a href="/surveys/show?id=<%= + position.id %>">
-                  <button type="button" class="btn btn-lg btn-primary">
-                    <%= position.name %>
-                  </button>
-                </a>
+            <% position = @current_user.position %>
+            <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
+              <a href="/surveys/show?id=<%= + position.id %>">
+                <button type="button" class="btn btn-lg btn-primary">
+                  <%= position.name %>
+                </button>
+              </a>
               <% else %>
-                <h2>No tienes campañas activas</h2>
-              <% end %>
+              <h2>No tienes campañas activas</h2>
             <% end %>
           </ul>
         </div>
