@@ -10,7 +10,7 @@ set :rails_env, fetch(:stage)
 
 set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
 
-set :rvm1_ruby_version, "2.2.7"
+set :rvm1_ruby_version, "2.3.3"
 
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
 before 'deploy', 'rvm1:install:ruby' # install Ruby and create gemset (both if missing)
