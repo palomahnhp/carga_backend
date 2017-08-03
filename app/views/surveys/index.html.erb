@@ -28,7 +28,7 @@
         <div class="col-md-12 col-md-offset-2">
           <ul>
             <% position = @current_user.position %>
-            <% if position.unit.campaign.status == "active" && position.id != @p_id %>
+            <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
               <a href="/surveys/show?id=<%= + position.id %>">
                 <button type="button" class="btn btn-lg btn-primary">
                   <%= position.name %>
