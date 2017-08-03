@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608101103) do
+ActiveRecord::Schema.define(version: 20170803072755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20170608101103) do
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.integer  "position_id"
     t.string   "user_num"
     t.string   "login"
     t.string   "name"
@@ -85,15 +84,18 @@ ActiveRecord::Schema.define(version: 20170608101103) do
     t.string   "document"
     t.string   "email"
     t.string   "phone_number"
-    t.string   "personal_number"
-    t.integer  "user_role",       default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "user_role",     default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "position_id"
   end
 
   add_index "users", ["position_id"], name: "index_users_on_position_id", using: :btree
 
+  add_foreign_key "functions", "positions"
+  add_foreign_key "positions", "units"
   add_foreign_key "responses", "functions"
   add_foreign_key "responses", "users"
   add_foreign_key "units", "campaigns"
+  add_foreign_key "users", "positions"
 end

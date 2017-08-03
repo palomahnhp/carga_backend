@@ -53,8 +53,8 @@ namespace :deploy do
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
   # # Restart unicorn
-  # after 'deploy:publishing', 'deploy:restart'
-  # after 'deploy:restart', 'sidekiq:restart'
+  after 'deploy:publishing', 'deploy:restart'
+  after 'deploy:restart', 'sidekiq:restart'
 end
 
 
