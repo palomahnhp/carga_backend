@@ -17,8 +17,15 @@ class LoginManager
   def find_or_create_user
     return unless valid?
 
-    self.user = User.find_by(login: login_data[:login])
-    unless user
+    self.user = User.find_by(document: login_data[:document])
+    if user
+      ActiveRecord::Base.transaction do
+        self.user.update_attributes(
+          login:                 login_data[:login]
+        )
+        copy_errors_from!(user) unless user.save
+      end
+    else
       ActiveRecord::Base.transaction do
         self.user = User.new(
           login:                 login_data[:login],
