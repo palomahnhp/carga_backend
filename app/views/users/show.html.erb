@@ -66,7 +66,9 @@
                     <b>Puesto: </b>
                   </div>
                   <div class="col-md-7">
-                    <%= Position.find_by(position_number: @user.position_id).name %>
+                    <% if @user.position_id %>
+                      <%= Position.find(@user.position_id).name %>
+                    <% end %>
                   </div>
                 </div>
               </div>
