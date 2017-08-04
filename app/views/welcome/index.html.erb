@@ -32,6 +32,21 @@
                   </div>
                 </a>
               </div>
+            <% elsif  @current_user.respondent? %>
+              <div class="respondent-settings-panel">
+                <div class="col-md-6 settings-col">
+                  <a href="/surveys">
+                    <div class="thumbnail welcome-panel-left">
+                      <div>
+                        <i class="fa fa-pencil-square-o"></i>
+                      </div>
+                      <div class="caption">
+                        <h4 id="h4-settings">Encuestas</h4>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>
