@@ -25,19 +25,6 @@ class LoginManager
         )
         copy_errors_from!(user) unless user.save
       end
-    else
-      ActiveRecord::Base.transaction do
-        self.user = User.new(
-          login:                 login_data[:login],
-          name:                  login_data[:name],
-          last_name:             login_data[:last_name],
-          last_name_alt:         login_data[:last_name_alt],
-          document:              login_data[:document],
-          email:                 login_data[:email],
-          phone_number:          login_data[:phone_number]
-        )
-        copy_errors_from!(user) unless user.save
-      end
     end
     user
   end
