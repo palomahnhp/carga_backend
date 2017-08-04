@@ -32,7 +32,6 @@
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Nº Unidad</th>
                     <th>Unidad</th>
                     <th>Dirección</th>
@@ -44,9 +43,6 @@
                   <% if @units.present? %>
                     <% @units.each do |unit| %>
                         <tr>
-                          <td>
-                            <%= unit.id %>
-                          </td>
                           <td>
                             <%= unit.unit_number %>
                           </td>

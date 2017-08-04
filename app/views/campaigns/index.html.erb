@@ -32,7 +32,6 @@
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Campaña</th>
                     <th>Estado</th>
                     <th>Acciones</th>
@@ -42,9 +41,6 @@
                   <% if @campaigns.present? %>
                     <% @campaigns.each do |campaign| %>
                         <tr>
-                          <td>
-                            <%= campaign.id %>
-                          </td>
                           <td>
                             <%= campaign.name %>
                           </td>

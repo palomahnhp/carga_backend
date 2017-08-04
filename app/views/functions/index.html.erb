@@ -32,7 +32,6 @@
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Función</th>
                     <th>Puesto</th>
                     <th>Acciones</th>
@@ -42,9 +41,6 @@
                   <% if @functions.present? %>
                     <% @functions.each do |function| %>
                         <tr>
-                          <td>
-                            <%= function.id %>
-                          </td>
                           <td>
                             <%= function.name %>
                           </td>

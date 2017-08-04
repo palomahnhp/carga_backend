@@ -32,7 +32,6 @@
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Nº Puesto</th>
                     <th>Puesto</th>
                     <th>Acciones</th>
@@ -42,9 +41,6 @@
                   <% if @positions.present? %>
                     <% @positions.each do |position| %>
                         <tr>
-                          <td>
-                            <%= position.id %>
-                          </td>
                           <td>
                             <%= position.position_number %>
                           </td>
