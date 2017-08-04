@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   get '/surveys', to: 'surveys#index'
   get '/surveys/show', to: 'surveys#show'
+  get '/surveys/reset_responses', to: 'surveys#reset_responses'
 
   get '/responses', to: 'responses#index'
 
