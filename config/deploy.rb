@@ -54,7 +54,6 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
   # # Restart unicorn
   after 'deploy:publishing', 'deploy:restart'
-  after 'deploy:restart'
 end
 
 
