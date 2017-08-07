@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+
+  # the routes could be nested in resources but kept them like that
+  # for checking them. If you want to change them into resources there
+  # is no problem at all
+
   root 'welcome#index'
 
   get '/admin_panel', to: 'welcome#admin_panel'

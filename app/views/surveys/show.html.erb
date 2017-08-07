@@ -40,6 +40,10 @@
           </div>
         </div>
       </div>
+      <h5><b>Porcentaje restante: <%= @total_per %>%</b></h5>
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-success" style="width: <%= @total_per %>%"></div>
+      </div>
       <div class="form-group">
         <div class="row question-mark">
           <h4 class="col-lg-12 control-label question">¿En qué ha destinado el tiempo el último trimestre?</h4>
@@ -74,6 +78,8 @@
           </table>
         </div>
       </div>
+
+      <!-- other tasks form -->
       <!-- <div class="form-group">
         <div class="row">
           <label class="col-lg-12 control-label">Otras tareas realizadas: </label>
@@ -84,10 +90,6 @@
               <th></th>
               <th>Tarea</th>
               <th>% Tiempo</th>
-              <th>Nº de tareas</th>
-              <th>Tiempo mínimo</th>
-              <th>Tiempo medio</th>
-              <th>Tiempo máximo</th>
             </thead>
             <tbody id="other-tasks">
               <tr>
@@ -95,18 +97,6 @@
                   <td>
                     <input class="form-control input-sm task" type="text" id="inputSmall" placeholder="Otra tarea">
                   </td>
-                </td>
-                <td>
-                  <input class="form-control input-sm" type="text" id="inputSmall">
-                </td>
-                <td>
-                  <input class="form-control input-sm" type="text" id="inputSmall">
-                </td>
-                <td>
-                  <input class="form-control input-sm" type="text" id="inputSmall">
-                </td>
-                <td>
-                  <input class="form-control input-sm" type="text" id="inputSmall">
                 </td>
                 <td>
                   <input class="form-control input-sm" type="text" id="inputSmall">
@@ -126,6 +116,9 @@
 </div>
 
 <script>
+
+    // js for other-tasks inputs
+
     $("#add-task").click(function() {
       taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" name="name" placeholder="Otra tarea"></td></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td><td><input class="form-control input-sm" type="text" id="inputSmall"></td></tr>'
       if($(".task-row").length < 2) {
@@ -138,6 +131,8 @@
         $(".task-row").last().remove()
       }
     })
+
+    // modal instructions
 
     var acc = document.getElementsByClassName("accordion");
     var i;

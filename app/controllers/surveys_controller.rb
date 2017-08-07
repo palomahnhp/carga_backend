@@ -28,7 +28,9 @@ class SurveysController < ApplicationController
     @position = Position.find(params[:id])
     @position.functions.each do |function|
       @current_user.responses.each do |response|
-        response.destroy
+        if response.function_id == function.id
+          response.destroy
+        end
       end
     end
     redirect_to action: :index
@@ -38,11 +40,7 @@ class SurveysController < ApplicationController
     @response = Response.create(
       user_id:     current_user.id,
       function_id: params[:function_id],
-      time_per:    params[:time_per],
-      num_task:    params[:num_task],
-      min_time:    params[:min_time],
-      avg_time:    params[:avg_time],
-      max_time:    params[:max_time]
+      time_per:    params[:time_per]
       )
     if @response.save
       redirect_to :back
