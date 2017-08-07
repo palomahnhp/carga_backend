@@ -26,7 +26,7 @@
                     <td>Instrucción 1. Responder en orden las preguntas.</td>
                   </tr>
                   <tr>
-                    <td>Instrucción 2. Confirmar función por función.</td>
+                    <td>Instrucción 2. Confirmar cada tarea.</td>
                   </tr>
                   <tr>
                     <td>Instrucción 3...</td>
@@ -40,10 +40,14 @@
           </div>
         </div>
       </div>
-      <h5><b>Porcentaje restante: <%= @total_per %>%</b></h5>
-      <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-success" style="width: <%= @total_per %>%"></div>
+
+      <div class="per-bar">
+        <h5><b>Tiempo restante: <%= @total_per %>%</b></h5>
+        <div class="progress progress-striped">
+          <div class="progress-bar progress-bar-success" style="width: <%= @total_per %>%"></div>
+        </div>
       </div>
+
       <div class="form-group">
         <div class="row question-mark">
           <h4 class="col-lg-12 control-label question">¿En qué ha destinado el tiempo el último trimestre?</h4>
