@@ -6,6 +6,6 @@ class Position < ActiveRecord::Base
   validates :position_number, presence: true, uniqueness: true
 
   def self.search(search)
-    self.where("name ILIKE ?", "%#{search}%")
+    self.where("(name || position_number) ILIKE ?", "%#{search}%")
   end
 end
