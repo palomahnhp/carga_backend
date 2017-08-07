@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803072755) do
+ActiveRecord::Schema.define(version: 20170807093354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,28 @@ ActiveRecord::Schema.define(version: 20170803072755) do
   end
 
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id", using: :btree
+
+  create_table "user_dirs", force: :cascade do |t|
+    t.string   "pernr"
+    t.string   "nif"
+    t.string   "ayre"
+    t.string   "last_name"
+    t.string   "last_name_alt"
+    t.string   "name"
+    t.string   "position_id"
+    t.string   "position_des"
+    t.string   "functional_unit_id"
+    t.string   "functional_unit_des"
+    t.string   "organic_code"
+    t.string   "category"
+    t.string   "category_den"
+    t.string   "level"
+    t.string   "personal_area"
+    t.string   "personal_area_den"
+    t.string   "email"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "user_num"
