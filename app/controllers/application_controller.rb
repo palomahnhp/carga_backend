@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
-    unless uweb_authenticated?
+    unless uweb_authenticated? && current_user
       render file: 'public/401.html', status: :unauthorized
     end
   end
