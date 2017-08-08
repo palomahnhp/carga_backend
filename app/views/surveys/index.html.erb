@@ -31,7 +31,7 @@
             <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
               <a href="/surveys/show?id=<%= + position.id %>">
                 <button type="button" class="btn btn-lg btn-primary">
-                  <%= position.name %>
+                  <%= position.position_number %> - <%= position.name %>
                 </button>
               </a>
               <% else %>
