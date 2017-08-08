@@ -28,9 +28,9 @@
                   <% Position.all.each do |position| %>
                     <option></option>
                     <% if @function.position_id == position.id%>
-                      <option value="<%= position.id %>" selected="selected"><%= position.name %></option>
+                      <option value="<%= position.id %>" selected="selected"><%= position.position_number %> - <%= position.name %></option>
                     <% else %>
-                      <option value="<%= position.id %>"><%= position.name %></option>
+                      <option value="<%= position.id %>"><%= position.position_number %> - <%= position.name %></option>
                     <% end %>
                   <% end %>
                 </select>
