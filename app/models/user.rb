@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_one :user_dir
   has_many :responses
   belongs_to :position
 
