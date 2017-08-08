@@ -1,6 +1,7 @@
 class CreateUserDirs < ActiveRecord::Migration
   def change
     create_table :user_dirs do |t|
+      t.references :user, index: true, foreign_key: true
       t.string :pernr
       t.string :nif
       t.string :ayre

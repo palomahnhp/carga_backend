@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170807093354) do
   add_index "units", ["campaign_id"], name: "index_units_on_campaign_id", using: :btree
 
   create_table "user_dirs", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "pernr"
     t.string   "nif"
     t.string   "ayre"
@@ -96,6 +97,8 @@ ActiveRecord::Schema.define(version: 20170807093354) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
+
+  add_index "user_dirs", ["user_id"], name: "index_user_dirs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "user_num"
@@ -119,5 +122,6 @@ ActiveRecord::Schema.define(version: 20170807093354) do
   add_foreign_key "responses", "functions"
   add_foreign_key "responses", "users"
   add_foreign_key "units", "campaigns"
+  add_foreign_key "user_dirs", "users"
   add_foreign_key "users", "positions"
 end
