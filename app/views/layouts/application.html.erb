@@ -38,7 +38,7 @@
     </div>
     <div class="navbar-right">
       <a class="navbar-brand">
-        <%if @current_user%>
+        <%if @current_user && @current_user.position%>
           <p class="brand-font"><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
           <p class="brand-font"><%= @current_user.position.name %> - <%= @current_user.position.unit.name %></p>
         <%end%>
