@@ -4,6 +4,12 @@ class SurveysController < ApplicationController
     else
       @render = false
     end
+    user_data = User.where(document: current_user.document)
+    @user_positions = []
+    user_data.each do |record|
+      position = Position.find(record.position_id)
+      @user_positions << position
+    end
   end
 
   def show
