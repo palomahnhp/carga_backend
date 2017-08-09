@@ -18,38 +18,38 @@ class LoginManager
     return unless valid?
 
     self.user = User.find_by(document: login_data[:document])
-    data = employees_data(pern: nil, nif: login_data[:document])
-    if user && data['EMPLEADOS_ACTIVOS'] != nil
-      ActiveRecord::Base.transaction do
-        self.user.update_attributes(
-          login:                 login_data[:login]
-        )
-        copy_errors_from!(user) unless user.save
-      end
+    #data = employees_data(pern: nil, nif: login_data[:document])
+    #if user #&& data['EMPLEADOS_ACTIVOS'] != nil
+      #ActiveRecord::Base.transaction do
+        #self.user.update_attributes(
+          #login:                 login_data[:login]
+        #)
+        #copy_errors_from!(user) unless user.save
+      #end
 
-      dir_data = data['EMPLEADOS_ACTIVOS']['EMPLEADO']
-      ActiveRecord::Base.transaction do
-        UserDir.create(
-          pernr:               dir_data['PERNR'],
-          nif:                 dir_data['NIF'],
-          ayre:                dir_data['AYRE'],
-          last_name:           dir_data['APELLIDO1'],
-          last_name_alt:       dir_data['APELLIDO2'],
-          name:                dir_data['NOMBRE'],
-          position_id:         dir_data['ID_PUESTO'],
-          position_des:        dir_data['DENOMINACION_PUESTO'],
-          functional_unit_id:  dir_data['ID_UNIDAD_FUNCIONAL'],
-          functional_unit_des: dir_data['DEN_UNIDAD_FUNCIONAL'],
-          organic_code:        dir_data['COD_ORGANICO'],
-          category:            dir_data['CATEGORIA'],
-          category_den:        dir_data['DEN_CATEGORIA'],
-          level:               dir_data['NIVEL'],
-          personal_area:       dir_data['AREA_PERSONAL'],
-          personal_area_den:   dir_data['DEN_AREA_PERSONAL'],
-          email:               dir_data['EMAIL']
-        )
-      end
-    end
+      #dir_data = data['EMPLEADOS_ACTIVOS']['EMPLEADO']
+      #ActiveRecord::Base.transaction do
+        #UserDir.create(
+          #pernr:               dir_data['PERNR'],
+          #nif:                 dir_data['NIF'],
+          #ayre:                dir_data['AYRE'],
+          #last_name:           dir_data['APELLIDO1'],
+          #last_name_alt:       dir_data['APELLIDO2'],
+          #name:                dir_data['NOMBRE'],
+          #position_id:         dir_data['ID_PUESTO'],
+          #position_des:        dir_data['DENOMINACION_PUESTO'],
+          #functional_unit_id:  dir_data['ID_UNIDAD_FUNCIONAL'],
+          #functional_unit_des: dir_data['DEN_UNIDAD_FUNCIONAL'],
+          #organic_code:        dir_data['COD_ORGANICO'],
+          #category:            dir_data['CATEGORIA'],
+          #category_den:        dir_data['DEN_CATEGORIA'],
+          #level:               dir_data['NIVEL'],
+          #personal_area:       dir_data['AREA_PERSONAL'],
+          #personal_area_den:   dir_data['DEN_AREA_PERSONAL'],
+          #email:               dir_data['EMAIL']
+        #)
+      #end
+    #end
     user
   end
 
@@ -70,7 +70,7 @@ class LoginManager
   end
 
   def required_data_present?
-    %i(login uweb_id email document).all? { |key| login_data.key? key }
+    %i(document).all? { |key| login_data.key? key }
   end
 
   def request(operation, message_params)
