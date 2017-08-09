@@ -7,14 +7,14 @@ default: &default
 development: &development
   adapter: postgresql
   timeout: 5000
-  port: 5444
+  port: 5432
   encoding: unicode
   reconnect: false
   database: ancar_areas
   pool: 5
   username: ancar_areas_owner
   password: zTmcNDZxM4fB
-  host: pgcorpdesa01.munimadrid.es
+  host: localhost
 
 
 # Warning: The database defined as "test" will be erased and
@@ -26,14 +26,14 @@ test:
 staging:
   adapter: postgresql
   timeout: 5000
-  port: 5444
+  port: 5432
   encoding: unicode
   reconnect: false
   database: ancar_areas
   pool: 5
   username: ancar_areas_owner
   password: zTmcNDZxM4fB
-  host: pgcorpdesa01.munimadrid.es
+  host: localhost
 
 preproduction:
   <<: *development

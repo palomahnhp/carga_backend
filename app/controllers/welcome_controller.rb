@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   #when we get the info, change welcome controller methods to their own controllers
 
   def index
+    @title = current_user.name.downcase.capitalize
     @d = DateTime.now
     if @d.hour > 12
       @greeting = "Buenas tardes"
