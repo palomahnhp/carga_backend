@@ -2,9 +2,9 @@ class FunctionsController < ApplicationController
   def index
     @functions = Function.all
     if params[:search]
-      @functions = Function.search(params[:search]).order('id DESC')
+      @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
-      @functions = Function.all.order('id DESC')
+      @functions = Function.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
   end
 

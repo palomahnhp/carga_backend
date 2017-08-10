@@ -2,9 +2,9 @@ class UnitsController < ApplicationController
   def index
     @units = Unit.all
     if params[:search]
-      @units = Unit.search(params[:search]).order('id DESC')
+      @units = Unit.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
-      @units = Unit.all.order('id DESC')
+      @units = Unit.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
   end
 

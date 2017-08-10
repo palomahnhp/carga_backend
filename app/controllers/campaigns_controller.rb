@@ -2,9 +2,9 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.all
     if params[:search]
-      @campaigns = Campaign.search(params[:search]).order('id DESC')
+      @campaigns = Campaign.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
-      @campaigns = Campaign.all.order('id DESC')
+      @campaigns = Campaign.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
   end
 
