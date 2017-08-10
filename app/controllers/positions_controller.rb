@@ -2,9 +2,9 @@ class PositionsController < ApplicationController
   def index
     @positions = Position.all
     if params[:search]
-      @positions = Position.search(params[:search]).order('id DESC')
+      @positions = Position.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
-      @positions = Position.all.order('id DESC')
+      @positions = Position.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
   end
 
