@@ -41,6 +41,8 @@ gem 'responders'
 
 gem 'rspec'
 
+gem 'will_paginate'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
