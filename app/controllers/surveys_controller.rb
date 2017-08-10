@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
+
   def index
+    @current_user = current_user
     if @current_user.position
     else
       @render = false
@@ -13,18 +15,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @position = Position.find(params[:id])
-    @pos_functions = []
-    @total_per = 100
-    @position.functions.each do |function|
-      @pos_functions << function
-      @current_user.responses.each do |response|
-        if response.function_id == function.id
-          @pos_functions.delete(function)
-          @total_per = @total_per - response.time_per.to_i
-        end
-      end
-    end
+    @pos_functions = fillPosFunctions
     if @pos_functions == []
       redirect_to action: :index
     end
@@ -43,23 +34,46 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @response = Response.create(
-      user_id:     current_user.id,
-      function_id: params[:function_id],
-      time_per:    params[:time_per]
+    @pos_functions = fillPosFunctions
+    @errors = []
+    @pos_functions.each do |func|
+      time_per_id = "time_per_#{func.id}"
+      @response = Response.create(
+        user_id:     current_user.id,
+        function_id: func.id,
+        time_per:    params[time_per_id]
       )
-    if @response.save
-      redirect_to :back
-      puts 'survey sent'
-    else
-      if @response.errors
-        @errors = []
-        @response.errors.full_messages.each do |error|
-          @errors << error
+      if @response.save
+        puts 'survey sent'
+      else
+        if @response.errors
+          @response.errors.full_messages.each do |error|
+            @errors << error
+          end
+          puts @errors
         end
-        puts @errors
-        redirect_to :back
       end
     end
+    redirect_to action: :index
   end
+
+  private
+
+  def fillPosFunctions
+    @current_user = current_user
+    @position = Position.find(params[:id])
+    @pos_functions = []
+    @total_per = 100
+    @position.functions.each do |function|
+      @pos_functions << function
+      @current_user.responses.each do |response|
+        if response.function_id == function.id
+          @pos_functions.delete(function)
+          @total_per = @total_per - response.time_per.to_i
+        end
+      end
+    end
+    @pos_functions
+  end
+
 end
