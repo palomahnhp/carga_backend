@@ -1,0 +1,51 @@
+<div class="pagination-container">
+  <ul class='list-inline'>
+    <li class="pull-left"><%= will_paginate(collection) %></li>
+    <li class="pull-right" id="per-page">
+      <% if collection.size >= params.fetch(:per_page_list, [0]).min.to_i %>
+          <ul class="form-group list-inline">
+            <li><%= content_tag :label, "Elementos por página", for: 'pages-select' %></li>
+            <li><%= select_tag :per_page, options_for_select(params[:per_page_list], params[:per_page]),
+                               onchange: "submitPagesChange(this.value);",
+                               class: 'form-control', id: 'pages-select' %></li>
+          </ul>
+      <% end %>
+    </li>
+    </li>
+  </ul>
+</div>
+<script>
+  $('.previous_page').html("← Anterior&emsp;");
+  $('.next_page').html("&emsp;Siguiente →");
+
+  function submitPagesChange(value) {
+    if(value) {
+      //$('#per_page').prop('value', value);
+      setGetParameter('per_page', value);
+    }
+  }
+
+  function setGetParameter(paramName, paramValue)
+  {
+    var url = window.location.href;
+    var hash = location.hash;
+    url = url.replace(hash, '');
+    if (url.indexOf("?") >= 0)
+    {
+      var params = url.substring(url.indexOf("?") + 1).split("&");
+      var paramFound = false;
+      params.forEach(function(param, index) {
+        var p = param.split("=");
+        if (p[0] == paramName) {
+          params[index] = paramName + "=" + paramValue;
+          paramFound = true;
+        } 
+      });
+      if (!paramFound) params.push(paramName + "=" + paramValue);
+      url = url.substring(0, url.indexOf("?")+1) + params.join("&");
+    }
+    else
+      url += "?" + paramName + "=" + paramValue;
+    window.location.href = url + hash;
+  }
+</script>
