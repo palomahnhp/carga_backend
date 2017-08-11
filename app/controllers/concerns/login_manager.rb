@@ -27,7 +27,6 @@ class LoginManager
         #copy_errors_from!(user) unless user.save
       #end
 
-<<<<<<< HEAD
       #dir_data = data['EMPLEADOS_ACTIVOS']['EMPLEADO']
       #ActiveRecord::Base.transaction do
         #UserDir.create(
@@ -51,33 +50,6 @@ class LoginManager
         #)
       #end
     #end
-=======
-      unless UserDir.find_by(nif: login_data[:document]) != nil
-      dir_data = data['EMPLEADOS_ACTIVOS']['EMPLEADO']
-        ActiveRecord::Base.transaction do
-          UserDir.create(
-            pernr:               dir_data['PERNR'],
-            nif:                 dir_data['NIF'],
-            ayre:                dir_data['AYRE'],
-            last_name:           dir_data['APELLIDO1'],
-            last_name_alt:       dir_data['APELLIDO2'],
-            name:                dir_data['NOMBRE'],
-            position_id:         dir_data['ID_PUESTO'],
-            position_des:        dir_data['DENOMINACION_PUESTO'],
-            functional_unit_id:  dir_data['ID_UNIDAD_FUNCIONAL'],
-            functional_unit_des: dir_data['DEN_UNIDAD_FUNCIONAL'],
-            organic_code:        dir_data['COD_ORGANICO'],
-            category:            dir_data['CATEGORIA'],
-            category_den:        dir_data['DEN_CATEGORIA'],
-            level:               dir_data['NIVEL'],
-            personal_area:       dir_data['AREA_PERSONAL'],
-            personal_area_den:   dir_data['DEN_AREA_PERSONAL'],
-            email:               dir_data['EMAIL']
-          )
-        end
-      end
-    end
->>>>>>> master
     user
   end
 
