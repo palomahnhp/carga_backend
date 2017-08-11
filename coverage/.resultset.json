@@ -267,16 +267,6 @@
         null,
         null
       ],
-      "/media/sf_Repositorio/carga_backend/app/models/campaign.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null
-      ],
       "/media/sf_Repositorio/carga_backend/app/models/unit.rb": [
         1,
         1,
@@ -293,6 +283,16 @@
         1,
         1,
         null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/media/sf_Repositorio/carga_backend/app/models/campaign.rb": [
+        1,
+        1,
         1,
         null,
         1,
@@ -954,6 +954,6 @@
         0
       ]
     },
-    "timestamp": 1502440668
+    "timestamp": 1502441473
   }
 }
