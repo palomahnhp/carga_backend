@@ -36,7 +36,25 @@ staging:
   host: pgcorpdesa01.munimadrid.es
 
 preproduction:
-  <<: *development
+  adapter: postgresql
+  timeout: 5000
+  port: 5437
+  encoding: unicode
+  reconnect: false
+  database: ancar_areas
+  pool: 5
+  username: ancar_areas_owner
+  password: HkJw2pgQeD-6
+  host: pgcorppre01.munimadrid.es
 
 production:
-  <<: *development
+  adapter: postgresql
+  timeout: 5000
+  port: 5437
+  encoding: unicode
+  reconnect: false
+  database: ancar_areas
+  pool: 5
+  username: ancar_areas_owner
+  password: G_tAiefdywoN
+  host: pgcorppro01.munimadrid.es
