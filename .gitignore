@@ -12,3 +12,11 @@
 !/log/.keep
 /tmp
 /config/*.yml
+
+/config/database.yml
+/config/deploy_secrets.yml
+/config/secrets.yml
+.byebug_history
+/coverage
+/spec/examples.txt
+/public/system/*
