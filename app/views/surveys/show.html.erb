@@ -45,12 +45,12 @@
       </div>
     <form action="/surveys/create" method="POST">
       <fieldset>
-        <div class="per-bar">
+        <!--<div class="per-bar">
           <h5><b>Tiempo restante: <%= @total_per %>%</b></h5>
           <div class="progress progress-striped">
             <div class="progress-bar progress-bar-success" style="width: <%= @total_per %>%"></div>
           </div>
-        </div>
+        </div>-->
   
         <div class="form-group">
           <div class="row question-mark">
@@ -128,15 +128,26 @@
 
     function formCheck() {
       validData = true;
+      percSum = 0;
       $.each($("input[name^='time_per_']"), function( index, value ) {
-        if (value.value == "") {
-          $("#errorTag").html("Debe responder todas las preguntas con formato numérico");
+        if (value.value == "" || !$.isNumeric(value.value)) {
           validData = false;
-          $(window).scrollTop(0);
-          $("#errorTagCont").show();
+          showError("Debe responder todas las preguntas con formato numérico");
+        } else {
+          percSum = percSum + parseInt(value.value);
         }
       });
+      if (validData && percSum != 100) {
+        validData = false;
+        showError("El total de porcentajes de tiempo debe sumar 100%");
+      }
       return validData;
+    }
+
+    function showError(message) {
+      $("#errorTag").html(message);
+      $(window).scrollTop(0);
+      $("#errorTagCont").show();
     }
 
     // js for other-tasks inputs
