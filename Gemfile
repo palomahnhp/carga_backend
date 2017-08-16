@@ -39,17 +39,16 @@ gem 'cancancan'
 gem 'rails-i18n'
 gem 'responders'
 
-gem 'rspec'
-
 gem 'will_paginate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :staging, :development, :test do
+group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'warden'
   gem 'capybara'
