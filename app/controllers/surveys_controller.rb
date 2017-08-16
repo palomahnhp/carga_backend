@@ -56,6 +56,9 @@ class SurveysController < ApplicationController
         end
       end
     end
+
+    createExtraResponses
+
     redirect_to action: :index
   end
 
@@ -76,6 +79,45 @@ class SurveysController < ApplicationController
       end
     end
     @pos_functions
+  end
+
+  def createExtraResponses
+    if params["time_per_1001"]
+      function = Function.create(
+        position: current_user.position,
+        name: params["other_task_1001"],
+        not_norm: 'f'
+      )
+      @response = Response.create(
+        user_id:     current_user.id,
+        function:    function,
+        time_per:    params["time_per_1001"]
+      )
+    end
+    if params["time_per_1002"]
+      function = Function.create(
+        position: current_user.position,
+        name: params["other_task_1002"],
+        not_norm: 'f'
+      )
+      @response = Response.create(
+        user_id:     current_user.id,
+        function:    function,
+        time_per:    params["time_per_1002"]
+      )
+    end
+    if params["time_per_1003"]
+      function = Function.create(
+        position: current_user.position,
+        name: params["other_task_1003"],
+        not_norm: 'f'
+      )
+      @response = Response.create(
+        user_id:     current_user.id,
+        function:    function,
+        time_per:    params["time_per_1003"]
+      )
+    end
   end
 
 end
