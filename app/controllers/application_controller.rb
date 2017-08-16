@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
     user =  if session[:current_user_id].present?
               User.find_by(id: session[:current_user_id])
             else
-              login_manager = LoginManager.new(login_data: { document: '51640586C' })
+              login_manager = LoginManager.new(login_data: { document: '55555555A' })
               if login_manager.find_or_create_user
                 login_manager.user
               else
