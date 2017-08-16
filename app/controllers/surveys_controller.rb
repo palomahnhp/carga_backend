@@ -36,6 +36,8 @@ class SurveysController < ApplicationController
   def create
     @pos_functions = fillPosFunctions
     @errors = []
+    
+    # Guardar las respuestas
     @pos_functions.each do |func|
       time_per_id = "time_per_#{func.id}"
       @response = Response.create(
