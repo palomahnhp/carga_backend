@@ -41,7 +41,7 @@ gem 'responders'
 
 gem 'rspec'
 
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
