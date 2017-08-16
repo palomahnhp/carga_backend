@@ -39,7 +39,7 @@ gem 'cancancan'
 gem 'rails-i18n'
 gem 'responders'
 
-gem 'will_paginate'
+gem 'rspec'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -47,17 +47,6 @@ gem 'will_paginate'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'warden'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'database_cleaner'
-  gem 'poltergeist'
-  gem 'coveralls', require: false
-  gem 'email_spec'
 end
 
 group :development do
