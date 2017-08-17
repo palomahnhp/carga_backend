@@ -27,17 +27,21 @@
       <div class="row">
         <div class="col-md-12">
           <ul>
-            <% @user_positions.each do |position| %>
-            <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
-              <a href="/surveys/show?id=<%= + position.id %>">
-                <button type="button" class="btn btn-lg btn-primary">
-                  <%= position.name %> - <%= position.unit.name %>
-                </button>
-              </a>
-              <br><br>
-              <% else %>
-              <h2>No tienes campañas activas</h2>
-            <% end %>
+            <% if @user_positions.any? %>
+              <% @user_positions.each do |position| %>
+                <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
+                  <a href="/surveys/show?id=<%= + position.id %>">
+                    <button type="button" class="btn btn-lg btn-primary">
+                      <%= position.name %> - <%= position.unit.name %>
+                    </button>
+                  </a>
+                  <br><br>
+                  <% else %>
+                  <h3>La campaña <%= position.name %> - <%= position.unit.name %> no esta activa o ya ha sido respondida</h3>
+                <% end %>
+              <% end %>
+            <% else %>
+              <h2>No existen campañas activas para el puesto</h2>
             <% end %>
           </ul>
         </div>
