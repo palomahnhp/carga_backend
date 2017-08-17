@@ -74,17 +74,14 @@ class ApplicationController < ActionController::Base
   end
 
   def find_or_create_user
-    user =  if session[:current_user_id].present?
-              User.find_by(id: session[:current_user_id])
-            else
-              login_manager = LoginManager.new(login_data: { document: '51640586C' })
-              if login_manager.find_or_create_user
+    login_manager = LoginManager.new(login_data: { document: '51640586C' })
+    user =    if login_manager.find_or_create_user
                 login_manager.user
               else
                 flash[:error] = login_manager.errors.to_sentence
                 nil
               end
-            end
+            #end
     session[:current_user_id] = user.try :id
     user
   end
