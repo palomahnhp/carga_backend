@@ -110,8 +110,8 @@
               </tbody>
             </table>
           </div>
-          <button class="btn btn-primary pull-right" id="remove-task">Eliminar tarea</button>
-          <button class="btn btn-primary pull-right" id="add-task">Añadir tarea</button>
+          <div id="remove-task-box"><button class="btn btn-primary pull-right" type="button" id="remove-task">Eliminar tarea</button></div>
+          <button class="btn btn-primary pull-right" type="button" id="add-task">Añadir tarea</button>
         </div>
       </fieldset>
       <div class="col-md-12">
@@ -125,6 +125,7 @@
 
 <script>
     $("#errorTagCont").hide();
+    $("#remove-task-box").hide();
 
     function formCheck() {
       validData = true;
@@ -159,6 +160,7 @@
         numOthTasks++;
         taskTemplate = '<tr class="task-row"><td><td><input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required></td></td><td><input class="form-control input-sm" style="width: 100px;" type="number" name="time_per_'+numOthTasks+'" id="survey-input-'+numOthTasks+'"></td></tr>'
         $("#other-tasks").append(taskTemplate);
+        $("#remove-task-box").show();
       }
     })
 
@@ -166,6 +168,9 @@
       if($(".task-row").length >= 1) {
         numOthTasks--;
         $(".task-row").last().remove();
+        if ($(".task-row").length < 1) {
+          $("#remove-task-box").hide();        
+        }
       }
     })
 
