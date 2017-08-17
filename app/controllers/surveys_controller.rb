@@ -22,6 +22,7 @@ class SurveysController < ApplicationController
   end
 
   def reset_responses
+    setCurrentUser
     @position = Position.find(params[:id])
     @position.functions.each do |function|
       @current_user.responses.each do |response|
@@ -64,8 +65,12 @@ class SurveysController < ApplicationController
 
   private
 
-  def fillPosFunctions
+  def setCurrentUser
     @current_user = current_user
+  end
+
+  def fillPosFunctions
+    setCurrentUser
     @position = Position.find(params[:id])
     @pos_functions = []
     @total_per = 100
