@@ -14,3 +14,9 @@
 /config/*.yml
 /config/database.yml
 /config/secrets.yml
+
+# Ignore coverage files
+/coverage/*
+
+# Ignore spec examples file
+/spec/examples.txt
