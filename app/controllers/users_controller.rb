@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create(
+    @user = User.create(
       name:          params[:name],
       last_name:     params[:last_name],
       last_name_alt: params[:last_name_alt],
@@ -43,6 +43,8 @@ class UsersController < ApplicationController
       login:         params[:ayre],
       phone_number:  params[:phone_number]
       )
+    @user.save
+
     redirect_to action: :index
   end
 

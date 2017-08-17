@@ -36,9 +36,8 @@ class UnitsController < ApplicationController
       cod_subdir:  params[:cod_subdir],
       subdir_name: params[:subdir_name]
       )
-    if @unit.save
-      puts 'unit saved'
-    end
+    @unit.save
+
     redirect_to action: :index
   end
 

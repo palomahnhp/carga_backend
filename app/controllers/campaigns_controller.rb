@@ -14,9 +14,8 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.create(name: params[:name], status: params[:status].to_f)
-    if @campaign.save
-      puts 'campaign saved'
-    end
+    @campaign.save
+
     redirect_to action: :index
   end
 
