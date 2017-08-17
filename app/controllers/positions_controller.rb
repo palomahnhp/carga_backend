@@ -22,9 +22,8 @@ class PositionsController < ApplicationController
     name:            params[:name],
     unit_id:         params[:unit_id]
     )
-    if @position.save
-      puts 'position saved'
-    end
+    @position.save
+
     redirect_to action: :index
   end
 

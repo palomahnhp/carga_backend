@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CampaignsController, type: :controller do
+  
   let(:valid_attributes) {
     attributes_for :campaign
   }
