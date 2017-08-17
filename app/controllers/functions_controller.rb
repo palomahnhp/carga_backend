@@ -21,9 +21,8 @@ class FunctionsController < ApplicationController
       name:                 params[:name],
       position_id:          params[:position_id]
       )
-    if @function.save
-      puts 'function saved'
-    end
+    @function.save
+
     redirect_to action: :index
   end
 
