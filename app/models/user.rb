@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def self.search(search)
     self.where("(name || last_name || last_name_alt || user_num) ILIKE ?", "%#{search}%")
   end
+
+  def uweb_id
+    user_num
+  end
 end
