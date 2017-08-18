@@ -28,7 +28,13 @@ set :pty, true
 set :use_sudo, false
 
 set :linked_files, %w{config/database.yml config/secrets.yml}
-set :linked_dirs, %w{log tmp public/system}
+#set :linked_dirs, %w{log tmp public/system public/assets}
+
+task :override_linked_dirs do
+  set :linked_dirs, %w(log tmp public/system public/assets)
+end
+# Execute *after* capistrano-rails, so dirs won't be further altered
+after "deploy:set_linked_dirs", :override_linked_dirs
 
 set :keep_releases, 10
 
