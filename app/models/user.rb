@@ -17,7 +17,10 @@ class User < ActiveRecord::Base
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
       csv << ["Nº Usuario", "Usuario", "Email"]
       records.each do |record|
-        csv << [record.user_num, "#{record.name.gsub!('ਲ', 'Ñ')} #{record.last_name.gsub!('ਲ', 'Ñ')} #{record.last_name_alt.gsub!('ਲ', 'Ñ')}", record.email]
+        full_name = "#{record.name.include?('ਲ') ? record.name.gsub!('ਲ', 'Ñ') : record.name} "
+        full_name += "#{record.last_name.include?('ਲ') ? record.last_name.gsub!('ਲ', 'Ñ') : record.last_name} "
+        full_name += "#{record.last_name_alt.include?('ਲ') ? record.last_name_alt.gsub!('ਲ', 'Ñ') : record.last_name_alt}"
+        csv << [record.user_num, full_name, record.email]
       end
     end
   end

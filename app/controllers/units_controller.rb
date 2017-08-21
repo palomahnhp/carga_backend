@@ -10,9 +10,16 @@ class UnitsController < ApplicationController
       @units = Unit.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
 
-    @unpaginated_units = Unit.all
-    respond_with(@units) do |format|
-      format.csv { send_data Unit.to_csv(@unpaginated_units), filename: "Unidades.csv" }
+    if (params[:op])
+      @unpaginated_units = Unit.all
+      respond_with(@units) do |format|
+        format.csv { send_data Unit.to_csv_track(@unpaginated_units), filename: "Seguimiento.csv" }
+      end
+    else
+      @unpaginated_units = Unit.all
+      respond_with(@units) do |format|
+        format.csv { send_data Unit.to_csv(@unpaginated_units), filename: "Unidades.csv" }
+      end
     end
   end
 
