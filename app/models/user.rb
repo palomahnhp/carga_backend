@@ -8,4 +8,17 @@ class User < ActiveRecord::Base
   def self.search(search)
     self.where("(name || last_name || last_name_alt || user_num) ILIKE ?", "%#{search}%")
   end
+
+  def uweb_id
+    user_num
+  end
+
+  def self.to_csv(records)
+    CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
+      csv << ["Nº Usuario", "Usuario", "Email"]
+      records.each do |record|
+        csv << [record.user_num, "#{record.name.gsub!('ਲ', 'Ñ')} #{record.last_name.gsub!('ਲ', 'Ñ')} #{record.last_name_alt.gsub!('ਲ', 'Ñ')}", record.email]
+      end
+    end
+  end
 end
