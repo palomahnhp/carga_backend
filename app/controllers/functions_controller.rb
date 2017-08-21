@@ -1,10 +1,18 @@
 class FunctionsController < ApplicationController
+
+  respond_to :html, :js, :json
+
   def index
     @functions = Function.all
     if params[:search]
       @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
       @functions = Function.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    end
+
+    @unpaginated_functions = Function.all
+    respond_with(@functions) do |format|
+      format.csv { send_data Function.to_csv(@unpaginated_functions), filename: "Funciones.csv" }
     end
   end
 

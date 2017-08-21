@@ -13,6 +13,9 @@
                   <button type="button" class="btn btn-primary">Añadir campaña</button>
                 </a>
               </div>
+              <div class="col-lg-2">
+                <%= link_to "Descargar CSV", campaigns_path(format: "csv", search: params[:search]), class: "btn btn-success" %>              
+              </div>
               <div class="col-lg-4 pull-right">
                 <%= form_tag(campaigns_path, method: "get", id: "search-form") do%>
                 <%= text_field_tag :search, params[:search], class:"form-control search-input col-lg-2", placeholder: "Buscar campaña" %>
@@ -46,11 +49,11 @@
                           </td>
                           <% if campaign.status == 'active' %>
                             <td>
-                            En curso
+                              En curso
                             </td>
                           <% elsif campaign.status == 'completed' %>
                             <td>
-                             Finalizada
+                              Finalizada
                             </td>
                           <% else %>
                             <td>

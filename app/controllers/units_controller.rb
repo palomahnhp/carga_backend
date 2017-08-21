@@ -1,10 +1,18 @@
 class UnitsController < ApplicationController
+  
+  respond_to :html, :js, :json
+
   def index
     @units = Unit.all
     if params[:search]
       @units = Unit.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
       @units = Unit.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    end
+
+    @unpaginated_units = Unit.all
+    respond_with(@units) do |format|
+      format.csv { send_data Unit.to_csv(@unpaginated_units), filename: "Unidades.csv" }
     end
   end
 
