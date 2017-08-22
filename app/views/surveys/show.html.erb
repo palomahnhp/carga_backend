@@ -99,8 +99,8 @@
           </div>
           <div class="col-md-12">
             <div class="col-sm-8"></div>
-            <div class="col-md-2"><button class="btn btn-primary pull-right" type="button" id="add-task">Añadir tarea</button></div>
-            <div class="col-md-2" id="remove-task-box"><button class="btn btn-primary pull-right" type="button" id="remove-task">Eliminar tarea</button></div>
+            <div class="col-md-2"><div id="add-task-box"><button class="btn btn-primary pull-right" type="button" id="add-task">Añadir tarea</button></div></div>
+            <div class="col-md-2"><div id="remove-task-box"><button class="btn btn-primary pull-right" type="button" id="remove-task">Eliminar tarea</button></div></div>
           </div>        
         </div>
       </fieldset>
@@ -152,6 +152,9 @@
         taskTemplate = '<tr class="task-row"><td style="width: 100%;"><input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required></td><td><input class="form-control input-sm" style="width: 100px;" type="number" name="time_per_'+numOthTasks+'" id="survey-input-'+numOthTasks+'"></td></tr>'
         $("#other-tasks").append(taskTemplate);
         $("#remove-task-box").show();
+        if($(".task-row").length == 3) {
+          $("#add-task-box").hide();
+        }
       }
     })
 
@@ -159,8 +162,9 @@
       if($(".task-row").length >= 1) {
         numOthTasks--;
         $(".task-row").last().remove();
+        $("#add-task-box").show();
         if ($(".task-row").length < 1) {
-          $("#remove-task-box").hide();        
+          $("#remove-task-box").hide();
         }
       }
     })
