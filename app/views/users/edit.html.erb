@@ -69,23 +69,9 @@
                        </select>
                     </div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-5">
-                      <b>Añadir Puesto: </b>
-                    </div>
-                    <div class="col-md-7">
-                      <select class="form-control" name="position">
-                        <option></option>
-                        <% @positions.each do |position| %>
-                          <option value="<%=position.id%>"><%= position.name %></option>
-                        <% end %>
-                      </select>
-                    </div>
-                  </div>
                 </div>
 
-                <div class="col-md-6 edit-bottom-panel">
+                <div class="col-md-6">
                   <div class="row bottom-panel">
                     <div class="col-md-5">
                       <b>Email: </b>
@@ -111,6 +97,74 @@
                     </div>
                   </div>
                 </div>
+                
+                <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <b>Área: </b>
+                      </div>
+                      <div class="col-md-7">
+                        <select class="form-control" id="area" name="area" onchange="filterElement('direction');">
+                          <option value=""></option>                        
+                          <% Unit.select(:area_name).group(:area_name).each do |unit| %>
+                            <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <b>Dirección: </b>
+                      </div>
+                      <div class="col-md-7">
+                        <select class="form-control" id="direction" name="direction" onchange="filterElement('subdirection');">
+                          <option value=""></option>
+                          <% Unit.select(:dir_name).group(:dir_name).each do |unit| %>
+                            <option value="<%= unit.dir_name %>"><%= unit.dir_name %></option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <b>Subdirección: </b>
+                      </div>
+                      <div class="col-md-7">
+                        <select class="form-control" id="subdirection" name="subdirection" onchange="filterElement('unit');">
+                          <option value=""></option>
+                          <% Unit.select(:subdir_name).group(:subdir_name).each do |unit| %>
+                            <option value="<%= unit.subdir_name %>"><%= unit.subdir_name %></option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <b>Unidad: </b>
+                      </div>
+                      <div class="col-md-7">
+                        <select class="form-control" id="unit" name="unit" onchange="filterElement('position');">
+                          <option value=""></option>
+                          <% Unit.select(:name).group(:name).each do |unit| %>
+                            <option value="<%= unit.name %>"><%= unit.name %></option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <b>Puesto: </b>
+                      </div>
+                      <div class="col-md-7">
+                        <select class="form-control" id="position" name="position">
+                          <option value=""></option>
+                          <% Position.select(:name).group(:name).each do |position| %>
+                            <option value="<%= position.name %>"><%= position.name %></option>
+                          <% end %>
+                        </select>
+                      </div>
+                    </div>
+                </div>
 
               </div>
             </div>
@@ -133,3 +187,13 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  <% if @user.position %>
+    $("#area").val("<%= @user.position.unit.area_name %>");
+    $("#direction").val("<%= @user.position.unit.dir_name %>");
+    $("#subdirection").val("<%= @user.position.unit.subdir_name %>");
+    $("#unit").val("<%= @user.position.unit.name %>");
+    $("#position").val("<%= @user.position.name %>");
+  <% end %>
+</script>
