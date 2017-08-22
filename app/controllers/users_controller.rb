@@ -11,8 +11,13 @@ class UsersController < ApplicationController
     end
 
     @unpaginated_users = User.all
-    respond_with(@users) do |format|
+    checkAjax
+
+    respond_to do |format|
+      format.html
+      format.js
       format.csv { send_data User.to_csv(@unpaginated_users), filename: "Usuarios.csv" }
+      format.json { render json: @entitySearch.to_json }
     end
   end
 
@@ -22,7 +27,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @positions = Position.all
   end
 
   def update
@@ -36,8 +40,8 @@ class UsersController < ApplicationController
       login:           params[:ayre],
       phone_number:    params[:phone_number],
       user_role:       params[:role].to_i,
-      position_id:     params[:position].to_i
-      )
+      position_id:     params[:position]
+    )
     redirect_to action: :index
   end
 
@@ -49,8 +53,9 @@ class UsersController < ApplicationController
       document:      params[:document],
       email:         params[:email],
       login:         params[:ayre],
-      phone_number:  params[:phone_number]
-      )
+      phone_number:  params[:phone_number],
+      position_id:   params[:position]
+    )
     @user.save
 
     redirect_to action: :index
@@ -61,4 +66,21 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id)
   end
+
+  def checkAjax
+    if params[:edit]
+      case params[:edit]
+        when "direction"
+          @entitySearch = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+        when "subdirection"
+          @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+        when "unit"
+          @entitySearch = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
+        when "position"
+          id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+          @entitySearch = Position.select(:id, :name).where(unit_id: id)
+      end
+    end
+  end
+
 end
