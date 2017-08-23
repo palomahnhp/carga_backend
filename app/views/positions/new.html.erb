@@ -31,15 +31,50 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
+                <b>Área: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="area" name="area" onchange="filterPosElement('direction');">
+                  <option value=""></option>                        
+                  <% Unit.select(:area_name).group(:area_name).each do |unit| %>
+                    <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Dirección: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="direction" name="direction" onchange="filterPosElement('subdirection');">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Subdirección: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="subdirection" name="subdirection" onchange="filterPosElement('unit');">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row edit-row">
+            <div class="col-lg-12">
+              <div class="col-md-4">
                 <b>Unidad: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select" name="unit_id">
-                  <% Unit.all.each do |unit| %>
-                    <option value="<%= unit.id %>">
-                      <%= unit.name %>
-                    </option>
-                  <% end %>
+                <select class="form-control" id="unit" name="unit_id">
+                  <option value=""></option>
                 </select>
               </div>
             </div>

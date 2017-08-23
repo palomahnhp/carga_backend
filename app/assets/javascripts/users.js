@@ -113,7 +113,6 @@ function filterOrgchart(area, dir, subdir, unit, pos_id) {
           $("#unit").append("<option value='" + name + "'>" + name + "</option>");
         });
         data.pos.forEach(function(element) {
-          console.log(data);
           name = element.name;
           id = element.id;
           $("#position").append("<option value='" + id + "'>" + name + "</option>");
