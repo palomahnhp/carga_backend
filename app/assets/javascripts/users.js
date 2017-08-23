@@ -81,3 +81,44 @@ function filterElement(edit) {
     });
   }
 }
+
+function filterOrgchart(area, dir, subdir, unit, pos_id) {
+  dataHash = {
+    op: "initEdit",
+    area: area,
+    dir: dir,
+    subdir: subdir,
+    pos: pos_id
+  }
+  $.ajax({
+      url: "/users",
+      dataType: 'json',
+      data: dataHash,
+      async: false,
+      success: function (data) {
+        $("#direction").empty();
+        $("#subdirection").empty();
+        $("#unit").empty();
+        $("#position").empty();
+        data.dir.forEach(function(element) {
+          name = element.dir_name;
+          $("#direction").append("<option value='" + name + "'>" + name + "</option>");
+        });
+        data.subdir.forEach(function(element) {
+          name = element.subdir_name;
+          $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
+        });
+        data.unit.forEach(function(element) {
+          name = element.name;
+          $("#unit").append("<option value='" + name + "'>" + name + "</option>");
+        });
+        data.pos.forEach(function(element) {
+          console.log(data);
+          name = element.name;
+          id = element.id;
+          $("#position").append("<option value='" + id + "'>" + name + "</option>");
+        });
+        return {results: data};
+      }
+  });
+}

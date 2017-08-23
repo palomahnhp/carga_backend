@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
     @unpaginated_users = User.all
     checkAjax
+    checkAjaxEdit
 
     respond_to do |format|
       format.html
@@ -80,6 +81,21 @@ class UsersController < ApplicationController
           id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
           @entitySearch = Position.select(:id, :name).where(unit_id: id)
       end
+    end
+  end
+
+  def checkAjaxEdit
+    if params[:op]
+      @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+      @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+      @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
+      @pos = Position.select(:id, :name).where(id: params[:pos])
+      @entitySearch = {
+        dir: @dir,
+        subdir: @subdir,
+        unit: @unit,
+        pos: @pos
+      }
     end
   end
 
