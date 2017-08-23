@@ -188,18 +188,18 @@
     $("#subdirection").val("<%= @user.position.unit.subdir_name %>");
     $("#unit").val("<%= @user.position.unit.name %>");
     $("#position").val("<%= @user.position.id %>");
-
-    $("#area").on("change", function() {
-      filterElement('direction');
-    });
-    $("#direction").on("change", function() {
-      filterElement('subdirection');
-    });
-    $("#subdirection").on("change", function() {
-      filterElement('unit');
-    });
-    $("#unit").on("change", function() {
-      filterElement('position');
-    });
   <% end %>
+
+  $("#area").on("change", function() {
+    filterElement('direction');
+  });
+  $("#direction").on("change", function() {
+    filterElement('subdirection');
+  });
+  $("#subdirection").on("change", function() {
+    filterElement('unit');
+  });
+  $("#unit").on("change", function() {
+    filterElement('position');
+  });
 </script>

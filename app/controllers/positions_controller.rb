@@ -11,8 +11,14 @@ class PositionsController < ApplicationController
     end
 
     @unpaginated_positions = Position.all
-    respond_with(@positions) do |format|
+    checkAjaxNew
+    checkAjaxEdit
+
+    respond_to do |format|
+      format.html
+      format.js
       format.csv { send_data Position.to_csv(@unpaginated_positions), filename: "Puestos.csv" }
+      format.json { render json: @entitySearch.to_json }
     end
   end
 
@@ -61,4 +67,31 @@ class PositionsController < ApplicationController
   def position_params
     params.require(:position).permit(:position_number, :name, :unit_id, :description)
   end
+
+  def checkAjaxNew
+    if params[:edit]
+      case params[:edit]
+        when "direction"
+          @entitySearch = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+        when "subdirection"
+          @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+        when "unit"
+          @entitySearch = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:id, :name)
+      end
+    end
+  end
+
+  def checkAjaxEdit
+    if params[:op]
+      @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+      @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+      @unit = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:id, :name)
+      @entitySearch = {
+        dir: @dir,
+        subdir: @subdir,
+        unit: @unit
+      }
+    end
+  end
+
 end
