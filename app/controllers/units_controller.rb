@@ -12,13 +12,20 @@ class UnitsController < ApplicationController
 
     if (params[:op])
       @unpaginated_units = Unit.all
-      respond_with(@units) do |format|
+      respond_to do |format|
+        format.html
+        format.js
         format.csv { send_data Unit.to_csv_track(@unpaginated_units), filename: "Seguimiento.csv" }
       end
     else
+      checkAjaxNew
+      checkAjaxEdit
       @unpaginated_units = Unit.all
-      respond_with(@units) do |format|
+      respond_to do |format|
+        format.html
+        format.js
         format.csv { send_data Unit.to_csv(@unpaginated_units), filename: "Unidades.csv" }
+        format.json { render json: @entitySearch.to_json }
       end
     end
   end
@@ -129,6 +136,29 @@ class UnitsController < ApplicationController
   private
 
   def unit_params
-  params.require(:unit).permit(:unit_number, :name, :campaign_id, :alias, :cod_area, :area_name, :cod_dir, :dir_name, :cod_subdir, :subdir_name)
+    params.require(:unit).permit(:unit_number, :name, :campaign_id, :alias, :cod_area, :area_name, :cod_dir, :dir_name, :cod_subdir, :subdir_name)
   end
+
+  def checkAjaxNew
+    if params[:edit]
+      case params[:edit]
+        when "direction"
+          @entitySearch = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+        when "subdirection"
+          @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+      end
+    end
+  end
+
+  def checkAjaxEdit
+    if params[:op]
+      @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+      @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+      @entitySearch = {
+        dir: @dir,
+        subdir: @subdir
+      }
+    end
+  end
+
 end

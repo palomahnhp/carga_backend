@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     @unpaginated_users = User.all
-    checkAjax
+    checkAjaxNew
     checkAjaxEdit
 
     respond_to do |format|
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id)
   end
 
-  def checkAjax
+  def checkAjaxNew
     if params[:edit]
       case params[:edit]
         when "direction"
