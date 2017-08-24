@@ -84,14 +84,22 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
     if @unit.positions
       @unit.positions.each do |position|
-        if position.functions
-          position.functions.each do |function|
-            function.destroy
+        users = User.where(position: position)
+        if users.any?
+          alert = "No se puede borrar la unidad porque existen usuarios pertenecientes a alguno de sus puestos"
+          redirect_to action: :edit, id: params[:id], alert: alert
+          return
+        else
+          if position.functions
+            position.functions.each do |function|
+              function.destroy
+            end
           end
+          position.destroy
         end
-        position.destroy
       end
     end
+
     @unit.destroy
     redirect_to action: :index
   end
