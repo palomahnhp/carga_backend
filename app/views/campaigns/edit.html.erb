@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
 <div class="row element-style">
   <div class="col-md-11 form-style">
+    <% if params[:alert] %>
+      <div id="errorTagCont" class="'has-error alert alert-danger alert-dismissable'">
+        <button name="button" type="button" onclick="$('#errorTagCont').hide();" class="close">×</button>
+        <div id="errorTag"><%= params[:alert] %></div>
+      </div>
+    <% end %>
       <fieldset>
         <div class="row">
           <legend class="col-lg-12">Configuración</legend>
