@@ -56,8 +56,8 @@ function filterPosElement(edit) {
               $("#"+edit).append("<option value='" + id + "'>" + name + "</option>");
               break;
           }
-          $("#"+edit).trigger("change");
         });
+        $("#"+edit).trigger("change");
         return {results: data};
       }
     });

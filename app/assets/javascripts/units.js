@@ -38,8 +38,8 @@ function filterUnElement(edit) {
               break;
           }
           $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
-          $("#"+edit).trigger("change");
         });
+        $("#"+edit).trigger("change");
         return {results: data};
       }
     });
