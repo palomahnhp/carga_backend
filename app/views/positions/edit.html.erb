@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
 <div class="row element-style">
   <div class="col-md-11 form-style">
+    <% if params[:alert] %>
+      <div id="errorTagCont" class="'has-error alert alert-danger alert-dismissable'">
+        <button name="button" type="button" onclick="$('#errorTagCont').hide();" class="close">×</button>
+        <div id="errorTag"><%= params[:alert] %></div>
+      </div>
+    <% end %>
     <fieldset>
       <div class="row">
         <legend class="col-lg-12">Configuración de Puesto</legend>
@@ -85,7 +91,7 @@
               <input type="hidden"value="<%= @position.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
               <button class="btn btn-primary save-changes" type="submit" >Guardar cambios</button>
-              <%= link_to "Eliminar Puesto", {action: 'delete',id: @position.id}, class: "btn btn-primary link-delete" %>
+              <%= link_to "Eliminar Puesto", {action: 'delete',id: @position.id}, data: {confirm: "Se eliminarán las funciones del puesto. ¿Está seguro/a?"}, class: "btn btn-primary link-delete" %>
             </div>
           </div>
         </form>
