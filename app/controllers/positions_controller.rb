@@ -32,9 +32,9 @@ class PositionsController < ApplicationController
 
   def create
     @position = Position.create(
-    position_number: params[:position_number],
-    name:            params[:name],
-    unit_id:         params[:unit_id]
+      position_number: params[:position_number],
+      name:            params[:name],
+      unit_id:         params[:unit_id]
     )
     @position.save
 
@@ -47,17 +47,25 @@ class PositionsController < ApplicationController
       position_number: params[:position_number],
       name:            params[:name],
       unit_id:         params[:unit_id]
-      )
+    )
     redirect_to action: :index
   end
 
   def delete
     @position = Position.find(params[:id])
-    if @position.functions
-      @position.functions.each do |function|
-        function.destroy
+    users = User.where(position: @position)
+    if users.any?
+      alert = "No se puede borrar el puesto porque existen usuarios pertenecientes a él"
+      redirect_to action: :edit, id: params[:id], alert: alert
+      return
+    else
+      if @position.functions
+        @position.functions.each do |function|
+          function.destroy
+        end
       end
     end
+    
     @position.destroy
     redirect_to action: :index
   end
