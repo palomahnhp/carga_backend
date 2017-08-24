@@ -89,7 +89,8 @@ class UsersController < ApplicationController
       @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
       @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
       @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
-      @pos = Position.select(:id, :name).where(id: params[:pos])
+      id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+      @pos = Position.select(:id, :name).where(unit_id: id)
       @entitySearch = {
         dir: @dir,
         subdir: @subdir,

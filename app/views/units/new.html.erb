@@ -69,7 +69,7 @@
                       <b>Área: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="area" name="area_name" onchange="filterElement('direction');">
+                      <select class="form-control" id="area" name="area_name" onchange="filterUnElement('direction');">
                         <option value=""></option>                        
                         <% Unit.select(:area_name).group(:area_name).each do |unit| %>
                           <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
@@ -90,7 +90,7 @@
                       <b>Dirección: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="direction" name="dir_name" onchange="filterElement('subdirection');">
+                      <select class="form-control" id="direction" name="dir_name" onchange="filterUnElement('subdirection');">
                         <option value=""></option>
                       </select>
                     </div>

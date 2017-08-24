@@ -1,4 +1,4 @@
-function filterElement(edit) {
+function filterUnElement(edit) {
   if ($("#area option:selected").val() == "") {
     $("#direction").empty();
     $("#subdirection").empty();
@@ -46,9 +46,9 @@ function filterElement(edit) {
   }
 }
 
-function filterOrgchart(area, dir) {
+function filterUnOrgchart(area, dir) {
   dataHash = {
-    op: "initEdit",
+    op_edit: "initEdit",
     area: area,
     dir: dir
   }
