@@ -182,7 +182,7 @@
                     "<%= @user.position.unit.dir_name %>",
                     "<%= @user.position.unit.subdir_name %>",
                     "<%= @user.position.unit.name %>",
-                    <%= @user.position.id %>);
+                    "/users");
     $("#area").val("<%= @user.position.unit.area_name %>");
     $("#direction").val("<%= @user.position.unit.dir_name %>");
     $("#subdirection").val("<%= @user.position.unit.subdir_name %>");
@@ -191,15 +191,15 @@
   <% end %>
 
   $("#area").on("change", function() {
-    filterElement('direction');
+    filterElement('direction', '/users');
   });
   $("#direction").on("change", function() {
-    filterElement('subdirection');
+    filterElement('subdirection', '/users');
   });
   $("#subdirection").on("change", function() {
-    filterElement('unit');
+    filterElement('unit', '/users');
   });
   $("#unit").on("change", function() {
-    filterElement('position');
+    filterElement('position', '/users');
   });
 </script>

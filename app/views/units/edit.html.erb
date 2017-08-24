@@ -143,19 +143,19 @@
 <% end %>
 
 <script>
-  filterOrgchart("<%= @unit.area_name %>",
+  filterUnOrgchart("<%= @unit.area_name %>",
                   "<%= @unit.dir_name %>");
   $("#area").val("<%= @unit.area_name %>");
   $("#direction").val("<%= @unit.dir_name %>");
   $("#subdirection").val("<%= @unit.subdir_name %>");
 
   $("#area").on("change", function() {
-    filterElement('direction');
+    filterUnElement('direction');
   });
   $("#direction").on("change", function() {
-    filterElement('subdirection');
+    filterUnElement('subdirection');
   });
   $("#subdirection").on("change", function() {
-    filterElement('unit');
+    filterUnElement('unit');
   });
 </script>

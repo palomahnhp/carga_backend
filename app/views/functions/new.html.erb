@@ -1,4 +1,4 @@
-<% if can? :settings, @current_user %>
+<% if can? :settings, @current_function %>
 <div class="row element-style">
   <div class="col-md-11 form-style">
     <fieldset>
@@ -21,14 +21,54 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
+                <b>Área: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="area" name="area" onchange="filterElement('direction', '/functions');">
+                  <option value=""></option>                        
+                  <% Unit.select(:area_name).group(:area_name).each do |unit| %>
+                    <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Dirección: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="direction" name="direction" onchange="filterElement('subdirection', '/functions');">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Subdirección: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="subdirection" name="subdirection" onchange="filterElement('unit', '/functions');">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Unidad: </b>
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="unit" name="unit" onchange="filterElement('position', '/functions');">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="select" name="position_id">
-                  <option></option>
-                  <% Position.all.each do |position| %>
-                    <option value="<%= position.id %>"><%= position.position_number %> - <%= position.name %></option>
-                  <% end %>
+                <select class="form-control" id="position" name="position">
+                  <option value=""></option>
                 </select>
               </div>
             </div>

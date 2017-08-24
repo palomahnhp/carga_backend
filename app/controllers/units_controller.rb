@@ -151,7 +151,7 @@ class UnitsController < ApplicationController
   end
 
   def checkAjaxEdit
-    if params[:op]
+    if params[:op_edit]
       @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
       @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
       @entitySearch = {

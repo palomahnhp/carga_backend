@@ -1,4 +1,4 @@
-<% if can? :settings, @current_user %>
+<% if can? :settings, @current_function %>
 <div class="row element-style">
   <div class="col-md-11 form-style">
     <fieldset>
@@ -18,25 +18,63 @@
             </div>
           </div>
           <hr>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Puesto: </b>
-              </div>
-              <div class="col-md-4">
-                <select class="form-control" id="select" name="position_id">
-                  <% Position.all.each do |position| %>
-                    <option></option>
-                    <% if @function.position_id == position.id%>
-                      <option value="<%= position.id %>" selected="selected"><%= position.position_number %> - <%= position.name %></option>
-                    <% else %>
-                      <option value="<%= position.id %>"><%= position.position_number %> - <%= position.name %></option>
+          <% if @function.position %>
+            <div class="row edit-row">
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Área: </b>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control" id="area" name="area">
+                    <option value=""></option>                        
+                    <% Unit.select(:area_name).group(:area_name).each do |unit| %>
+                      <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
                     <% end %>
-                  <% end %>
-                </select>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Dirección: </b>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control" id="direction" name="direction">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Subdirección: </b>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control" id="subdirection" name="subdirection">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Unidad: </b>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control" id="unit" name="unit">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Puesto: </b>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control" id="position" name="position">
+                    <option value=""></option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">
@@ -57,3 +95,31 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  <% if @function.position %>
+    filterOrgchart("<%= @function.position.unit.area_name %>",
+                    "<%= @function.position.unit.dir_name %>",
+                    "<%= @function.position.unit.subdir_name %>",
+                    "<%= @function.position.unit.name %>",
+                    "/functions");
+    $("#area").val("<%= @function.position.unit.area_name %>");
+    $("#direction").val("<%= @function.position.unit.dir_name %>");
+    $("#subdirection").val("<%= @function.position.unit.subdir_name %>");
+    $("#unit").val("<%= @function.position.unit.name %>");
+    $("#position").val("<%= @function.position.id %>");
+  <% end %>
+
+  $("#area").on("change", function() {
+    filterElement('direction', '/functions');
+  });
+  $("#direction").on("change", function() {
+    filterElement('subdirection', '/functions');
+  });
+  $("#subdirection").on("change", function() {
+    filterElement('unit', '/functions');
+  });
+  $("#unit").on("change", function() {
+    filterElement('position', '/functions');
+  });
+</script>
