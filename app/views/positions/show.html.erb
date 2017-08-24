@@ -28,18 +28,48 @@
               </div>
             </div>
           </div>
-          <div class="row edit-row">
-            <div class="col-lg-12">
-              <div class="col-md-4">
-                <b>Unidad: </b>
-              </div>
-              <div class="col-md-4">
-                <% if @position.unit_id %>
-                  <%= Unit.find(@position.unit_id).name %>
-                <% end %>
+          <% if @position.unit %>
+            <div class="row edit-row">
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Área: </b>
+                </div>
+                <div class="col-md-4">
+                  <%= @position.unit.area_name %>
+                </div>
               </div>
             </div>
-          </div>
+            <div class="row edit-row">
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Dirección: </b>
+                </div>
+                <div class="col-md-4">
+                  <%= @position.unit.dir_name %>
+                </div>
+              </div>
+            </div>
+            <div class="row edit-row">
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Subdirección: </b>
+                </div>
+                <div class="col-md-4">
+                  <%= @position.unit.subdir_name %>
+                </div>
+              </div>
+            </div>
+            <div class="row edit-row">
+              <div class="col-lg-12">
+                <div class="col-md-4">
+                  <b>Unidad: </b>
+                </div>
+                <div class="col-md-4">
+                  <%= @position.unit.name %>
+                </div>
+              </div>
+            </div>
+          <% end %>
           <hr>
         </form>
       </div>
