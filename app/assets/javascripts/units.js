@@ -32,13 +32,12 @@ function filterUnElement(edit) {
           switch(edit) {
             case "direction":
               name = element.dir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
               break;
             case "subdirection":
               name = element.subdir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
               break;
           }
+          $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
         });
         $("#"+edit).trigger("change");
         return {results: data};
