@@ -11,8 +11,14 @@ class FunctionsController < ApplicationController
     end
 
     @unpaginated_functions = Function.all
-    respond_with(@functions) do |format|
+    checkAjaxNew
+    checkAjaxEdit
+
+    respond_to do |format|
+      format.html
+      format.js
       format.csv { send_data Function.to_csv(@unpaginated_functions), filename: "Funciones.csv" }
+      format.json { render json: @entitySearch.to_json }
     end
   end
 
@@ -27,8 +33,8 @@ class FunctionsController < ApplicationController
   def create
     @function = Function.create(
       name:                 params[:name],
-      position_id:          params[:position_id]
-      )
+      position_id:          params[:position]
+    )
     @function.save
 
     redirect_to action: :index
@@ -38,7 +44,7 @@ class FunctionsController < ApplicationController
     @function = Function.find(params[:id])
     @function.update_attributes(
       name:                 params[:name],
-      position_id:          params[:position_id]
+      position_id:          params[:position]
     )
     redirect_to action: :index
   end
@@ -52,6 +58,39 @@ class FunctionsController < ApplicationController
   private
 
   def function_params
-  params.require(:function).permit(:name, :position_id)
+    params.require(:function).permit(:name, :position_id)
   end
+
+  def checkAjaxNew
+    if params[:edit]
+      case params[:edit]
+        when "direction"
+          @entitySearch = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+        when "subdirection"
+          @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+        when "unit"
+          @entitySearch = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
+        when "position"
+          id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+          @entitySearch = Position.select(:id, :name).where(unit_id: id)
+      end
+    end
+  end
+
+  def checkAjaxEdit
+    if params[:op]
+      @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
+      @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
+      @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
+      id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+      @pos = Position.select(:id, :name).where(unit_id: id)
+      @entitySearch = {
+        dir: @dir,
+        subdir: @subdir,
+        unit: @unit,
+        pos: @pos
+      }
+    end
+  end
+
 end

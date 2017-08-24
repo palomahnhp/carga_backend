@@ -1,4 +1,4 @@
-function filterElement(edit) {
+function filterElement(edit, url) {
   if ($("#area option:selected").val() == "") {
     $("#direction").empty();
     $("#subdirection").empty();
@@ -48,7 +48,7 @@ function filterElement(edit) {
         break;
     }
     $.ajax({
-      url: "/users",
+      url: url,
       dataType: 'json',
       data: dataHash,
       success: function (data) {
@@ -82,16 +82,16 @@ function filterElement(edit) {
   }
 }
 
-function filterOrgchart(area, dir, subdir, unit, pos_id) {
+function filterOrgchart(area, dir, subdir, unit, url) {
   dataHash = {
     op: "initEdit",
     area: area,
     dir: dir,
     subdir: subdir,
-    pos: pos_id
+    unit: unit
   }
   $.ajax({
-      url: "/users",
+      url: url,
       dataType: 'json',
       data: dataHash,
       async: false,

@@ -21,14 +21,42 @@
           <div class="row edit-row">
             <div class="col-lg-12">
               <div class="col-md-4">
+                <b>Área: </b>
+              </div>
+              <div class="col-md-4">
+                <p><%= @function.position.unit.area_name %></p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Dirección: </b>
+              </div>
+              <div class="col-md-4">
+                <p><%= @function.position.unit.dir_name %></p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Subdirección: </b>
+              </div>
+              <div class="col-md-4">
+                <p><%= @function.position.unit.subdir_name %></p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
+                <b>Unidad: </b>
+              </div>
+              <div class="col-md-4">
+                <p><%= @function.position.unit.name %></p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="col-md-4">
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                <p>
-                  <% if @function.position %>
-                      <%= @function.position.position_number %> - <%= @function.position.name %>
-                  <% end %>
-                </p>
+                <p><%= @function.position.name %></p>
               </div>
             </div>
           </div>

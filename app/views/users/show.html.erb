@@ -61,16 +61,48 @@
                     <% end %>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-5">
-                    <b>Puesto: </b>
+                <% if @user.position %>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Área: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <%= @user.position.unit.area_name %>
+                    </div>
                   </div>
-                  <div class="col-md-7">
-                    <% if @user.position_id %>
-                      <%= Position.find(@user.position_id).name %>
-                    <% end %>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Dirección: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <%= @user.position.unit.dir_name %>
+                    </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Subdirección: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <%= @user.position.unit.subdir_name %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Unidad: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <%= @user.position.unit.name %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Puesto: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <%= @user.position.name %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
 
               <div class="col-md-6">
