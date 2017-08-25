@@ -61,7 +61,7 @@
                       </div>
                     </td>
                     <td>
-                      <input class="form-control" style="width: 100px;" type="number" name="time_per_<%= function.id %>" id="survey-input-<%= function.id %>">
+                      <input class="form-control" style="width: 100px;" type="number" name="time_per_<%= function.id %>" id="survey-input-<%= function.id %>" onchange="showTotal();" min="0" max="100" step="1">
                       <input type="hidden" class="form-control input-sm task" type="text" id="inputSmall_<%= function.id %>" value="<%= function.id %>" name="function_id_<%= function.id %>">
                       <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
                     </td>
@@ -105,6 +105,10 @@
         </div>
       </fieldset>
       <hr>
+      <div class="col-md-12" style="margin-bottom: 20px;">
+        Suma total de las respuestas: <input type="text" id="total" disabled="true" style="width: 55px;" />
+      </div>
+      <hr>
       <div class="col-md-12">
         <input type="hidden" id="positionId" name="id" value="<%= @position.id %>" />
         <%= link_to(content_tag(:button, 'Cancelar', class: 'btn btn-primary', title: 'Cancelar'), action: 'reset_responses', id: @position.id) %>
@@ -115,59 +119,7 @@
 </div>
 
 <script>
-    $("#errorTagCont").hide();
-    $("#remove-task-box").hide();
-
-    function formCheck() {
-      validData = true;
-      percSum = 0;
-      $.each($("input[name^='time_per_']"), function( index, value ) {
-        if (value.value == "" || !$.isNumeric(value.value)) {
-          validData = false;
-          showError("Debe responder todas las preguntas con formato numérico");
-        } else {
-          percSum = percSum + parseInt(value.value);
-        }
-      });
-      if (validData && percSum != 100) {
-        validData = false;
-        showError("El total de porcentajes de tiempo debe sumar 100%");
-      }
-      return validData;
-    }
-
-    function showError(message) {
-      $("#errorTag").html(message);
-      $(window).scrollTop(0);
-      $("#errorTagCont").show();
-    }
-
-    // js for other-tasks inputs
-
-    var numOthTasks = 1000;
-
-    $("#add-task").click(function() {
-      if($(".task-row").length < 3) {
-        numOthTasks++;
-        taskTemplate = '<tr class="task-row"><td style="width: 100%;"><input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required></td><td><input class="form-control input-sm" style="width: 100px;" type="number" name="time_per_'+numOthTasks+'" id="survey-input-'+numOthTasks+'"></td></tr>'
-        $("#other-tasks").append(taskTemplate);
-        $("#remove-task-box").show();
-        if($(".task-row").length == 3) {
-          $("#add-task-box").hide();
-        }
-      }
-    })
-
-    $("#remove-task").click(function() {
-      if($(".task-row").length >= 1) {
-        numOthTasks--;
-        $(".task-row").last().remove();
-        $("#add-task-box").show();
-        if ($(".task-row").length < 1) {
-          $("#remove-task-box").hide();
-        }
-      }
-    })
+    initializeJS();
 
     // modal instructions
 

@@ -3,11 +3,11 @@ class ResponsesController < ApplicationController
   respond_to :html, :js, :json  
 
   def index
-    @users = User.all
+    @users = User.where(id: Response.select(:user_id))
     if params[:search]
-      @users = User.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @users = @users.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     else
-      @users = User.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @users = @users.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
     @responses = Response.all
 
