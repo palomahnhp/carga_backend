@@ -6,6 +6,11 @@ class Function < ActiveRecord::Base
     self.where("name ILIKE ?", "%#{search}%")
   end
 
+  def self.searchByUser(searchByUser)
+    position_id = User.select(:position_id).where("(name || last_name || last_name_alt || user_num) ILIKE ?", "%#{searchByUser}%")
+    self.where(position_id: position_id)
+  end
+
   def self.to_csv(records)
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
       csv << ["Función", "Puesto"]

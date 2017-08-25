@@ -4,8 +4,15 @@ class FunctionsController < ApplicationController
 
   def index
     @functions = Function.all
-    if params[:search]
-      @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    if params[:search] || params[:searchByUser]
+      if params[:search]
+        @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        if params[:searchByUser]
+          @functions = @functions.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        end
+      else
+        @functions = Function.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)    
+      end
     else
       @functions = Function.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end
