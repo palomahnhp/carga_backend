@@ -18,8 +18,13 @@
               </div>
               <div class="col-lg-4 pull-right">
                 <%= form_tag(functions_path, method: "get", id: "search-form") do%>
-                <%= text_field_tag :search, params[:search], class:"form-control search-input col-lg-2", placeholder: "Buscar función" %>
-                <%= submit_tag "Buscar", class:"btn btn-primary search-btn" %>
+                  <div class="col-md-12">
+                    <%= text_field_tag :search, params[:search], class:"form-control search-input col-lg-2", placeholder: "Buscar función" %>
+                  </div>
+                  <div class="col-md-12" style="margin-top: 5px;">
+                    <%= text_field_tag :searchByUser, params[:searchByUser], class:"form-control search-input col-lg-2", placeholder: "Buscar usuario" %>
+                    <%= submit_tag "Buscar", class:"btn btn-primary search-btn" %>
+                  </div>
                 <% end %>
               </div>
             </div>

@@ -8,12 +8,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate!, unless: 'user_authenticated?'
   before_action :set_page_params, only: [:index]
+  before_action :set_variables
 
   rescue_from CanCan::AccessDenied do |_exception|
     respond_to do |format|
       format.html { redirect_to root_path, alert: I18n.t('messages.access_denied') }
       format.json { render json: {error: I18n.t('messages.access_denied')}, status: :forbidden }
     end
+  end
+
+  def set_variables
+    @current_user = current_user
   end
 
   def uweb_authenticated?
