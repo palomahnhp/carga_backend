@@ -3,15 +3,15 @@ class UnitsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @units = Unit.all
     if params[:search]
       @units = Unit.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_units = Unit.search(params[:search]).order('id DESC')
     else
       @units = Unit.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_units = Unit.all
     end
 
     if (params[:op])
-      @unpaginated_units = Unit.all
       respond_to do |format|
         format.html
         format.js
@@ -20,7 +20,6 @@ class UnitsController < ApplicationController
     else
       checkAjaxNew
       checkAjaxEdit
-      @unpaginated_units = Unit.all
       respond_to do |format|
         format.html
         format.js

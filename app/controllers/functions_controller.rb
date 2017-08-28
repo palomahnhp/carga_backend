@@ -3,21 +3,23 @@ class FunctionsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @functions = Function.all
-    if params[:search] || params[:searchByUser]
-      if params[:search]
+    if params[:search].present? || params[:searchByUser].present?
+      if params[:search].present?
         @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
-        if params[:searchByUser]
+        @unpaginated_functions = Function.search(params[:search]).order('id DESC')
+        if params[:searchByUser].present?
           @functions = @functions.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+          @unpaginated_functions = @unpaginated_functions.searchByUser(params[:searchByUser]).order('id DESC')
         end
       else
-        @functions = Function.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)    
+        @functions = Function.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        @unpaginated_functions = Function.searchByUser(params[:searchByUser]).order('id DESC')
       end
     else
       @functions = Function.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_functions = Function.all
     end
 
-    @unpaginated_functions = Function.all
     checkAjaxNew
     checkAjaxEdit
 
@@ -79,7 +81,7 @@ class FunctionsController < ApplicationController
           @entitySearch = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
         when "position"
           id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
-          @entitySearch = Position.select(:id, :name).where(unit_id: id)
+          @entitySearch = Position.select(:id, :name, :position_number).where(unit_id: id)
       end
     end
   end
@@ -90,7 +92,7 @@ class FunctionsController < ApplicationController
       @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
       @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
       id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
-      @pos = Position.select(:id, :name).where(unit_id: id)
+      @pos = Position.select(:id, :name, :position_number).where(unit_id: id)
       @entitySearch = {
         dir: @dir,
         subdir: @subdir,
