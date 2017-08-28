@@ -3,14 +3,14 @@ class CampaignsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @campaigns = Campaign.all
     if params[:search]
       @campaigns = Campaign.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_campaigns = Campaign.search(params[:search])
     else
       @campaigns = Campaign.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_campaigns = Campaign.all
     end
 
-    @unpaginated_campaigns = Campaign.all
     respond_with(@campaigns) do |format|
       format.csv { send_data Campaign.to_csv(@unpaginated_campaigns), filename: "Campañas.csv" }
     end

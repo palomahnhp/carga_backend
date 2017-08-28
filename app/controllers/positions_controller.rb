@@ -3,14 +3,14 @@ class PositionsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @positions = Position.all
     if params[:search]
       @positions = Position.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_positions = Position.search(params[:search]).order('id DESC')
     else
       @positions = Position.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_positions = Position.all
     end
 
-    @unpaginated_positions = Position.all
     checkAjaxNew
     checkAjaxEdit
 
