@@ -107,7 +107,9 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
     @users = []
     @unit.positions.each do |position|
-        @users << position.user
+      position.users.each do |user|
+        @users << user
+      end
     end
   end
 
@@ -128,7 +130,9 @@ class UnitsController < ApplicationController
     unit = Unit.find(params[:id])
     @recipient = []
     unit.positions.each do |position|
-        @recipient << position.user.email
+      position.users.each do |user|
+        @recipient << user.email
+      end
     end
     respond_to do |format|
       format.html
