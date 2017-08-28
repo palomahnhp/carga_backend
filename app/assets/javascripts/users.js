@@ -71,7 +71,8 @@ function filterElement(edit, url) {
             case "position":
               name = element.name;
               id = element.id;
-              $("#"+edit).append("<option value='" + id + "'>" + name + "</option>");
+              num = element.position_number;
+              $("#"+edit).append("<option value='" + id + "'>" + num + " - " + name + "</option>");
               break;
           }
         });
@@ -115,7 +116,8 @@ function filterOrgchart(area, dir, subdir, unit, url) {
         data.pos.forEach(function(element) {
           name = element.name;
           id = element.id;
-          $("#position").append("<option value='" + id + "'>" + name + "</option>");
+          num = element.position_number;
+          $("#position").append("<option value='" + id + "'>" + num + " - " + name + "</option>");
         });
         return {results: data};
       }
