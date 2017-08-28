@@ -26,25 +26,25 @@ class Unit < ActiveRecord::Base
   end
 
   def responses_users
-    unit_users = []
+    unit_users = 0
     unit_responses = 0
     response_level = 0
     self.positions.each do |position|
-      if position.user
-        unit_users << position.user
-        if position.user.responses != []
-          unit_responses = 1 + unit_responses
+      position.users.each do |user| 
+        if user.responses.any?
+          unit_responses += 1
         end
       end
+      unit_users += position.users.count
     end
 
-    if unit_users != []
-      response_level = unit_responses*100/unit_users.count
+    if unit_users != 0
+      response_level = unit_responses*100/unit_users
     else
       response_level = 0
     end
 
-    users_responses_relation = {users: unit_users.count, response_level: response_level}
+    users_responses_relation = {users: unit_users, response_level: response_level}
   end
 
 end
