@@ -26,6 +26,7 @@
                 <thead>
                   <tr>
                     <th>Unidad</th>
+                    <th>Usuarios</th>
                     <th>Nivel de respuesta</th>
                     <th>Barra porcentual</th>
                     <th id="mail-legend">Enviar recordatorio</th>
@@ -35,18 +36,19 @@
                   <% @units.each do |unit| %>
                     <tr>
                       <td><%= unit.name %></td>
-                      <% unit_users = [] %>
+                      <% unit_users = 0 %>
                       <% unit_responses = 0 %>
                       <% unit.positions.each do |position| %>
-                        <% if position.user %>
-                          <% unit_users << position.user %>
-                          <% if position.user.responses != [] %>
-                            <% unit_responses = 1 + unit_responses %>
+                        <% position.users.each do |user| %>
+                          <% if user.responses.any? %>
+                            <% unit_responses += 1 %>
                           <% end %>
                         <% end %>
+                        <% unit_users += position.users.count %>
                       <% end %>
-                      <% if unit_users != [] %>
-                        <td><%= response_level = (unit_responses*100)/(unit_users).count %>%</td>
+                      <td><%= unit_users %></td>
+                      <% if unit_users != 0 %>
+                        <td><%= response_level = unit_responses*100/unit_users %>%</td>
                       <% else %>
                         <td><%= response_level = 0 %>%</td>
                       <% end %>
