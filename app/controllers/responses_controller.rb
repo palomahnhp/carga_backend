@@ -4,8 +4,15 @@ class ResponsesController < ApplicationController
 
   def index
     @users = User.where(id: Response.select(:user_id))
-    if params[:search]
-      @users = @users.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    if params[:search].present? || params[:searchByUnit].present?
+      if params[:search].present?
+        @users = @users.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        if params[:searchByUnit].present?
+          @users = @users.searchByUnit(params[:searchByUnit]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        end
+      else
+        @users = @users.searchByUnit(params[:searchByUnit]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      end
     else
       @users = @users.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
     end

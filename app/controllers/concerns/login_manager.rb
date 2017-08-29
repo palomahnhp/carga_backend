@@ -31,6 +31,7 @@ class LoginManager
       dir_data = data['EMPLEADOS_ACTIVOS']['EMPLEADO']
         ActiveRecord::Base.transaction do
           UserDir.create(
+            user_id:             user.id,
             pernr:               dir_data['PERNR'],
             nif:                 dir_data['NIF'],
             ayre:                dir_data['AYRE'],

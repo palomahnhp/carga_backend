@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
     self.where("(name || last_name || last_name_alt || user_num) ILIKE ?", "%#{search}%")
   end
 
+  def self.searchByUnit(searchByUnit)
+    unitIds = Unit.select(:id).where("name ILIKE ?", "%#{searchByUnit}%")
+    posIds = Position.select(:id).where(unit_id: unitIds)
+    self.where(position_id: posIds)
+  end
+
   def uweb_id
     user_num
   end

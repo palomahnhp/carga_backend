@@ -5,7 +5,7 @@
       <% if collection.size >= params.fetch(:per_page_list, [0]).min.to_i %>
           <ul class="form-group list-inline">
             <li><%= content_tag :label, "Elementos por página", for: 'pages-select' %></li>
-            <li><%= select_tag :per_page, options_for_select(params[:per_page_list], params[:per_page]),
+            <li><%= select_tag :per_page, options_for_select(["10", "20", "30", "40", "50"], params[:per_page]),
                                onchange: "submitPagesChange(this.value);",
                                class: 'form-control', id: 'pages-select' %></li>
           </ul>
@@ -20,7 +20,6 @@
 
   function submitPagesChange(value) {
     if(value) {
-      //$('#per_page').prop('value', value);
       setGetParameter('per_page', value);
     }
   }
