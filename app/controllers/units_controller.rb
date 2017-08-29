@@ -30,7 +30,11 @@ class UnitsController < ApplicationController
   end
 
   def tracking
-    @units = Unit.all
+    if params[:search]
+      @units = Unit.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    else
+      @units = Unit.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+    end
   end
 
   def show
@@ -122,7 +126,8 @@ class UnitsController < ApplicationController
   end
 
   def send_mail
-    UserMailer.reminder_email(params[:recipient], message: params[:message], subject: params[:subject]).deliver_now
+    message = params[:message].include?('\n') ? params[:message].gsub!('\n', '<br>') : params[:message]
+    UserMailer.reminder_email(params[:recipient], message: message, subject: params[:subject]).deliver_now
     redirect_to action: :tracking
   end
 
@@ -140,7 +145,8 @@ class UnitsController < ApplicationController
   end
 
   def send_mails
-    UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: params[:message], subject: params[:subject]).deliver_now
+    message = params[:message].include?('\n') ? params[:message].gsub!('\n', '<br>') : params[:message]
+    UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: message, subject: params[:subject]).deliver_now
     redirect_to action: :tracking
   end
 
