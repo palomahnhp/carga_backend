@@ -20,6 +20,8 @@ class Function < ActiveRecord::Base
       records.each do |record|
         name = record.name.include?('’') ? record.name.gsub!('’', '\'') : record.name
         name = record.name.include?('…') ? record.name.gsub!('…', '...') : record.name
+        name = record.name.include?('“') ? record.name.gsub!('“', '"') : record.name
+        name = record.name.include?('”') ? record.name.gsub!('”', '"') : record.name
         if record.position
           csv << [name, record.position.name]
         else
