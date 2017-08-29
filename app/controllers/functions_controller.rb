@@ -5,19 +5,19 @@ class FunctionsController < ApplicationController
   def index
     if params[:search].present? || params[:searchByUser].present?
       if params[:search].present?
-        @functions = Function.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
-        @unpaginated_functions = Function.search(params[:search]).order('id DESC')
+        @functions = Function.not_extra_functions.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        @unpaginated_functions = Function.not_extra_functions.search(params[:search]).order('id DESC')
         if params[:searchByUser].present?
           @functions = @functions.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
           @unpaginated_functions = @unpaginated_functions.searchByUser(params[:searchByUser]).order('id DESC')
         end
       else
-        @functions = Function.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
-        @unpaginated_functions = Function.searchByUser(params[:searchByUser]).order('id DESC')
+        @functions = Function.not_extra_functions.searchByUser(params[:searchByUser]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        @unpaginated_functions = Function.not_extra_functions.searchByUser(params[:searchByUser]).order('id DESC')
       end
     else
-      @functions = Function.all.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
-      @unpaginated_functions = Function.all
+      @functions = Function.not_extra_functions.order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+      @unpaginated_functions = Function.not_extra_functions
     end
 
     checkAjaxNew
