@@ -2,7 +2,7 @@ class UwebUpdateApi
 
   def initialize(user_key)
     params(user_key) 
-  end 
+  end
 
   def client
     Rails.logger.info { "  INFO - UwebUpdateApi#wsdl: :  #{Rails.application.secrets.uweb_update_wsdl.to_s}" }
