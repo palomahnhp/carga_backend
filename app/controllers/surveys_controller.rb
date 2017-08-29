@@ -16,7 +16,7 @@ class SurveysController < ApplicationController
 
   def show
     @pos_functions = fillPosFunctions
-    if @pos_functions == []
+    unless @pos_functions.any?
       redirect_to action: :index
     end
   end
@@ -46,9 +46,7 @@ class SurveysController < ApplicationController
         function_id: func.id,
         time_per:    params[time_per_id]
       )
-      if @response.save
-        puts 'survey sent'
-      else
+      unless @response.save
         if @response.errors
           @response.errors.full_messages.each do |error|
             @errors << error
@@ -60,7 +58,7 @@ class SurveysController < ApplicationController
 
     createExtraResponses
 
-    redirect_to action: :index
+    redirect_to root_path
   end
 
   private
@@ -72,18 +70,8 @@ class SurveysController < ApplicationController
   def fillPosFunctions
     setCurrentUser
     @position = Position.find(params[:id])
-    @pos_functions = []
-    @total_per = 100
-    @position.functions.each do |function|
-      @pos_functions << function
-      @current_user.responses.each do |response|
-        if response.function_id == function.id
-          @pos_functions.delete(function)
-          @total_per = @total_per - response.time_per.to_i
-        end
-      end
-    end
-    @pos_functions
+    
+    @pos_functions = @position.functions.not_extra_functions
   end
 
   def createExtraResponses
@@ -91,7 +79,7 @@ class SurveysController < ApplicationController
       function = Function.create(
         position: current_user.position,
         name: params["other_task_1001"],
-        not_norm: 'f'
+        not_norm: 't'
       )
       @response = Response.create(
         user_id:     current_user.id,
@@ -103,7 +91,7 @@ class SurveysController < ApplicationController
       function = Function.create(
         position: current_user.position,
         name: params["other_task_1002"],
-        not_norm: 'f'
+        not_norm: 't'
       )
       @response = Response.create(
         user_id:     current_user.id,
@@ -115,7 +103,7 @@ class SurveysController < ApplicationController
       function = Function.create(
         position: current_user.position,
         name: params["other_task_1003"],
-        not_norm: 'f'
+        not_norm: 't'
       )
       @response = Response.create(
         user_id:     current_user.id,

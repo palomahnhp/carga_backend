@@ -35,7 +35,18 @@ function formCheck() {
     validData = false;
     showError("El total de porcentajes de tiempo debe sumar 100%");
   }
-  return validData;
+  if (validData) {
+    swal({
+      title: "Completado",
+      text: "Encuesta completada correctamente",
+      type: "success",
+      confirmButtonText: 'Continuar'
+    }).then(function() {
+      $("#survey-form").submit();
+    });
+  } else {
+    return false;
+  }
 }
 
 function showError(message) {
