@@ -127,7 +127,7 @@ class UnitsController < ApplicationController
 
   def send_mail
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-    UserMailer.reminder_email(params[:recipient], message: message, subject: params[:subject]).deliver_now
+    UserMailer.reminder_email(params[:recipient], message: message.html_safe, subject: params[:subject]).deliver_now
     redirect_to action: :tracking
   end
 
@@ -145,8 +145,8 @@ class UnitsController < ApplicationController
   end
 
   def send_mails
-    message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]   
-    UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: message, subject: params[:subject]).deliver_now
+    message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
+    UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: message.html_safe, subject: params[:subject]).deliver_now
     redirect_to action: :tracking
   end
 
