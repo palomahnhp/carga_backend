@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     session[:current_user_id] = nil
     uweb_auth = UwebAuthenticator.new(params)
     if uweb_auth.authenticate
-      session[:uweb_user_data]  = uweb_auth.uweb_user_data
+      session[:uweb_user_data] = uweb_auth.uweb_user_data
     else
       flash.now[:error] = "#{I18n.t('errors.cannot_log_in')}: #{uweb_auth.errors.to_sentence}"
     end
@@ -51,7 +51,15 @@ class ApplicationController < ActionController::Base
 
   def authenticate!
     unless uweb_authenticated? && current_user
-      render file: 'public/401.html', status: :unauthorized
+      unless uweb_authenticated?
+        render file: 'public/402.html', status: :unauthorized
+      else
+        if LoginManager.uweb_non_access
+          render file: 'public/403.html', status: :unauthorized
+        else
+          render file: 'public/401.html', status: :unauthorized
+        end
+      end
     end
   end
 
