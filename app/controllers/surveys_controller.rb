@@ -23,7 +23,7 @@ class SurveysController < ApplicationController
 
   def reset_responses
     setCurrentUser
-    @position = Position.find(params[:id])
+    @position = Position.friendly.find(params[:id])
     @position.functions.each do |function|
       @current_user.responses.each do |response|
         if response.function_id == function.id
@@ -69,7 +69,7 @@ class SurveysController < ApplicationController
 
   def fillPosFunctions
     setCurrentUser
-    @position = Position.find(params[:id])
+    @position = Position.friendly.find(params[:id])
     
     @pos_functions = @position.functions.not_extra_functions
   end

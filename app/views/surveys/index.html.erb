@@ -30,7 +30,7 @@
             <% if @user_positions.any? %>
               <% @user_positions.each do |position| %>
                 <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
-                  <a href="/surveys/show?id=<%= + position.id %>">
+                  <a href="/surveys/show?id=<%= + position.slug %>">
                     <button type="button" class="btn btn-lg btn-primary">
                       <%= position.name %> - <%= position.unit.name %>
                     </button>
