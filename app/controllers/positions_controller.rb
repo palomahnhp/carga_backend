@@ -34,9 +34,10 @@ class PositionsController < ApplicationController
     @position = Position.create(
       position_number: params[:position_number],
       name:            params[:name],
-      unit_id:         params[:unit_id]
+      unit_id:         params[:unit_id],
     )
     @position.save
+    @position.update_attribytes(slug: Digest::SHA1.hexdigest("#{@position.id}"))
 
     redirect_to action: :index
   end
@@ -46,7 +47,8 @@ class PositionsController < ApplicationController
     @position.update_attributes(
       position_number: params[:position_number],
       name:            params[:name],
-      unit_id:         params[:unit_id]
+      unit_id:         params[:unit_id],
+      slug:            Digest::SHA1.hexdigest("#{@position.id}")
     )
     redirect_to action: :index
   end
