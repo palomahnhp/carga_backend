@@ -35,6 +35,20 @@ class UwebAuthenticator
     false
   end
 
+  def user_exists_by_dni?(document)
+    response = client.call(:get_user_data_by_dni, message: { ub: { dni: document } }).body
+    parsed_response = parser.parse(response[:get_user_data_by_dni_response][:get_user_data_by_dni_return])
+    self.uweb_user_data = Hash.deep_strip! get_uweb_user_data(parsed_response)
+
+    uweb_user_data[:document].present?
+    rescue  Exception  => e
+      Rails.logger.error('UwebAuthenticator#user_exists?') do
+        "Error llamada UWEB: get_user_data_by_dni - #{document}: \n#{e}"
+    end
+    errors << generate_error_message(e.message)
+    false
+  end
+
   private
 
     def generate_error_message(message)
