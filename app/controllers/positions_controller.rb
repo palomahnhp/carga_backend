@@ -37,7 +37,7 @@ class PositionsController < ApplicationController
       unit_id:         params[:unit_id],
     )
     @position.save
-    @position.update_attribytes(slug: Digest::SHA1.hexdigest("#{@position.id}"))
+    @position.update_attributes(slug: Digest::SHA1.hexdigest("#{@position.id}"))
 
     redirect_to action: :index
   end
