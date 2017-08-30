@@ -59,7 +59,9 @@
         </div>
       </fieldset>
     <div class="col-md-6">
-      <button type="button" class="btn btn-primary" onclick="window.history.back();">Volver</button>
+      <a href="/responses?search=<%= params[:search] %>&searchByUnit=<%= params[:searchByUnit] %>">
+        <button type="submit" class="btn btn-primary">Volver</button>
+      </a>
     </div>
   </div>
 </div>

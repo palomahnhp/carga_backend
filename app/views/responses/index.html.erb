@@ -56,7 +56,7 @@
                             <%= user.email %>
                           </td>
                           <td>
-                            <%= link_to(content_tag(:button, 'Respuestas', class: 'btn btn-primary'), controller: 'responses', action: 'show', id: user.id) %>
+                            <%= link_to(content_tag(:button, 'Respuestas', class: 'btn btn-primary'), controller: 'responses', action: 'show', id: user.id, search: params[:search], searchByUnit: params[:searchByUnit]) %>
                         </tr>
                     <% end %>
                   <% else %>

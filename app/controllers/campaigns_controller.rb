@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    if params[:search]
+    if params[:search].present?
       @campaigns = Campaign.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
       @unpaginated_campaigns = Campaign.search(params[:search])
     else
