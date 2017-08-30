@@ -58,7 +58,7 @@
                             <% end %>
                           </td>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: function.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: function.id, search: params[:search], searchByUser: params[:searchByUser]) %>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: function.id, search: params[:search], searchByUser: params[:searchByUser]) %>
                           </td>
                         </tr>

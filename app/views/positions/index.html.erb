@@ -51,7 +51,7 @@
                             <%= position.name %>
                           </td>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: position.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: position.id, search: params[:search]) %>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: position.id, search: params[:search]) %>
                           </td>
                         </tr>

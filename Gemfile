@@ -43,6 +43,8 @@ gem 'rspec'
 
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
+gem 'friendly_id'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

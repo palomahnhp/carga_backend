@@ -1,7 +1,11 @@
 class Position < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :id, use: :slugged  
+
   has_many :users
   has_many :functions
   belongs_to :unit
+
   validates :name, :position_number, presence: true
   validates :position_number, presence: true, uniqueness: true
 
@@ -17,4 +21,5 @@ class Position < ActiveRecord::Base
       end
     end
   end
+
 end
