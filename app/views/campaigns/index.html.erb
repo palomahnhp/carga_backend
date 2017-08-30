@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="col-lg-2">
-                <a href="/campaigns/new">
+                <a href="/campaigns/new?search=<%= params[:search] %>">
                   <button type="button" class="btn btn-primary">Añadir campaña</button>
                 </a>
               </div>
@@ -62,7 +62,7 @@
                           <% end %>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: campaign.id) %>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: campaign.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: campaign.id, search: params[:search]) %>
                           </td>
                         </tr>
                     <% end %>

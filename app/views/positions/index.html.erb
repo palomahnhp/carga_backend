@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="col-lg-2">
-                <a href="/positions/new">
+                <a href="/positions/new?search=<%= params[:search] %>">
                   <button type="button" class="btn btn-primary">Añadir Puesto</button>
                 </a>
               </div>
@@ -52,7 +52,7 @@
                           </td>
                           <td>
                             <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: position.id) %>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: position.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: position.id, search: params[:search]) %>
                           </td>
                         </tr>
                     <% end %>
