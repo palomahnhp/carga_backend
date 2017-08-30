@@ -39,28 +39,34 @@
               </div>
 
               <div class="col-md-6">
-                <div class="row">
+                <div class="row bottom-panel">
                   <div class="col-md-5">
-                    <b>Código Ayre: </b>
+                    <b>Email: </b>
                   </div>
                   <div class="col-md-7">
-                    <%= @user.login %>
+                      <%= @user.email %>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-5">
-                    <b>Perfil: </b>
+                    <b>Teléfono: </b>
                   </div>
                   <div class="col-md-7">
-                    <% if @user.superadmin? %>
-                      <p>Superadministrador</p>
-                    <% elsif @user.admin? %>
-                      <p>Administrador</p>
-                    <% else %>
-                      <p>Encuestado</p>
-                    <% end %>
+                    <%= @user.phone_number %>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-md-5">
+                    <b>NIF: </b>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @user.document %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
                 <% if @user.position %>
                   <div class="row">
                     <div class="col-md-5">
@@ -106,32 +112,30 @@
               </div>
 
               <div class="col-md-6">
-                <div class="row bottom-panel">
+                <div class="row">
                   <div class="col-md-5">
-                    <b>Email: </b>
+                    <b>Código Ayre: </b>
                   </div>
                   <div class="col-md-7">
-                      <%= @user.email %>
+                    <%= @user.login %>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-5">
-                    <b>Teléfono: </b>
+                    <b>Perfil: </b>
                   </div>
                   <div class="col-md-7">
-                    <%= @user.phone_number %>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-5">
-                    <b>NIF: </b>
-                  </div>
-                  <div class="col-md-7">
-                    <%= @user.document %>
+                    <% if @user.superadmin? %>
+                      <p>Superadministrador</p>
+                    <% elsif @user.admin? %>
+                      <p>Administrador</p>
+                    <% else %>
+                      <p>Encuestado</p>
+                    <% end %>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
           <hr>
