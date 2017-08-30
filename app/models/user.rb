@@ -15,10 +15,6 @@ class User < ActiveRecord::Base
     self.where(position_id: posIds)
   end
 
-  def uweb_id
-    user_num
-  end
-
   def self.to_csv(records)
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
       csv << ["Nº Usuario", "Usuario", "Email"]

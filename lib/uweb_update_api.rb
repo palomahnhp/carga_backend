@@ -1,7 +1,10 @@
 class UwebUpdateApi
 
+  attr_accessor :errors
+
   def initialize(user_key)
-    params(user_key) 
+    params(user_key)
+    @errors = []
   end
 
   def client
@@ -11,8 +14,8 @@ class UwebUpdateApi
 
   def insert_profile(user)
     message_params = @params
-    message_params[:keyUserRelation] = user.uweb_id
-    message_params[:loginUserRelation] =  user.login
+    message_params[:keyUserRelation] = user[:uweb_id]
+    message_params[:loginUserRelation] =  user[:login]
     request(:insert_profile_login, message_params)
   end
 
@@ -28,6 +31,7 @@ class UwebUpdateApi
     parsed_response = parser.parse(response[(operation.to_s + '_response').to_sym][(operation.to_s + '_return').to_sym])
   rescue Savon::Error => e
     puts "#{operation} - #{message_params} - Error Savon: #{e}"
+    errors << generate_error_message(e.message)
     false
   end
 
