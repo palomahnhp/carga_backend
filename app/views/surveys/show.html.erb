@@ -26,7 +26,10 @@
               <td>Instrucción 2. La suma de las respuestas debe ser igual a 100, ya que se trata de porcentajes.</td>
             </tr>
             <tr>
-              <td>Instrucción 3. Se pueden añadir hasta tres funciones extra, proporcionando su descripción.</td>
+              <td>Instrucción 3. El valor numérico de las respuestas puede contener hasta 2 decimales.</td>
+            </tr>
+            <tr>
+              <td>Instrucción 4. Se pueden añadir hasta tres funciones extra, proporcionando su descripción.</td>
             </tr>
           </tbody>
         </table>
@@ -54,7 +57,7 @@
                       </div>
                     </td>
                     <td>
-                      <input class="form-control" style="width: 100px;" type="number" name="time_per_<%= function.id %>" id="survey-input-<%= function.id %>" onchange="showTotal();" min="0" max="100" step="1">
+                      <input class="form-control" style="width: 100px;" type="number" name="time_per_<%= function.id %>" id="survey-input-<%= function.id %>" onchange="showTotal();" min="0" max="100" step="0.01">
                       <input type="hidden" class="form-control input-sm task" type="text" id="inputSmall_<%= function.id %>" value="<%= function.id %>" name="function_id_<%= function.id %>">
                       <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
                     </td>
@@ -89,7 +92,7 @@
       </fieldset>
       <hr>
       <div class="col-md-12" style="margin-bottom: 20px;">
-        Suma total de las respuestas: <input type="text" id="total" disabled="true" style="width: 55px;" />
+        Suma total de las respuestas: <input type="text" id="total" disabled="true" style="width: 70px;" />
       </div>
       <hr>
       <div class="col-md-12">
