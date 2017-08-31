@@ -10,10 +10,10 @@ function showTotal() {
   $.each($("input[name^='time_per_']"), function( index, value ) {
     if (value.value != "" && $.isNumeric(value.value)) {
       total = total + parseFloat(value.value);
+      value.value = Math.round(value.value*100)/100;
     }
-    value.value = Math.floor(value.value*100)/100;
   });
-  $("#total").val(Math.floor(total*100)/100 + " %");
+  $("#total").val(Math.round(total*100)/100 + " %");
 }
 
 function formCheck() {
@@ -29,7 +29,7 @@ function formCheck() {
         showError("Los valores de porcentaje deben estar entre 0 y 100");
       } else {
         percSum = percSum + parseFloat(value.value);
-        value.value = Math.floor(value.value*100)/100;
+        value.value = Math.round(value.value*100)/100;
       }
     }
   });
