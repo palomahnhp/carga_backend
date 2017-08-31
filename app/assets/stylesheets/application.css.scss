@@ -66,17 +66,19 @@
 }
 
 .welcome-settings-panel {
-  width: 460px;
+  width: 600px;
   height: 267px;
   margin-left: 27.5%;
+  padding-left: 46px;
   background-color: lightblue;
   border-radius: 9px;
 }
 
 .respondent-settings-panel {
-  width: 230px;
+  width: 300px;
   height: 267px;
   margin-left: 39.5%;
+  padding-left: 35px;
   background-color: lightblue;
   border-radius: 9px;
  }
@@ -162,8 +164,8 @@
 }
 
 .fa.fa-pencil-square-o{
-  font-size: 125px;
   margin-top: 25px;
+  font-size: 125px;
 }
 
 #admin-icons {
