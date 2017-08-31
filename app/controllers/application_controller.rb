@@ -54,12 +54,18 @@ class ApplicationController < ActionController::Base
       unless uweb_authenticated?
         render file: 'public/402.html', status: :unauthorized
       else
-        if LoginManager.uweb_non_access
-          render file: 'public/403.html', status: :unauthorized
-        else
-          render file: 'public/401.html', status: :unauthorized
-        end
+        render file: 'public/401.html', status: :unauthorized
       end
+    end
+    #unless user_auth_uweb?(current_user)
+      #render file: 'public/403.html', status: :unauthorized
+    #end
+  end
+
+  def user_auth_uweb?(current_user)
+    uweb_auth = UwebAuthenticator.new()
+    if uweb_auth.user_exists_by_dni?(current_user.document)
+      uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id])
     end
   end
 

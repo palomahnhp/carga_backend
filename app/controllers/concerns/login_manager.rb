@@ -1,7 +1,4 @@
 class LoginManager
-
-  @@uweb_non_access = false
-  cattr_reader :uweb_non_access
   
   attr_accessor :errors, :user, :login_data
 
@@ -54,11 +51,6 @@ class LoginManager
             email:               dir_data['EMAIL']
           )
         end
-      end
-      uweb_non_access = false
-    else
-      if data['EMPLEADOS_ACTIVOS'] == nil
-        uweb_non_access = true
       end
     end
     user

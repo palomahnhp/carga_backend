@@ -49,6 +49,21 @@ class UwebAuthenticator
     false
   end
 
+  def user_auth_for_app?(uweb_id)
+    response = client.call(:get_applications_user_list, message: { ub: { userKey: uweb_id } }).body
+    parsed_response = parser.parse(response[:get_applications_user_list_response][:get_applications_user_list_return])
+    auth_apps = Hash.deep_strip! get_uweb_user_data(parsed_response)
+
+    # Comprobar que contiene auth_apps, recorrerlo y comprobar si contiene Rails.application.secrets.directorio_application_key
+    
+    rescue  Exception  => e
+      Rails.logger.error('UwebAuthenticator#user_exists?') do
+        "Error llamada UWEB: get_user_data_by_dni - #{document}: \n#{e}"
+    end
+    errors << generate_error_message(e.message)
+    false
+  end
+
   private
 
     def generate_error_message(message)

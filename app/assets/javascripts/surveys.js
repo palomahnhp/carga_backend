@@ -9,10 +9,11 @@ function showTotal() {
   total = 0;
   $.each($("input[name^='time_per_']"), function( index, value ) {
     if (value.value != "" && $.isNumeric(value.value)) {
-      total = total + parseInt(value.value);
+      total = total + parseFloat(value.value);
     }
+    value.value = Math.floor(value.value*100)/100;
   });
-  $("#total").val(total + " %");
+  $("#total").val(Math.floor(total*100)/100 + " %");
 }
 
 function formCheck() {
@@ -27,7 +28,8 @@ function formCheck() {
         validData = false;
         showError("Los valores de porcentaje deben estar entre 0 y 100");
       } else {
-        percSum = percSum + parseInt(value.value);
+        percSum = percSum + parseFloat(value.value);
+        value.value = Math.floor(value.value*100)/100;
       }
     }
   });
@@ -61,7 +63,7 @@ function setOtherTaskJS() {
   $("#add-task").click(function() {
     if($(".task-row").length < 3) {
       numOthTasks++;
-      taskTemplate = '<tr class="task-row"><td style="width: 100%;"><input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required></td><td><input class="form-control input-sm" style="width: 100px;" type="number" name="time_per_'+numOthTasks+'" id="survey-input-'+numOthTasks+'" onchange="showTotal();" min="0" max="100" step="1"></td></tr>'
+      taskTemplate = '<tr class="task-row"><td style="width: 100%;"><input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required></td><td><input class="form-control input-sm" style="width: 100px;" type="number" name="time_per_'+numOthTasks+'" id="survey-input-'+numOthTasks+'" onchange="showTotal();" min="0" max="100" step="0.01"></td></tr>'
       $("#other-tasks").append(taskTemplate);
       $("#remove-task-box").show();
       if($(".task-row").length == 3) {
