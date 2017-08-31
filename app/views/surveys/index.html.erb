@@ -18,30 +18,30 @@
   </div>
 <% else %>
   <div class="row element-style">
-    <div class="col-md-5 col-md-offset-2">
+    <div class="col-md-5 col-md-offset-1">
       <div class="row">
         <div class="col-md-5 col-md-offset-4 survey-icon">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 survey-panel" style="margin-top: 100px !important; padding-top: 20px !important;">
           <ul>
             <% if @user_positions.any? %>
               <% @user_positions.each do |position| %>
                 <div>
-                  <div class="col-md-2 survey-icon">
+                  <div class="col-md-3 survey-icon-list">
                     <i class="fa fa-pencil-square-o" style="font-size: 75px !important; margin-top: 0px !important;" aria-hidden="true"></i>
                   </div>
-                  <div class="col-md-7">
+                  <div class="col-md-4">
                     <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
                       <a href="/surveys/show?id=<%= position.slug %>">
-                        <button type="button" class="btn btn-lg btn-primary">
+                        <button type="button" class="btn btn-lg btn-primary" style="padding: 10px !important; margin-top: 15px !important; font-size: 16px !important; color: white;">
                           <%= position.name %> - <%= position.unit.name %>
                         </button>
                       </a>
                       <br><br>
                     <% else %>
-                      <h3>La encuesta <%= position.name %> - <%= position.unit.name %> no esta activa o ya ha sido respondida</h3>
+                      <h3 style="font-size: 16px !important;">La encuesta <%= position.name %> - <%= position.unit.name %> no esta activa o ya ha sido respondida</h3>
                     <% end %>
                   </div>
                 </div>
