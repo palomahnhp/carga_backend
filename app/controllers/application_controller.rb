@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
         render file: 'public/401.html', status: :unauthorized
       end
     end
-    unless user_auth_uweb?(current_user)
-      render file: 'public/403.html', status: :unauthorized
-    end
+    #unless user_auth_uweb?(current_user)
+      #render file: 'public/403.html', status: :unauthorized
+    #end
   end
 
   def user_auth_uweb?(current_user)
