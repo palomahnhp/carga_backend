@@ -21,8 +21,8 @@ class UwebUpdateApi
 
   def remove_profile(user)
     message_params = @params
-    message_params[:keyUserRelation] = user.uweb_id
-    message_params[:loginUserRelation] =  user.login
+    message_params[:keyUserRelation] = user[:uweb_id]
+    message_params[:loginUserRelation] =  user[:login]
     request(:remove_profile_login, message_params)
   end
 
