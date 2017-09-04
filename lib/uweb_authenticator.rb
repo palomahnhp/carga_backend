@@ -22,9 +22,6 @@ class UwebAuthenticator
     response = client.call(:get_user_data_by_login, message: { ub: { login: @user_params[:login] } }).body
     parsed_response = parser.parse(response[:get_user_data_by_login_response][:get_user_data_by_login_return])
     self.uweb_user_data = Hash.deep_strip! get_uweb_user_data(parsed_response)
-    puts "****************************************"
-    puts uweb_user_data
-    puts "****************************************"
 
     uweb_user_data[:login].present?
     rescue  Exception  => e
