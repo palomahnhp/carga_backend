@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :authenticate!, unless: 'user_authenticated?'
+  before_action :authenticate!
   before_action :set_page_params, only: [:index]
 
   rescue_from CanCan::AccessDenied do |_exception|
@@ -50,21 +50,23 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
-    unless uweb_authenticated? && current_user
+    unless uweb_authenticated? && current_user != nil
       unless uweb_authenticated?
         render file: 'public/402.html', status: :unauthorized
       else
         render file: 'public/401.html', status: :unauthorized
       end
+      return
     end
-    #unless user_auth_uweb?(current_user)
-      #render file: 'public/403.html', status: :unauthorized
-    #end
+    unless user_auth_uweb?(current_user)
+      render file: 'public/403.html', status: :unauthorized
+      return
+    end
   end
 
-  def user_auth_uweb?(current_user)
+  def user_auth_uweb?(user)
     uweb_auth = UwebAuthenticator.new()
-    if uweb_auth.user_exists_by_dni?(current_user.document)
+    if uweb_auth.user_exists_by_dni?(user.document)
       uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id])
     end
   end
