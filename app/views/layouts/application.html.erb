@@ -23,7 +23,7 @@
           <i id="home-icon" class="fa fa-home" aria-hidden="true" title="Inicio"></i>
         </a>
       </div>
-      <% if @current_user && (@current_user.superadmin? || @current_user.admin?)%>
+      <% if @current_user && @auth_in_uweb && (@current_user.superadmin? || @current_user.admin?)%>
         <div class="header-container">
           <a href="/settings" >
             <i id="home-icon" class="fa fa-cog" aria-hidden="true" title="Configuración"></i>
@@ -38,7 +38,7 @@
     </div>
     <div class="navbar-right">
       <a class="navbar-brand">
-        <%if @current_user && @current_user.position%>
+        <%if @current_user && @auth_in_uweb && @current_user.position%>
           <p class="brand-font"><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
           <p class="brand-font"><%= @current_user.position.name %> - <%= @current_user.position.unit.name %></p>
         <%end%>
