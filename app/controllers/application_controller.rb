@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
 
   def set_page_params
     params[:per_page_list] ||= [10,20,30,40,50]
-    params[:per_page] ||= 20
+    params[:per_page] ||= 10
   end
 
   def current_user
