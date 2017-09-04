@@ -51,14 +51,21 @@ class UwebAuthenticator
 
   def user_auth_for_app?(uweb_id)
     response = client.call(:get_applications_user_list, message: { ub: { userKey: uweb_id } }).body
-    parsed_response = parser.parse(response[:get_applications_user_list_response][:get_applications_user_list_return])
-    auth_apps = Hash.deep_strip! get_uweb_user_data(parsed_response)
+    parsed_response = parser.parse(response[:get_applications_user_list_response][:get_applications_user_list_return])  
+    auth_apps = Hash.deep_strip! get_app_list(parsed_response)
 
-    # Comprobar que contiene auth_apps, recorrerlo y comprobar si contiene Rails.application.secrets.directorio_application_key
+    authorized = false
+    auth_apps[:list].each do |app_key|
+      if app_key['CLAVE_APLICACION'] == Rails.application.secrets.uweb_application_key.to_s
+        authorized = true
+        break
+      end
+    end
     
+    authorized
     rescue  Exception  => e
       Rails.logger.error('UwebAuthenticator#user_exists?') do
-        "Error llamada UWEB: get_user_data_by_dni - #{document}: \n#{e}"
+        "Error llamada UWEB: get_applications_user_list - #{uweb_id}: \n#{e}"
     end
     errors << generate_error_message(e.message)
     false
@@ -87,6 +94,14 @@ class UwebAuthenticator
         document:          user_data['DNI'],
         phone_number:      user_data['TELEFONO'],
         email:             user_data['MAIL']
+      }
+    end
+
+    def get_app_list(parsed_response)
+      app_list = parsed_response.fetch('APLICACIONES')
+      {
+        total:            app_list['TOTAL'],
+        list:             app_list['APLICACION']
       }
     end
 
