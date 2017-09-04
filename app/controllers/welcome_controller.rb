@@ -5,7 +5,6 @@ class WelcomeController < ApplicationController
   def index
     @title = current_user.name.downcase.capitalize
     @d = DateTime.now
-    @auth_in_uweb = user_auth_uweb?(@current_user)
     if @d.hour > 12
       @greeting = "Buenas tardes"
     elsif @d.hour > 21

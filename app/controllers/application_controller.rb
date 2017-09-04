@@ -67,7 +67,11 @@ class ApplicationController < ActionController::Base
   def user_auth_uweb?(user)
     uweb_auth = UwebAuthenticator.new()
     if uweb_auth.user_exists_by_dni?(user.document)
-      uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id])
+      auth = uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id])
+      unless auth  
+        @current_user = nil
+      end
+      auth
     end
   end
 
@@ -78,7 +82,7 @@ class ApplicationController < ActionController::Base
 
   def set_page_params
     params[:per_page_list] ||= [10,20,30,40,50]
-    params[:per_page] ||= 20
+    params[:per_page] ||= 10
   end
 
   def current_user
