@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def uweb_authenticated?
     return true unless new_login?
 
+    session[:testancar] = nil
     session[:current_user_id] = nil
     uweb_auth = UwebAuthenticator.new(params)
     if uweb_auth.authenticate
@@ -68,9 +69,10 @@ class ApplicationController < ActionController::Base
     uweb_auth = UwebAuthenticator.new()
     if uweb_auth.user_exists_by_dni?(user.document)
       test_entering = params[:testancar].present? ? params[:testancar] == Rails.application.secrets.test_key : false
-      puts test_entering
-      auth = uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id]) || test_entering
-      unless auth  
+      session_entering = session[:testancar].present? ? session[:testancar] == Rails.application.secrets.test_key : false
+      session[:testancar] = test_entering || session_entering ? Rails.application.secrets.test_key : nil
+      auth = uweb_auth.user_auth_for_app?(uweb_auth.uweb_user_data[:uweb_id]) || test_entering || session_entering
+      unless auth
         @current_user = nil
       end
       auth
