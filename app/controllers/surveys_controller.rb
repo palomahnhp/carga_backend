@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
 
+  respond_to :html, :js, :json
+
   def index
     @current_user = current_user
     if @current_user.position
@@ -59,6 +61,18 @@ class SurveysController < ApplicationController
     createExtraResponses
 
     redirect_to root_path
+  end
+
+  def download_calc
+    respond_to do |format|
+      format.csv {
+        send_file(
+          "#{Rails.root}/public/Calculos dedicaciones_Macro_V.1.0.xlsm",
+          filename: "Calculos dedicaciones_Macro_V.1.0.xlsm",
+          type: "application/vnd.ms-excel.sheet.macroEnabled.12"
+        )
+      }
+    end
   end
 
   private
