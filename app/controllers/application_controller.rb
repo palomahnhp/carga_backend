@@ -26,12 +26,18 @@ class ApplicationController < ActionController::Base
       session[:uweb_user_data] = uweb_auth.uweb_user_data
     else
       flash.now[:error] = "#{I18n.t('errors.cannot_log_in')}: #{uweb_auth.errors.to_sentence}"
+      session[:uweb_user_data] = nil
     end
     session[:uweb_user_data].present?
   end
 
   def new_login?
     session[:uweb_user_data].blank? || params[:login].present? && session[:uweb_user_data][:login] != params[:login]
+  end
+
+  def request_from_uweb?
+    # Uncomment when requested the only access from uWeb
+    true
   end
 
   private
@@ -51,6 +57,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
+    unless request_from_uweb?
+      render file: 'public/400.html', status: :unauthorized
+      return
+    end
     unless uweb_authenticated? && current_user != nil
       unless uweb_authenticated?
         render file: 'public/402.html', status: :unauthorized
