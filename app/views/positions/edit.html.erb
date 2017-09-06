@@ -7,6 +7,12 @@
         <div id="errorTag"><%= params[:alert] %></div>
       </div>
     <% end %>
+    <% if params[:error].present? %>
+        <div class="'has-error alert alert-danger alert-dismissable'">
+          <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+          <%= params[:error] %>
+        </div>
+      <% end%>
     <fieldset>
       <div class="row">
         <legend class="col-lg-12">Configuración de Puesto</legend>
@@ -88,8 +94,9 @@
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">
-              <input type="hidden"value="<%= @position.id %>" name="id"/>
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+              <input type="hidden" value="<%= @position.id %>" name="id"/>
+              <input type="hidden" value="<%= params[:search].present? ? params[:search] : "" %>" name="search"/>
+              <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
               <button class="btn btn-primary save-changes" type="submit" >Guardar cambios</button>
               <%= link_to "Eliminar Puesto", {action: 'delete',id: @position.id}, data: {confirm: "Se eliminarán las funciones del puesto. ¿Está seguro/a?"}, class: "btn btn-primary link-delete" %>
             </div>
