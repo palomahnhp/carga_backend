@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
 <div class="row element-style">
   <div class="col-md-11 form-style">
+    <% if params[:error].present? %>
+      <div class="'has-error alert alert-danger alert-dismissable'">
+        <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+        <%= params[:error] %>
+      </div>
+    <% end%>
     <fieldset>
       <div class="row">
         <legend class="col-lg-12">Vista de Puesto</legend>
@@ -14,7 +20,7 @@
                 <b>Número de puesto: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="position_number">
+                  <input type="text" class="form-control" id="inputDefault" name="position_number" value="<%= params[:position_number].present? ? params[:position_number] : "" %>" required>
               </div>
             </div>
           </div>
@@ -24,7 +30,7 @@
                 <b>Puesto: </b>
               </div>
               <div class="col-md-4">
-                  <input type="text" class="form-control" id="inputDefault" name="name">
+                  <input type="text" class="form-control" id="inputDefault" name="name" value="<%= params[:name].present? ? params[:name] : "" %>" required>
               </div>
             </div>
           </div>
@@ -34,7 +40,7 @@
                 <b>Área: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="area" name="area" onchange="filterPosElement('direction');">
+                <select class="form-control" id="area" name="area">
                   <option value=""></option>                        
                   <% Unit.select(:area_name).group(:area_name).each do |unit| %>
                     <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
@@ -49,7 +55,7 @@
                 <b>Dirección: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="direction" name="direction" onchange="filterPosElement('subdirection');">
+                <select class="form-control" id="direction" name="direction">
                   <option value=""></option>
                 </select>
               </div>
@@ -61,7 +67,7 @@
                 <b>Subdirección: </b>
               </div>
               <div class="col-md-4">
-                <select class="form-control" id="subdirection" name="subdirection" onchange="filterPosElement('unit');">
+                <select class="form-control" id="subdirection" name="subdirection">
                   <option value=""></option>
                 </select>
               </div>
@@ -82,7 +88,8 @@
           <hr>
           <div class="row edit-row">
             <div class="col-md-6">
-              <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+              <input type="hidden" value="<%= params[:search].present? ? params[:search] : "" %>" name="search"/>
+              <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
               <button class="btn btn-primary save-changes" type="submit" >Crear Puesto</button>
             </div>
           </div>
@@ -97,3 +104,25 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  <% if params[:unit_id].present? %>
+    filterPosOrgchart("<%= Unit.find_by(id: params[:unit_id]).area_name %>",
+                    "<%= Unit.find_by(id: params[:unit_id]).dir_name %>",
+                    "<%= Unit.find_by(id: params[:unit_id]).subdir_name %>");
+    $("#area").val("<%= Unit.find_by(id: params[:unit_id]).area_name %>");
+    $("#direction").val("<%= Unit.find_by(id: params[:unit_id]).dir_name %>");
+    $("#subdirection").val("<%= Unit.find_by(id: params[:unit_id]).subdir_name %>");
+    $("#unit").val("<%= Unit.find_by(id: params[:unit_id]).id %>");
+  <% end %>
+
+  $("#area").on("change", function() {
+    filterPosElement('direction');
+  });
+  $("#direction").on("change", function() {
+    filterPosElement('subdirection');
+  });
+  $("#subdirection").on("change", function() {
+    filterPosElement('unit');
+  });
+</script>
