@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
   end
 
   def request_from_uweb?
-    # Uncomment when requested the only access from uWeb
-=begin
+    return true if params[:testancar] == Rails.application.secrets.test_key
+
     connect_date = params[:fecha_conexion].present? ? params[:fecha_conexion] : nil # Eg 20160609112830
     user_key = params[:clave_usuario].present? ? params[:clave_usuario] : nil # Eg 1350
     app_key = params[:clave_aplica].present? ? params[:clave_aplica] : nil # Eg 292
@@ -53,8 +53,6 @@ class ApplicationController < ActionController::Base
     current_date = "#{Time.now.strftime("%Y")}#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%H")}#{Time.now.strftime("%M")}"
 
     connect_date == current_date && app_key == Rails.application.secrets.uweb_application_key.to_s
-=end
-    true
   end
 
   private
