@@ -36,7 +36,15 @@ class PositionsController < ApplicationController
       name:            params[:name],
       unit_id:         params[:unit_id],
     )
-    @position.save
+    unless @position.save
+      redirect_to action: :new, search: params[:search],
+                                error: "El número de puesto ya está en uso",
+                                position_number: params[:position_number],
+                                name: params[:name],
+                                unit_id: params[:unit_id]
+      return
+    end
+
     @position.update_attributes(slug: Digest::SHA1.hexdigest("#{@position.id}"))
 
     redirect_to action: :index
@@ -50,6 +58,16 @@ class PositionsController < ApplicationController
       unit_id:         params[:unit_id],
       slug:            Digest::SHA1.hexdigest("#{@position.id}")
     )
+    unless @position.save
+      redirect_to action: :edit, id: params[:id],
+                                search: params[:search],
+                                error: "El número de puesto ya está en uso",
+                                position_number: params[:position_number],
+                                name: params[:name],
+                                unit_id: params[:unit_id]
+      return
+    end
+
     redirect_to action: :index
   end
 
