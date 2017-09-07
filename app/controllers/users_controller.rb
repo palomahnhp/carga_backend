@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(
+      user_num:        params[:user_num],
       name:            params[:name],
       last_name:       params[:last_name],
       last_name_alt:   params[:last_name_alt],
@@ -41,13 +42,16 @@ class UsersController < ApplicationController
       login:           params[:ayre],
       phone_number:    params[:phone_number],
       user_role:       params[:role].to_i,
-      position_id:     params[:position]
+      position_id:     params[:position],
+      start_date:      params[:start_date],
+      end_date:        params[:end_date]
     )
     redirect_to action: :index
   end
 
   def create
     @user = User.create(
+      user_num:      params[:user_num],
       name:          params[:name],
       last_name:     params[:last_name],
       last_name_alt: params[:last_name_alt],
@@ -55,7 +59,9 @@ class UsersController < ApplicationController
       email:         params[:email],
       login:         params[:ayre],
       phone_number:  params[:phone_number],
-      position_id:   params[:position]
+      position_id:   params[:position],
+      start_date:    params[:start_date],
+      end_date:      params[:end_date]
     )
     @user.save
 
@@ -65,7 +71,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id)
+    params.require(:user).permit(:user_num, :name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id, :start_date, :end_date)
   end
 
   def checkAjaxNew
