@@ -1,3 +1,14 @@
+$(document).on('turbolinks:load', function(){
+  $("#datepicker_start").datepicker();
+  $("#datepicker_end").datepicker();
+  $("#datepicker_start").keypress(function (evt) {
+    evt.preventDefault();
+  });
+  $("#datepicker_end").keypress(function (evt) {
+    evt.preventDefault();
+  });
+});
+
 function filterElement(edit, url) {
   if ($("#area option:selected").val() == "") {
     $("#direction").empty();
