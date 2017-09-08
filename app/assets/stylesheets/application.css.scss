@@ -6467,6 +6467,32 @@ button.close {
   border-width: 0 5px 5px;
   border-bottom-color: #000000;
 }
+.tooltip-date {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-family: "Segoe UI", "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.42857143;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  font-size: 13px;
+  opacity: 80;
+  filter: alpha(opacity=80);
+  background-color: lightgray;
+  border-radius: 10px;
+  padding: 5px;
+}
 .popover {
   position: absolute;
   top: 0;
@@ -7296,4 +7322,21 @@ a.list-group-item-danger.active:focus {
 }
 .popover {
   color: #333333;
+}
+.date-input-box {
+  width: 125px;
+  padding-right: 0px;
+}
+.date-input {
+  width: 110px;
+  padding-right: 0px;
+}
+.date-button-box {
+  padding: 0px;
+}
+.date-button {
+  padding: 0px;
+  height: 21px;
+  width: 30px;
+  font-size: 12px;
 }

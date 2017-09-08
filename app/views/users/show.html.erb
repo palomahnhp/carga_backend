@@ -134,6 +134,22 @@
                     <% end %>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    <b>Fecha de comienzo: </b>
+                  </div>
+                  <div class="col-md-7">
+                  <%= format_date(@user.start_date) %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    <b>Fecha de fin: </b>
+                  </div>
+                  <div class="col-md-7">
+                  <%= format_date(@user.end_date) %>
+                  </div>
+                </div>
               </div>
 
             </div>
