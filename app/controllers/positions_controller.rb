@@ -104,7 +104,7 @@ class PositionsController < ApplicationController
         when "subdirection"
           @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
         when "unit"
-          @entitySearch = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:id, :name)
+          @entitySearch = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir])
       end
     end
   end
@@ -113,7 +113,7 @@ class PositionsController < ApplicationController
     if params[:op]
       @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
       @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
-      @unit = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:id, :name)
+      @unit = Unit.select(:id, :name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir])
       @entitySearch = {
         dir: @dir,
         subdir: @subdir,
