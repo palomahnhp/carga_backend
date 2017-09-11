@@ -100,9 +100,20 @@
   border-radius: 9px;
 }
 
-.survey-icon-list{
+.survey-panel-custom {
+  margin-top: 100px !important;
+  padding-top: 20px !important;
+}
+
+.survey-icon-list {
   margin-left: 0px;
   margin-bottom: 0px;
+  width: 90px !important;
+}
+
+.survey-icon-list-custom {
+  font-size: 75px !important;
+  margin-top: 0px !important;
 }
 
 .edit-row {
@@ -3476,6 +3487,12 @@ fieldset[disabled] .btn-default.focus {
   color: #ffffff;
   background-color: #3b5998;
   border-color: #3b5998;
+}
+.btn-primary-custom {
+  padding: 10px !important;
+  margin-top: 15px !important;
+  font-size: 16px !important;
+  color: white;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -7296,4 +7313,7 @@ a.list-group-item-danger.active:focus {
 }
 .popover {
   color: #333333;
+}
+.small-text {
+  font-size: 16px !important;
 }
