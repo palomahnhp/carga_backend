@@ -50,9 +50,9 @@ namespace :deploy do
   # Run test aund continue only if passed
   # before :deploy, "deploy:run_tests"
   # set BBDD owner user
-  #before 'deploy:migrate', "deploy:change_user_to_owner"
+  before 'deploy:migrate', "deploy:change_user_to_owner"
   # set BBDD app user
-  #after 'deploy:migrate', "deploy:change_user_to_app"
+  after 'deploy:migrate', "deploy:change_user_to_app"
   # Compile assets locally and then rsync
   after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
