@@ -72,6 +72,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate!
+    if new_login?
+      session[:testancar] = nil
+    end
     unless request_from_uweb?
       render file: 'public/400.html', status: :unauthorized
       return
