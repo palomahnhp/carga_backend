@@ -100,9 +100,20 @@
   border-radius: 9px;
 }
 
-.survey-icon-list{
+.survey-panel-custom {
+  margin-top: 100px !important;
+  padding-top: 20px !important;
+}
+
+.survey-icon-list {
   margin-left: 0px;
   margin-bottom: 0px;
+  width: 90px !important;
+}
+
+.survey-icon-list-custom {
+  font-size: 75px !important;
+  margin-top: 0px !important;
 }
 
 .edit-row {
@@ -3477,6 +3488,12 @@ fieldset[disabled] .btn-default.focus {
   background-color: #3b5998;
   border-color: #3b5998;
 }
+.btn-primary-custom {
+  padding: 10px !important;
+  margin-top: 15px !important;
+  font-size: 16px !important;
+  color: white;
+}
 .btn-primary:focus,
 .btn-primary.focus {
   color: #ffffff;
@@ -6467,32 +6484,6 @@ button.close {
   border-width: 0 5px 5px;
   border-bottom-color: #000000;
 }
-.tooltip-date {
-  position: absolute;
-  z-index: 1070;
-  display: block;
-  font-family: "Segoe UI", "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  letter-spacing: normal;
-  line-break: auto;
-  line-height: 1.42857143;
-  text-align: left;
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  white-space: normal;
-  word-break: normal;
-  word-spacing: normal;
-  word-wrap: normal;
-  font-size: 13px;
-  opacity: 80;
-  filter: alpha(opacity=80);
-  background-color: lightgray;
-  border-radius: 10px;
-  padding: 5px;
-}
 .popover {
   position: absolute;
   top: 0;
@@ -7323,20 +7314,6 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #333333;
 }
-.date-input-box {
-  width: 125px;
-  padding-right: 0px;
-}
-.date-input {
-  width: 110px;
-  padding-right: 0px;
-}
-.date-button-box {
-  padding: 0px;
-}
-.date-button {
-  padding: 0px;
-  height: 21px;
-  width: 30px;
-  font-size: 12px;
+.small-text {
+  font-size: 16px !important;
 }
