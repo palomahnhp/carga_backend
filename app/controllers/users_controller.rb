@@ -82,9 +82,9 @@ class UsersController < ApplicationController
         when "subdirection"
           @entitySearch = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
         when "unit"
-          @entitySearch = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
+          @entitySearch = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir])
         when "position"
-          id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+          id = Unit.select(:id).find_by(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
           @entitySearch = Position.select(:id, :name, :position_number).where(unit_id: id)
       end
     end
@@ -94,8 +94,8 @@ class UsersController < ApplicationController
     if params[:op]
       @dir = Unit.select(:dir_name).where(area_name: params[:area]).group(:dir_name)
       @subdir = Unit.select(:subdir_name).where(area_name: params[:area], dir_name: params[:dir]).group(:subdir_name)
-      @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir]).group(:name)
-      id = Unit.select(:id).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
+      @unit = Unit.select(:name).where(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir])
+      id = Unit.select(:id).find_by(area_name: params[:area], dir_name: params[:dir], subdir_name: params[:subdir], name: params[:unit])
       @pos = Position.select(:id, :name, :position_number).where(unit_id: id)
       @entitySearch = {
         dir: @dir,
