@@ -1,54 +1,3 @@
-$(document).on('turbolinks:load', function(){
-  $("#datepicker_start").datepicker({ dateFormat: 'dd-mm-yy' });
-  $("#datepicker_end").datepicker({ dateFormat: 'dd-mm-yy' });
-  $("#datepicker_start_select_button").on('click', function(){
-    $("#datepicker_start").datepicker("show");
-  });
-  $("#datepicker_start_clear_button").on('click', function(){
-    $("#datepicker_start").val("");
-  });
-  $("#datepicker_end_select_button").on('click', function(){
-    $("#datepicker_end").datepicker("show");
-  });
-  $("#datepicker_end_clear_button").on('click', function(){
-    $("#datepicker_end").val("");
-  });
-  $("#datepicker_start").keypress(function (evt) {
-    evt.preventDefault();
-  });
-  $("#datepicker_end").keypress(function (evt) {
-    evt.preventDefault();
-  });
-  $("#tooltip-select-start").hide();
-  $("#tooltip-clear-start").hide();
-  $("#tooltip-select-end").hide();
-  $("#tooltip-clear-end").hide();
-  $("#datepicker_start_select_button").on("mouseover", function(){
-    $("#tooltip-select-start").show();
-  });
-  $("#datepicker_start_select_button").on("mouseout", function(){
-    $("#tooltip-select-start").hide();
-  });
-  $("#datepicker_start_clear_button").on("mouseover", function(){
-    $("#tooltip-clear-start").show();
-  });
-  $("#datepicker_start_clear_button").on("mouseout", function(){
-    $("#tooltip-clear-start").hide();
-  });
-  $("#datepicker_end_select_button").on("mouseover", function(){
-    $("#tooltip-select-end").show();
-  });
-  $("#datepicker_end_select_button").on("mouseout", function(){
-    $("#tooltip-select-end").hide();
-  });
-  $("#datepicker_end_clear_button").on("mouseover", function(){
-    $("#tooltip-clear-end").show();
-  });
-  $("#datepicker_end_clear_button").on("mouseout", function(){
-    $("#tooltip-clear-end").hide();
-  });
-});
-
 function filterElement(edit, url) {
   if ($("#area option:selected").val() == "") {
     $("#direction").empty();
@@ -109,15 +58,27 @@ function filterElement(edit, url) {
           switch(edit) {
             case "direction":
               name = element.dir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin dirección]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "subdirection":
               name = element.subdir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin subdirección]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "unit":
               name = element.name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin unidad]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "position":
               name = element.name;
@@ -154,15 +115,27 @@ function filterOrgchart(area, dir, subdir, unit, url) {
         $("#position").empty();
         data.dir.forEach(function(element) {
           name = element.dir_name;
-          $("#direction").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#direction").append("<option value='" + name + "'>[Sin dirección]</option>");
+          } else {
+            $("#direction").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.subdir.forEach(function(element) {
           name = element.subdir_name;
-          $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#subdirection").append("<option value='" + name + "'>[Sin subdirección]</option>");
+          } else {
+            $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.unit.forEach(function(element) {
           name = element.name;
-          $("#unit").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#unit").append("<option value='" + name + "'>[Sin unidad]</option>");
+          } else {
+            $("#unit").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.pos.forEach(function(element) {
           name = element.name;
