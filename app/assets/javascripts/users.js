@@ -58,15 +58,27 @@ function filterElement(edit, url) {
           switch(edit) {
             case "direction":
               name = element.dir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin dirección]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "subdirection":
               name = element.subdir_name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin subdirección]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "unit":
               name = element.name;
-              $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              if (name == "") {
+                $("#"+edit).append("<option value='" + name + "'>[Sin unidad]</option>");
+              } else {
+                $("#"+edit).append("<option value='" + name + "'>" + name + "</option>");
+              }
               break;
             case "position":
               name = element.name;
@@ -103,15 +115,27 @@ function filterOrgchart(area, dir, subdir, unit, url) {
         $("#position").empty();
         data.dir.forEach(function(element) {
           name = element.dir_name;
-          $("#direction").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#direction").append("<option value='" + name + "'>[Sin dirección]</option>");
+          } else {
+            $("#direction").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.subdir.forEach(function(element) {
           name = element.subdir_name;
-          $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#subdirection").append("<option value='" + name + "'>[Sin subdirección]</option>");
+          } else {
+            $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.unit.forEach(function(element) {
           name = element.name;
-          $("#unit").append("<option value='" + name + "'>" + name + "</option>");
+          if (name == "") {
+            $("#unit").append("<option value='" + name + "'>[Sin unidad]</option>");
+          } else {
+            $("#unit").append("<option value='" + name + "'>" + name + "</option>");
+          }
         });
         data.pos.forEach(function(element) {
           name = element.name;

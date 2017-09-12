@@ -42,7 +42,8 @@ class FunctionsController < ApplicationController
   def create
     @function = Function.create(
       name:                 params[:name],
-      position_id:          params[:position]
+      position_id:          params[:position],
+      not_norm:             false
     )
     @function.save
 
@@ -53,7 +54,8 @@ class FunctionsController < ApplicationController
     @function = Function.find(params[:id])
     @function.update_attributes(
       name:                 params[:name],
-      position_id:          params[:position]
+      position_id:          params[:position],
+      not_norm:             false
     )
     redirect_to action: :index
   end
