@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+/*$(document).on('turbolinks:load', function(){
   $("#datepicker_start").datepicker();
   $("#datepicker_end").datepicker();
   $("#datepicker_start").datepicker({ dateFormat: 'dd-mm-yy' });
@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function(){
   $("#datepicker_end_clear_button").on("mouseout", function(){
     $("#tooltip-clear-end").hide();
   });
-});
+});*/
 
 function filterElement(edit, url) {
   if ($("#area option:selected").val() == "") {

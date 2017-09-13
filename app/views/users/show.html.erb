@@ -114,6 +114,14 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-5">
+                    <b>Número de usuario: </b>
+                  </div>
+                  <div class="col-md-7">
+                    <%= @user.user_num %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
                     <b>Código Ayre: </b>
                   </div>
                   <div class="col-md-7">
@@ -134,7 +142,7 @@
                     <% end %>
                   </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-md-5">
                     <b>Fecha de comienzo: </b>
                   </div>
@@ -149,7 +157,7 @@
                   <div class="col-md-7">
                   <%= format_date(@user.end_date) %>
                   </div>
-                </div>
+                </div>-->
               </div>
 
             </div>
