@@ -141,8 +141,9 @@ function filterElement(edit, url) {
               break;
           }
         });
-        $("#"+edit).trigger("change");
-        return {results: data};
+        if (edit != "position") {
+          $("#"+edit).trigger("change");
+        }
       }
     });
   }
@@ -196,7 +197,6 @@ function filterOrgchart(area, dir, subdir, unit, url) {
           num = element.position_number;
           $("#position").append("<option value='" + id + "'>" + num + " - " + name + "</option>");
         });
-        return {results: data};
       }
   });
 }
