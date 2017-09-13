@@ -48,8 +48,9 @@ function filterUnElement(edit) {
               break;
           }
         });
-        $("#"+edit).trigger("change");
-        return {results: data};
+        if (edit != "position") {
+          $("#"+edit).trigger("change");
+        }
       }
     });
   }
@@ -85,7 +86,6 @@ function filterUnOrgchart(area, dir) {
             $("#subdirection").append("<option value='" + name + "'>" + name + "</option>");
           }
         });
-        return {results: data};
       }
   });
 }

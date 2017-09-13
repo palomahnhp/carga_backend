@@ -41,6 +41,14 @@
                 <div class="col-md-6">
                   <div class="row">
                     <div class="col-md-5">
+                      <b>Número de usuario: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <input class="form-control" id="disabledInput" type="text" name="user_num" value="<%= @user.user_num %>">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
                       <b>Código Ayre: </b>
                     </div>
                     <div class="col-md-7">
@@ -99,60 +107,99 @@
                 </div>
                 
                 <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-md-5">
-                        <b>Área: </b>
-                      </div>
-                      <div class="col-md-7">
-                        <select class="form-control" id="area" name="area">
-                          <option value=""></option>                        
-                          <% Unit.select(:area_name).group(:area_name).each do |unit| %>
-                            <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
-                          <% end %>
-                        </select>
-                      </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Área: </b>
                     </div>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <b>Dirección: </b>
-                      </div>
-                      <div class="col-md-7">
-                        <select class="form-control" id="direction" name="direction">
-                          <option value=""></option>
-                        </select>
-                      </div>
+                    <div class="col-md-7">
+                      <select class="form-control" id="area" name="area">
+                        <option value=""></option>                        
+                        <% Unit.select(:area_name).group(:area_name).each do |unit| %>
+                          <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
+                        <% end %>
+                      </select>
                     </div>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <b>Subdirección: </b>
-                      </div>
-                      <div class="col-md-7">
-                        <select class="form-control" id="subdirection" name="subdirection">
-                          <option value=""></option>
-                        </select>
-                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Dirección: </b>
                     </div>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <b>Unidad: </b>
-                      </div>
-                      <div class="col-md-7">
-                        <select class="form-control" id="unit" name="unit">
-                          <option value=""></option>
-                        </select>
-                      </div>
+                    <div class="col-md-7">
+                      <select class="form-control" id="direction" name="direction">
+                        <option value=""></option>
+                      </select>
                     </div>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <b>Puesto: </b>
-                      </div>
-                      <div class="col-md-7">
-                        <select class="form-control" id="position" name="position">
-                          <option value=""></option>
-                        </select>
-                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Subdirección: </b>
                     </div>
+                    <div class="col-md-7">
+                      <select class="form-control" id="subdirection" name="subdirection">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Unidad: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-control" id="unit" name="unit">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Puesto: </b>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-control" id="position" name="position">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
+                
+                <!--<div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Fecha de comienzo: </b>
+                    </div>
+                    <div class="col-md-2 date-input-box">
+                      <input type="text" class="form-control date-input" id="datepicker_start" name="start_date" value="<%= format_date(@user.start_date) %>"/>
+                    </div>
+                    <div class="col-md-1 date-button-box">
+                      <div>
+                        <button type="button" id="datepicker_start_select_button" class="fa fa-calendar date-button"></button>
+                        <div id="tooltip-select-start" class="tooltip-date"><span>Seleccionar fecha</span></div>
+                      </div>
+                      <div>
+                        <button type="button" id="datepicker_start_clear_button" class="fa fa-trash-o date-button"></button>
+                        <div id="tooltip-clear-start" class="tooltip-date"><span>Eliminar fecha</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <b>Fecha de fin: </b>
+                    </div>
+                    <div class="col-md-7 date-input-box">
+                      <input type="text" class="form-control date-input" id="datepicker_end" name="end_date" value="<%= format_date(@user.end_date) %>"/>
+                    </div>
+                    <div class="col-md-1 date-button-box">
+                      <div>
+                        <button type="button" id="datepicker_end_select_button" class="fa fa-calendar date-button"></button>
+                        <div id="tooltip-select-end" class="tooltip-date"><span>Seleccionar fecha</span></div>
+                      </div>
+                      <div>
+                        <button type="button" id="datepicker_end_clear_button" class="fa fa-trash-o date-button"></button>
+                        <div id="tooltip-clear-end" class="tooltip-date"><span>Eliminar fecha</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->
 
               </div>
             </div>
