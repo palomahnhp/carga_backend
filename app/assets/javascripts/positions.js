@@ -65,8 +65,9 @@ function filterPosElement(edit) {
               break;
           }
         });
-        $("#"+edit).trigger("change");
-        return {results: data};
+        if (edit != "position") {
+          $("#"+edit).trigger("change");
+        }
       }
     });
   }
@@ -109,7 +110,6 @@ function filterPosOrgchart(area, dir, subdir) {
           id = element.id;
           $("#unit").append("<option value='" + id + "'>" + name + "</option>");
         });
-        return {results: data};
       }
   });
 }
