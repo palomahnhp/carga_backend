@@ -25,31 +25,29 @@
       </div>
       <div class="row">
         <div class="col-md-12 survey-panel survey-panel-custom">
-          <ul>
-            <% if @user_positions.any? %>
-              <% @user_positions.each do |position| %>
-                <div class="col-md-12">
-                  <div class="col-md-3 survey-icon-list">
-                    <i class="fa fa-pencil-square-o survey-icon-list-custom" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-md-4">
-                    <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
-                      <a href="/surveys/show?id=<%= position.slug %>">
-                        <button type="button" class="btn btn-lg btn-primary btn-primary-custom">
-                          <%= position.name %> - <%= position.unit.name %>
-                        </button>
-                      </a>
-                      <br><br>
-                    <% else %>
-                      <h3 class="small-text">La encuesta <%= position.name %> - <%= position.unit.name %> no esta activa o ya ha sido respondida</h3>
-                    <% end %>
-                  </div>
+          <% if @user_positions.any? %>
+            <% @user_positions.each do |position| %>
+              <div class="col-md-12">
+                <div class="col-md-3 survey-icon-list">
+                  <i class="fa fa-pencil-square-o survey-icon-list-custom" aria-hidden="true"></i>
                 </div>
-              <% end %>
-            <% else %>
-              <h2>No existen encuestas activas para el puesto</h2>
+                <div class="col-md-4">
+                  <% if position.unit.campaign.status == "active" && position.functions.first.responses == [] %>
+                    <a href="/surveys/show?id=<%= position.slug %>">
+                      <button type="button" class="btn btn-lg btn-primary btn-primary-custom">
+                        <%= position.name %> - <%= position.unit.name %>
+                      </button>
+                    </a>
+                    <br><br>
+                  <% else %>
+                    <h3 class="small-text">La encuesta <%= position.name %> - <%= position.unit.name %> no esta activa o ya ha sido respondida</h3>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-          </ul>
+          <% else %>
+            <h2>No existen encuestas activas para el puesto</h2>
+          <% end %>
         </div>
         <div class="col-md-6 col-md-offset-2">
           <a href="/">

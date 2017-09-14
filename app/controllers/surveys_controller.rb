@@ -38,6 +38,7 @@ class SurveysController < ApplicationController
 
   def create
     @pos_functions = fillPosFunctions
+    @unit = fillPosUnit
     @errors = []
     
     # Guardar las respuestas
@@ -59,6 +60,7 @@ class SurveysController < ApplicationController
     end
 
     createExtraResponses
+    @unit.update_attributes!(any_answer: true)
 
     redirect_to root_path
   end
@@ -98,6 +100,13 @@ class SurveysController < ApplicationController
     @position = Position.friendly.find(params[:id])
     
     @pos_functions = @position.functions.not_extra_functions
+  end
+
+  def fillPosUnit
+    setCurrentUser
+    @position = Position.friendly.find(params[:id])
+
+    @unit = @position.unit
   end
 
   def createExtraResponses
