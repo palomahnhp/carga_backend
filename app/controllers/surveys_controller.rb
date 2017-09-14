@@ -67,9 +67,21 @@ class SurveysController < ApplicationController
     respond_to do |format|
       format.csv {
         send_file(
-          "#{Rails.root}/public/Calculos dedicaciones_Macro_V.1.0.xlsm",
-          filename: "Calculos dedicaciones_Macro_V.1.0.xlsm",
+          "#{Rails.root}/public/Calculos dedicaciones_Macro_V.4.0.xlsm",
+          filename: "Calculos dedicaciones_Macro_V.4.0.xlsm",
           type: "application/vnd.ms-excel.sheet.macroEnabled.12"
+        )
+      }
+    end
+  end
+
+  def download_manual
+    respond_to do |format|
+      format.csv {
+        send_file(
+          "#{Rails.root}/public/Manual Cuestionario Online_V.2.0.pptx",
+          filename: "Manual Cuestionario Online_V.2.0.pptx",
+          type: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
         )
       }
     end
