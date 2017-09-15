@@ -2,8 +2,14 @@ class Unit < ActiveRecord::Base
   has_many :positions
   belongs_to :campaign
 
+  scope :responded, -> { where(any_answer: true) }
+
   def self.search(search)
     self.where("(name || dir_name || subdir_name || unit_number) ILIKE ?", "%#{search}%")
+  end
+  
+  def self.searchName(search)
+    self.where("name ILIKE ?", "%#{search}%")
   end
 
   def self.to_csv(records)

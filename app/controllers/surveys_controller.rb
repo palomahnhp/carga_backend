@@ -38,13 +38,15 @@ class SurveysController < ApplicationController
 
   def create
     @pos_functions = fillPosFunctions
+    @unit = fillPosUnit
+    @user = fillPosUser
     @errors = []
     
     # Guardar las respuestas
     @pos_functions.each do |func|
       time_per_id = "time_per_#{func.id}"
       @response = Response.create(
-        user_id:     current_user.id,
+        user_id:     @user.id,
         function_id: func.id,
         time_per:    params[time_per_id]
       )
@@ -59,6 +61,7 @@ class SurveysController < ApplicationController
     end
 
     createExtraResponses
+    @unit.update_attributes!(any_answer: true)
 
     redirect_to root_path
   end
@@ -98,6 +101,20 @@ class SurveysController < ApplicationController
     @position = Position.friendly.find(params[:id])
     
     @pos_functions = @position.functions.not_extra_functions
+  end
+
+  def fillPosUnit
+    setCurrentUser
+    @position = Position.friendly.find(params[:id])
+
+    @unit = @position.unit
+  end
+  
+  def fillPosUser
+    @logged_user = setCurrentUser
+    @position = Position.friendly.find(params[:id])
+    
+    @user = User.find_by(document: @logged_user.document, position_id: @position.id)
   end
 
   def createExtraResponses

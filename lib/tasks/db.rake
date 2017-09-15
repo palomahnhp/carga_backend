@@ -11,4 +11,8 @@ namespace :db do
   task encrypt_positions: :environment do
     load(Rails.root.join("db", "encrypt_positions.rb"))
   end
+  desc "Normalize 'any_answer' field in units"
+  task norm_answered_trackings: :environment do
+    load(Rails.root.join("db", "norm_answered_trackings.rb"))
+  end
 end
