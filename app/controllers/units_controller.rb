@@ -30,10 +30,10 @@ class UnitsController < ApplicationController
   end
 
   def tracking
-    if params[:search].present? || params[:responded].present?
+    if params[:search].present? || (params[:responded].present? && params[:responded] == "true")
       if params[:search].present?
-        @units = Unit.search(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
-        if params[:responded].present?
+        @units = Unit.searchName(params[:search]).order('id DESC').paginate(:page => params[:page], :per_page => params[:per_page]||10)
+        if params[:responded].present? && params[:responded] == "true"
           @units = @units.responded.paginate(:page => params[:page], :per_page => params[:per_page]||10)
         end
       else

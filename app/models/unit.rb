@@ -7,6 +7,10 @@ class Unit < ActiveRecord::Base
   def self.search(search)
     self.where("(name || dir_name || subdir_name || unit_number) ILIKE ?", "%#{search}%")
   end
+  
+  def self.searchName(search)
+    self.where("name ILIKE ?", "%#{search}%")
+  end
 
   def self.to_csv(records)
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
