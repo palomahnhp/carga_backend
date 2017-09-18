@@ -245,7 +245,7 @@ DEPENDENCIES
   friendly_id
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  pg (~> 0.21.0)
   pry-rails
   rails (= 4.2.7.1)
   rails-i18n
