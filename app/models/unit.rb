@@ -23,10 +23,10 @@ class Unit < ActiveRecord::Base
 
   def self.to_csv_track(records)
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
-      csv << ["Unidad", "Nº Usuarios", "Porcentaje de encuestas respondidas"]
+      csv << ["Area", "Dirección", "Subdirección", "Unidad", "Nº Usuarios", "Porcentaje de encuestas respondidas"]
       records.each do |record|
         users_responses_relation = record.responses_users
-        csv << [record.name, users_responses_relation[:users], "#{users_responses_relation[:response_level]} %"]
+        csv << [record.area_name, record.dir_name, record.subdir_name, record.name, users_responses_relation[:users], "#{users_responses_relation[:response_level]} %"]
       end
     end
   end
