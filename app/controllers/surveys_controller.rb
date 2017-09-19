@@ -8,12 +8,7 @@ class SurveysController < ApplicationController
     else
       @render = false
     end
-    user_data = User.where(document: current_user.document)
-    @user_positions = []
-    user_data.each do |record|
-      position = Position.find(record.position_id)
-      @user_positions << position
-    end
+    @user_positions = Position.where(id: User.select(:position_id).where(document: current_user.document))
   end
 
   def show
@@ -24,15 +19,6 @@ class SurveysController < ApplicationController
   end
 
   def reset_responses
-    setCurrentUser
-    @position = Position.friendly.find(params[:id])
-    @position.functions.each do |function|
-      @current_user.responses.each do |response|
-        if response.function_id == function.id
-          response.destroy
-        end
-      end
-    end
     redirect_to action: :index
   end
 
