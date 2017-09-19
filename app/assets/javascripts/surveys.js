@@ -83,7 +83,6 @@ function setOtherTaskJS() {
           }
         }
       }
-      console.log("Creado: "+numOthTasks);
       taskTemplate = '<tr class="task-row">'+
                         '<td style="width: 100%;">'+
                           '<input class="form-control input-sm" type="text" id="inputSmall" name="other_task_'+numOthTasks+'" placeholder="Otra tarea" required>'+
@@ -99,7 +98,6 @@ function setOtherTaskJS() {
                       '</tr>';
       $("#other-tasks").append(taskTemplate);
       $("button[id^='remove-task-']").click(function() {
-        console.log("Borrado: "+this.id);
         $(this).parent().parent().last().remove();
         showTotal();
         $("#add-task-box").show();
