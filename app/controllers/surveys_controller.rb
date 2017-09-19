@@ -68,8 +68,8 @@ class SurveysController < ApplicationController
     respond_to do |format|
       format.csv {
         send_file(
-          "#{Rails.root}/public/Manual Cuestionario Online_V.5.0.pdf",
-          filename: "Manual Cuestionario Online_V.5.0.pdf",
+          "#{Rails.root}/public/Manual Cuestionario Online_V.6.0.pdf",
+          filename: "Manual Cuestionario Online_V.6.0.pdf",
           type: "application/pdf"
         )
       }
