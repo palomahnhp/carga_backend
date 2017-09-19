@@ -7363,3 +7363,9 @@ a.list-group-item-danger.active:focus {
   width: 30px;
   font-size: 12px;
 }
+.bin-button {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 5px;
+}
