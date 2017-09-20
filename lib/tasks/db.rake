@@ -15,4 +15,8 @@ namespace :db do
   task norm_answered_trackings: :environment do
     load(Rails.root.join("db", "norm_answered_trackings.rb"))
   end
+  desc "Update campaigns status by date"
+  task update_campaigns_status: :environment do
+    load(Rails.root.join("db", "update_campaigns_status.rb"))
+  end
 end
