@@ -34,7 +34,7 @@ class Campaign < ActiveRecord::Base
   private
 
   def start_date_less_than_end_date
-    unless start_date < end_date
+    unless start_date < end_date && end_date > Time.now.to_date
       errors.add(:end_date, "La fecha de finalización debe ser superior a la de inicio y a la actual")
     end
   end
