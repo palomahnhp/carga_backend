@@ -21,8 +21,23 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.create(name: params[:name], status: params[:status].to_f)
-    @campaign.save
+    unless params[:start_date].present?
+      params[:start_date] = Time.now
+    end
+
+    @campaign = Campaign.create(
+      name:            params[:name],
+      start_date:      params[:start_date],
+      end_date:        params[:end_date]
+    )
+    unless @campaign.save
+      redirect_to action: :new, search: params[:search],
+                                error: @campaign.errors[:end_date].to_sentence,
+                                name: params[:name],
+                                start_date: params[:start_date],
+                                end_date: params[:end_date]
+      return
+    end
 
     redirect_to action: :index
   end
@@ -33,7 +48,28 @@ class CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:id])
-    @campaign.update_attributes(name: params[:name], status: params[:status].to_f)
+
+    unless params[:start_date].present?
+      params[:start_date] = @campaign.created_at
+    end
+
+    @campaign.update_attributes(
+      name:            params[:name],
+      status:          params[:camp_status].to_f,
+      start_date:      params[:start_date],
+      end_date:        params[:end_date]
+    )
+    unless @campaign.save
+      redirect_to action: :edit, id: params[:id],
+                                  search: params[:search],
+                                  error: @campaign.errors[:end_date].to_sentence,
+                                  name: params[:name],
+                                  camp_status: params[:camp_status],
+                                  start_date: params[:start_date],
+                                  end_date: params[:end_date]
+      return
+    end
+
     redirect_to action: :index
   end
 
@@ -53,6 +89,6 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-  params.require(:campaign).permit(:name, :status)
+    params.require(:campaign).permit(:name, :status, :start_date, :end_date)
   end
 end
