@@ -8,7 +8,13 @@ class SurveysController < ApplicationController
     else
       @render = false
     end
-    @user_positions = Position.where(id: User.select(:position_id).where(document: current_user.document))
+    @positions = Position.where(id: User.select(:position_id).where(document: current_user.document))
+    @user_positions = []
+    @positions.each do |position|
+      if position.unit.campaign.active?
+        @user_positions << position
+      end
+    end
   end
 
   def show

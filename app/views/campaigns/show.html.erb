@@ -43,32 +43,34 @@
                         En borrador
                       </td>
                     <% end %>
-                    <% if @campaign.status == 'active' %>
+                    <td>
+                      <%= format_date(@campaign.start_date) %>
+                    </td>
+                    <td>
+                      <%= format_date(@campaign.end_date) %>
+                    </td>
+                    <!--<% if @campaign.status == 'active' || @campaign.status == 'completed' %>
                       <td>
-                        Inicializada el <%= @campaign.created_at.strftime("%d/%m/%y") %>
-                      </td>
-                    <% elsif @campaign.status == 'completed' %>
-                      <td>
-                        Inicializada el <%= @campaign.created_at.strftime("%d/%m/%y") %>
-                      </td>
-                    <% else %>
-                      <td>
-                        Aún en borrador
-                      </td>
-                    <% end %>
-                    <% if @campaign.status == 'active' %>
-                      <td>
-                        Aún activa
-                      </td>
-                    <% elsif @campaign.status == 'completed' %>
-                      <td>
-                        Finalizada el <%= @campaign.updated_at.strftime("%d/%m/%y") %>
+                        Inicializada el <%= format_date(@campaign.start_date) %>
                       </td>
                     <% else %>
                       <td>
                         Aún en borrador
                       </td>
                     <% end %>
+                    <% if @campaign.status == 'active' %>
+                      <td>
+                        Aún activa, finaliza el <%= format_date(@campaign.end_date) %>
+                      </td>
+                    <% elsif @campaign.status == 'completed' %>
+                      <td>
+                        Finalizada el <%= format_date(@campaign.end_date) %>
+                      </td>
+                    <% else %>
+                      <td>
+                        Aún en borrador
+                      </td>
+                    <% end %>-->
                   </tr>
                 </tbody>
               </table>

@@ -37,34 +37,42 @@
                   <tr>
                     <th>Campaña</th>
                     <th>Estado</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha finalización</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% if @campaigns.present? %>
                     <% @campaigns.each do |campaign| %>
-                        <tr>
+                      <tr>
+                        <td>
+                          <%= campaign.name %>
+                        </td>
+                        <% if campaign.status == 'active' %>
                           <td>
-                            <%= campaign.name %>
+                            En curso
                           </td>
-                          <% if campaign.status == 'active' %>
-                            <td>
-                              En curso
-                            </td>
-                          <% elsif campaign.status == 'completed' %>
-                            <td>
-                              Finalizada
-                            </td>
-                          <% else %>
-                            <td>
-                              En borrador
-                            </td>
-                          <% end %>
+                        <% elsif campaign.status == 'completed' %>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: campaign.id, search: params[:search]) %>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: campaign.id, search: params[:search]) %>
+                            Finalizada
                           </td>
-                        </tr>
+                        <% else %>
+                          <td>
+                            En borrador
+                          </td>
+                        <% end %>
+                        <td>
+                          <%= format_date(campaign.start_date) %>
+                        </td>
+                        <td>
+                          <%= format_date(campaign.end_date) %>
+                        </td>
+                        <td>
+                          <%= link_to(content_tag(:i, nil, class: 'fa fa-search', title: 'Detalles'), action: 'show', id: campaign.id, search: params[:search]) %>
+                          <%= link_to(content_tag(:i, nil, class: 'fa fa-pencil', style: 'margin-left:5px;', title: 'Editar'), action: 'edit', id: campaign.id, search: params[:search]) %>
+                        </td>
+                      </tr>
                     <% end %>
                   <% else %>
                     <p>No existe ninguna campaña que contenga el término "<%= params[:search] %>".</p>
