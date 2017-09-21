@@ -31,8 +31,12 @@ class CampaignsController < ApplicationController
       end_date:        params[:end_date]
     )
     unless @campaign.save
+      message = @campaign.errors[:end_date].present? ? @campaign.errors[:end_date].to_sentence : nil
+      if message.nil?
+        message = @campaign.errors[:base].present? ? @campaign.errors[:base].to_sentence : nil
+      end
       redirect_to action: :new, search: params[:search],
-                                error: @campaign.errors[:end_date].to_sentence,
+                                error: message,
                                 name: params[:name],
                                 start_date: params[:start_date],
                                 end_date: params[:end_date]
@@ -60,9 +64,13 @@ class CampaignsController < ApplicationController
       end_date:        params[:end_date]
     )
     unless @campaign.save
+      message = @campaign.errors[:end_date].present? ? @campaign.errors[:end_date].to_sentence : nil
+      if message.nil?
+        message = @campaign.errors[:base].present? ? @campaign.errors[:base].to_sentence : nil
+      end
       redirect_to action: :edit, id: params[:id],
                                   search: params[:search],
-                                  error: @campaign.errors[:end_date].to_sentence,
+                                  error: message,
                                   name: params[:name],
                                   camp_status: params[:camp_status],
                                   start_date: params[:start_date],
