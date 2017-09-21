@@ -2,8 +2,8 @@ class Campaign < ActiveRecord::Base
   has_many :units
   enum status: { pending: 0, active: 1, completed: 2 }
 
-  validates :end_date, presence: true
-  validate :start_date_less_than_end_date
+  validates :end_date, presence: { message: "La fecha de fin no puede estar en blanco" }
+  validate :start_date_less_than_end_date, if: 'end_date?'
 
   scope :active, -> { where(status: 1) }
 
@@ -35,7 +35,7 @@ class Campaign < ActiveRecord::Base
 
   def start_date_less_than_end_date
     unless start_date < end_date && end_date > Time.now.to_date
-      errors.add(:end_date, "La fecha de finalización debe ser superior a la de inicio y a la actual")
+      errors.add(:base, "La fecha de finalización debe ser superior a la de inicio y a la actual")
     end
   end
 
