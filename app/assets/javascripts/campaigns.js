@@ -1,5 +1,5 @@
-$(document).on('turbolinks:load', function(){
-  $.datepicker.setDefaults($.datepicker.regional["es"]);
+$(document).on('turbolinks:load', function() {
+  setDatepickerLocalEs();
   $("#datepicker_start").datepicker({ dateFormat: 'dd-mm-yy' });
   $("#datepicker_end").datepicker({ dateFormat: 'dd-mm-yy' });
   $("#datepicker_start_select_button").on('click', function(){
