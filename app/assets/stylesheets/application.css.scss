@@ -7356,12 +7356,21 @@ a.list-group-item-danger.active:focus {
 }
 .date-button-box {
   padding: 0px;
+  height: 43px;
+}
+.date-button-simple-box {
+  height: 21px;
+  padding: 0px;
+  margin: 0px;
 }
 .date-button {
   padding: 0px;
-  height: 21px;
+  height: 19px;
   width: 30px;
   font-size: 12px;
+}
+.date-input-line {
+  margin-bottom: 10px;
 }
 .bin-button {
   border-top-right-radius: 20px;
