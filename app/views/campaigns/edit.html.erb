@@ -74,7 +74,7 @@
                   <b>Fecha de comienzo: </b>
                 </div>
                 <div class="col-md-2 date-input-box">
-                  <input type="text" class="form-control date-input" id="datepicker_start" name="start_date" value="<%= format_date(@campaign.start_date) %>"/>
+                  <input type="text" class="form-control date-input" id="datepicker_start" name="start_date" value="<%= format_date(@campaign.start_date) %>" readonly/>
                 </div>
                 <div class="col-md-1 date-button-box">
                   <div class="date-button-simple-box">
@@ -92,7 +92,7 @@
                   <b>Fecha de fin: </b>
                 </div>
                 <div class="col-md-7 date-input-box">
-                  <input type="text" class="form-control date-input" id="datepicker_end" name="end_date" value="<%= format_date(@campaign.end_date) %>" required/>
+                  <input type="text" class="form-control date-input" id="datepicker_end" name="end_date" value="<%= format_date(@campaign.end_date) %>" readonly/>
                 </div>
                 <div class="col-md-1 date-button-box">
                   <div class="date-button-simple-box">
