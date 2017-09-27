@@ -8,7 +8,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 col-md-offset-1">
-          <h1>No tienes campañas activas</h1>
+          <h1>No existen campañas activas para el puesto</h1>
         </div>
         <a href="/">
           <button type="submit" class="btn btn-primary" id="n-survey-btn">Volver</button>
@@ -18,11 +18,7 @@
   </div>
 <% else %>
   <div class="row element-style">
-    <div class="col-md-5 col-md-offset-1">
-      <div class="row">
-        <div class="col-md-5 col-md-offset-4 survey-icon">
-        </div>
-      </div>
+    <div class="col-md-12">
       <div class="row">
         <div class="col-md-12 survey-panel survey-panel-custom">
           <% if @user_positions.any? %>
@@ -50,10 +46,10 @@
               </div>
             <% end %>
           <% else %>
-            <h2>No existen cuestionarios activos para el puesto</h2>
+            <h2>No existen campañas activas para el puesto</h2>
           <% end %>
         </div>
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-6">
           <a href="/">
             <button type="submit" class="btn btn-primary btn-surveys">Volver</button>
           </a>
