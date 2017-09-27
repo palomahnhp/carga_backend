@@ -1,15 +1,19 @@
+$(document).on('turbolinks:load', function() {
+  resizeBox();
+});
+
 $(window).ready(function() {
-  width = $(window).width()-60;
-  $(".survey-panel-custom").css({'width': width});
+  resizeBox();
 });
 
 $( window ).resize(function() {
+  resizeBox();
+});
+
+function resizeBox() {
   width = $(window).width()-60;
   $(".survey-panel-custom").css({'width': width});
-  if ($(".survey-panel-custom").css('width') <= $(".survey-link-text").css('width')) {
-    $(".survey-link-text").css({'width': $(".survey-panel-custom").css('width')-5});
-  }
-});
+}
 
 function initializeJS() {
   $("#errorTagCont").hide();
