@@ -1,3 +1,16 @@
+$(window).ready(function() {
+  width = $(window).width()-60;
+  $(".survey-panel-custom").css({'width': width});
+});
+
+$( window ).resize(function() {
+  width = $(window).width()-60;
+  $(".survey-panel-custom").css({'width': width});
+  if ($(".survey-panel-custom").css('width') <= $(".survey-link-text").css('width')) {
+    $(".survey-link-text").css({'width': $(".survey-panel-custom").css('width')-5});
+  }
+});
+
 function initializeJS() {
   $("#errorTagCont").hide();
   $("#remove-task-box").hide();
