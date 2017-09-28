@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
   <div class="row element-style">
     <div class="col-md-11 form-style">
+      <% if params[:error].present? %>
+        <div class="'has-error alert alert-danger alert-dismissable'">
+          <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+          <%= params[:error] %>
+        </div>
+      <% end %>
       <% if params[:alert] %>
         <div id="errorTagCont" class="'has-error alert alert-danger alert-dismissable'">
           <button name="button" type="button" onclick="$('#errorTagCont').hide();" class="close">×</button>
@@ -23,15 +29,15 @@
                       <b>Número de unidad: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="unit_number" value="<%= @unit.unit_number %>">
+                      <input type="text" class="form-control" id="inputDefault" name="unit_number" value="<%= @unit.unit_number %>" required>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-5">
-                      <b>Descripción de unidad: </b>
+                      <b>Nombre de la unidad: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="name" value="<%= @unit.name %>">
+                      <input type="text" class="form-control" id="inputDefault" name="name" value="<%= @unit.name %>" required>
                     </div>
                   </div>
                   <div class="row">

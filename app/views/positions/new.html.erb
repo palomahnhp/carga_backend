@@ -107,13 +107,14 @@
 
 <script>
   <% if params[:unit_id].present? %>
-    filterPosOrgchart("<%= Unit.find_by(id: params[:unit_id]).area_name %>",
-                    "<%= Unit.find_by(id: params[:unit_id]).dir_name %>",
-                    "<%= Unit.find_by(id: params[:unit_id]).subdir_name %>");
-    $("#area").val("<%= Unit.find_by(id: params[:unit_id]).area_name %>");
-    $("#direction").val("<%= Unit.find_by(id: params[:unit_id]).dir_name %>");
-    $("#subdirection").val("<%= Unit.find_by(id: params[:unit_id]).subdir_name %>");
-    $("#unit").val("<%= Unit.find_by(id: params[:unit_id]).id %>");
+    <% unit = Unit.find(params[:unit_id]) %>
+    filterPosOrgchart("<%= unit.area_name %>",
+                    "<%= unit.dir_name %>",
+                    "<%= unit.subdir_name %>");
+    $("#area").val("<%= unit.area_name %>");
+    $("#direction").val("<%= unit.dir_name %>");
+    $("#subdirection").val("<%= unit.subdir_name %>");
+    $("#unit").val("<%= unit.id %>");
   <% end %>
 
   $("#area").on("change", function() {
