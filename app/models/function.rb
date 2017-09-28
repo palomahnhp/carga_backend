@@ -2,6 +2,9 @@ class Function < ActiveRecord::Base
   has_many :responses
   belongs_to :position
 
+  validates :name, presence: true
+  validates :position_id, presence: true
+
   scope :not_extra_functions, -> { where(not_norm: false) }
   scope :extra_functions, -> { where(not_norm: true) }
 

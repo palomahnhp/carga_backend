@@ -45,7 +45,13 @@ class FunctionsController < ApplicationController
       position_id:          params[:position],
       not_norm:             false
     )
-    @function.save
+    unless @function.save
+      redirect_to action: :new, search: params[:search],
+                                error: "Debe seleccionar un puesto",
+                                name: params[:name],
+                                position_id: params[:position_id]
+      return
+    end
 
     redirect_to action: :index
   end
@@ -57,6 +63,15 @@ class FunctionsController < ApplicationController
       position_id:          params[:position],
       not_norm:             false
     )
+    unless @function.save
+      redirect_to action: :edit, id: params[:id],
+                                search: params[:search],
+                                error: "Debe seleccionar un puesto",
+                                name: params[:name],
+                                position_id: params[:position_id]
+      return
+    end
+
     redirect_to action: :index
   end
 
