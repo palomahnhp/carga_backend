@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
   <div class="row element-style">
     <div class="col-md-11 form-style">
+      <% if params[:error].present? %>
+        <div class="'has-error alert alert-danger alert-dismissable'">
+          <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+          <%= params[:error] %>
+        </div>
+      <% end%>
       <fieldset>
         <div class="row">
           <legend class="col-lg-12">Configuración de Usuario</legend>
@@ -17,7 +23,7 @@
                       <b>Nombre: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="name">
+                      <input type="text" class="form-control" id="inputDefault" name="name" value="<%= params[:name].present? ? params[:name] : "" %>">
                     </div>
                   </div>
                   <div class="row">
@@ -25,7 +31,7 @@
                       <b>Primer apellido: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="last_name">
+                      <input type="text" class="form-control" id="inputDefault" name="last_name" value="<%= params[:last_name].present? ? params[:last_name] : "" %>">
                     </div>
                   </div>
                   <div class="row">
@@ -33,7 +39,7 @@
                       <b>Segundo apellido: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="last_name_alt">
+                      <input type="text" class="form-control" id="inputDefault" name="last_name_alt" value="<%= params[:last_name_alt].present? ? params[:last_name_alt] : "" %>">
                     </div>
                   </div>
                 </div>
@@ -44,7 +50,7 @@
                       <b>Área: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="area" name="area" onchange="filterElement('direction', '/users');">
+                      <select class="form-control" id="area" name="area">
                         <option value=""></option>                        
                         <% Unit.select(:area_name).group(:area_name).each do |unit| %>
                           <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
@@ -57,7 +63,7 @@
                       <b>Dirección: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="direction" name="direction" onchange="filterElement('subdirection', '/users');">
+                      <select class="form-control" id="direction" name="direction">
                         <option value=""></option>
                       </select>
                     </div>
@@ -67,7 +73,7 @@
                       <b>Subdirección: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="subdirection" name="subdirection" onchange="filterElement('unit', '/users');">
+                      <select class="form-control" id="subdirection" name="subdirection">
                         <option value=""></option>
                       </select>
                     </div>
@@ -77,7 +83,7 @@
                       <b>Unidad: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="unit" name="unit" onchange="filterElement('position', '/users');">
+                      <select class="form-control" id="unit" name="unit">
                         <option value=""></option>
                       </select>
                     </div>
@@ -100,7 +106,7 @@
                       <b>Número de usuario: </b>
                     </div>
                     <div class="col-md-7">
-                      <input class="form-control" id="disabledInput" type="text" name="user_num">
+                      <input class="form-control" id="disabledInput" type="text" name="user_num" value="<%= params[:user_num].present? ? params[:user_num] : "" %>">
                     </div>
                   </div>
                   <div class="row">
@@ -108,7 +114,7 @@
                       <b>Código Ayre: </b>
                     </div>
                     <div class="col-md-7">
-                      <input class="form-control" id="disabledInput" type="text" name="ayre">
+                      <input class="form-control" id="disabledInput" type="text" name="ayre" value="<%= params[:ayre].present? ? params[:ayre] : "" %>">
                     </div>
                   </div>
                 </div>
@@ -119,7 +125,7 @@
                       <b>Email: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="email">
+                      <input type="text" class="form-control" id="inputDefault" name="email" value="<%= params[:email].present? ? params[:email] : "" %>">
                     </div>
                   </div>
                   <div class="row">
@@ -127,7 +133,7 @@
                       <b>Teléfono: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="phone_number">
+                      <input type="text" class="form-control" id="inputDefault" name="phone_number" value="<%= params[:phone_number].present? ? params[:phone_number] : "" %>">
                     </div>
                   </div>
                   <div class="row">
@@ -135,7 +141,7 @@
                       <b>NIF: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="document">
+                      <input type="text" class="form-control" id="inputDefault" name="document" value="<%= params[:document].present? ? params[:document] : "" %>">
                     </div>
                   </div>
                 </div>
@@ -199,3 +205,32 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  <% if params[:position_id].present? %>
+    <% position = Position.find(params[:position_id]) %>
+    filterOrgchart("<%= position.unit.area_name %>",
+                    "<%= position.unit.dir_name %>",
+                    "<%= position.unit.subdir_name %>",
+                    "<%= position.unit.name %>",
+                    "/functions");
+    $("#area").val("<%= position.unit.area_name %>");
+    $("#direction").val("<%= position.unit.dir_name %>");
+    $("#subdirection").val("<%= position.unit.subdir_name %>");
+    $("#unit").val("<%= position.unit.name %>");
+    $("#position").val("<%= position.id %>");
+  <% end %>
+
+  $("#area").on("change", function() {
+    filterElement('direction', '/functions');
+  });
+  $("#direction").on("change", function() {
+    filterElement('subdirection', '/functions');
+  });
+  $("#subdirection").on("change", function() {
+    filterElement('unit', '/functions');
+  });
+  $("#unit").on("change", function() {
+    filterElement('position', '/functions');
+  });
+</script>
