@@ -61,14 +61,26 @@ class UnitsController < ApplicationController
       name:        params[:name],
       campaign_id: params[:campaign_id],
       alias:       params[:alias],
-      cod_area:    params[:cod_area],
+      #cod_area:   params[:cod_area],
       area_name:   params[:area_name],
-      cod_dir:     params[:cod_dir],
+      #cod_dir:    params[:cod_dir],
       dir_name:    params[:dir_name],
-      cod_subdir:  params[:cod_subdir],
+      #cod_subdir: params[:cod_subdir],
       subdir_name: params[:subdir_name]
-      )
-    @unit.save
+    )
+    
+    unless @unit.save
+      redirect_to action: :new, search: params[:search],
+                                error: "El número de unidad ya está en uso",
+                                unit_number: params[:unit_number],
+                                name: params[:name],
+                                campaign_id: params[:campaign_id],
+                                alias: params[:alias],
+                                area_name: params[:area_name],
+                                dir_name: params[:dir_name],
+                                subdir_name: params[:subdir_name]
+      return
+    end
 
     redirect_to action: :index
   end
@@ -80,13 +92,28 @@ class UnitsController < ApplicationController
       name:        params[:name],
       campaign_id: params[:campaign_id],
       alias:       params[:alias],
-      cod_area:    params[:cod_area],
+      #cod_area:   params[:cod_area],
       area_name:   params[:area_name],
-      cod_dir:     params[:cod_dir],
+      #cod_dir:    params[:cod_dir],
       dir_name:    params[:dir_name],
-      cod_subdir:  params[:cod_subdir],
+      #cod_subdir: params[:cod_subdir],
       subdir_name: params[:subdir_name]
-      )
+    )
+
+    unless @unit.save
+      redirect_to action: :edit, id: params[:id],
+                                search: params[:search],
+                                error: "El número de unidad ya está en uso",
+                                unit_number: params[:unit_number],
+                                name: params[:name],
+                                campaign_id: params[:campaign_id],
+                                alias: params[:alias],
+                                area_name: params[:area_name],
+                                dir_name: params[:dir_name],
+                                subdir_name: params[:subdir_name]
+      return
+    end
+
     redirect_to action: :index
   end
 

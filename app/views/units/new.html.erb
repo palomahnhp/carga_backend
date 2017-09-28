@@ -1,6 +1,12 @@
 <% if can? :settings, @current_user %>
   <div class="row element-style">
     <div class="col-md-11 form-style">
+      <% if params[:error].present? %>
+        <div class="'has-error alert alert-danger alert-dismissable'">
+          <button name="button" type="button" class="close" data-dismiss="alert">×</button>
+          <%= params[:error] %>
+        </div>
+      <% end %>
       <fieldset>
         <div class="row">
           <legend class="col-lg-12">Configuración de Unidades</legend>
@@ -17,15 +23,15 @@
                       <b>Número de unidad: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="unit_number">
+                      <input type="text" class="form-control" id="inputDefault" name="unit_number" value="<%= params[:unit_number].present? ? params[:unit_number] : "" %>" required>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-5">
-                      <b>Descripción de unidad: </b>
+                      <b>Nombre de la unidad: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="name">
+                      <input type="text" class="form-control" id="inputDefault" name="name" value="<%= params[:name].present? ? params[:name] : "" %>" required>
                     </div>
                   </div>
                   <div class="row">
@@ -33,7 +39,7 @@
                       <b>Descripción breve: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="alias">
+                      <input type="text" class="form-control" id="inputDefault" name="alias" value="<%= params[:alias].present? ? params[:alias] : "" %>">
                     </div>
                   </div>
                 </div>
@@ -46,9 +52,13 @@
                     <div class="col-md-7">
                       <select class="form-control" id="select" name="campaign_id">
                         <% Campaign.all.each do |campaign| %>
-                        <option value="<%= campaign.id %>">
-                          <%= campaign.name %>
-                        </option>
+                          <option value="<%= campaign.id %>"
+                            <% if params[:campaign_id].present? && params[:campaign_id] == campaign.id %>
+                               selected="selected"
+                            <% end %>
+                            >
+                            <%= campaign.name %>
+                          </option>
                         <% end %>
                       </select>
                     </div>
@@ -69,7 +79,7 @@
                       <b>Área: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="area" name="area_name" onchange="filterUnElement('direction');">
+                      <select class="form-control" id="area" name="area_name">
                         <option value=""></option>                        
                         <% Unit.select(:area_name).group(:area_name).each do |unit| %>
                           <option value="<%= unit.area_name %>"><%= unit.area_name %></option>
@@ -90,7 +100,7 @@
                       <b>Dirección: </b>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-control" id="direction" name="dir_name" onchange="filterUnElement('subdirection');">
+                      <select class="form-control" id="direction" name="dir_name">
                         <option value=""></option>
                       </select>
                     </div>
@@ -135,3 +145,22 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  <% if params[:area_name].present? && params[:dir_name] && params[:subdir_name] %>
+    filterUnOrgchart("<%= params[:area_name] %>",
+                  "<%= params[:dir_name] %>");
+    $("#area").val("<%= params[:area_name] %>");
+    $("#direction").val("<%= params[:dir_name] %>");
+    $("#subdirection").val("<%= params[:subdir_name] %>");
+  <% end %>
+  $("#area").on("change", function() {
+    filterUnElement('direction');
+  });
+  $("#direction").on("change", function() {
+    filterUnElement('subdirection');
+  });
+  $("#subdirection").on("change", function() {
+    filterUnElement('unit');
+  });
+</script>

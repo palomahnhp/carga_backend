@@ -7,6 +7,7 @@ class Position < ActiveRecord::Base
   belongs_to :unit
 
   validates :name, :position_number, presence: true
+  validates :unit_id, presence: { message: "Debe seleccionar una unidad" }
   validates :position_number, presence: true, uniqueness: true
 
   def self.search(search)
