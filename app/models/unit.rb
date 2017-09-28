@@ -2,6 +2,9 @@ class Unit < ActiveRecord::Base
   has_many :positions
   belongs_to :campaign
 
+  validates :name, presence: true
+  validates :unit_number, presence: true, uniqueness: true
+
   scope :responded, -> { where(any_answer: true) }
 
   def self.search(search)

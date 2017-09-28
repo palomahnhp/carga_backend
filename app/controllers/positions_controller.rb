@@ -37,8 +37,12 @@ class PositionsController < ApplicationController
       unit_id:         params[:unit_id],
     )
     unless @position.save
+      message = @position.errors[:unit_id].present? ? @position.errors[:unit_id].to_sentence : nil
+      if message.nil?
+        message = "El número de puesto ya está en uso"
+      end
       redirect_to action: :new, search: params[:search],
-                                error: "El número de puesto ya está en uso",
+                                error: message,
                                 position_number: params[:position_number],
                                 name: params[:name],
                                 unit_id: params[:unit_id]
@@ -59,9 +63,13 @@ class PositionsController < ApplicationController
       slug:            Digest::SHA1.hexdigest("#{@position.id}")
     )
     unless @position.save
+      message = @position.errors[:unit_id].present? ? @position.errors[:unit_id].to_sentence : nil
+      if message.nil?
+        message = "El número de puesto ya está en uso"
+      end
       redirect_to action: :edit, id: params[:id],
                                 search: params[:search],
-                                error: "El número de puesto ya está en uso",
+                                error: message,
                                 position_number: params[:position_number],
                                 name: params[:name],
                                 unit_id: params[:unit_id]
