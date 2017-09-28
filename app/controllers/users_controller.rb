@@ -43,9 +43,25 @@ class UsersController < ApplicationController
       phone_number:    params[:phone_number],
       user_role:       params[:role].to_i,
       position_id:     params[:position],
-      start_date:      params[:start_date],
-      end_date:        params[:end_date]
+      #start_date:      params[:start_date],
+      #end_date:        params[:end_date]
     )
+    unless @user.save
+      redirect_to action: :edit, id: params[:id],
+                                search: params[:search],
+                                error: "Debe seleccionar un puesto",
+                                user_num:        params[:user_num],
+                                name:            params[:name],
+                                last_name:       params[:last_name],
+                                last_name_alt:   params[:last_name_alt],
+                                document:        params[:document],
+                                email:           params[:email],
+                                ayre:            params[:ayre],
+                                phone_number:    params[:phone_number],
+                                user_role:       params[:role].to_i,
+                                position_id:     params[:position]
+      return
+    end
     redirect_to action: :index
   end
 
@@ -60,10 +76,23 @@ class UsersController < ApplicationController
       login:         params[:ayre],
       phone_number:  params[:phone_number],
       position_id:   params[:position],
-      start_date:    params[:start_date],
-      end_date:      params[:end_date]
+      #start_date:    params[:start_date],
+      #end_date:      params[:end_date]
     )
-    @user.save
+    unless @user.save
+      redirect_to action: :new, search: params[:search],
+                                error: "Debe seleccionar un puesto",
+                                user_num:      params[:user_num],
+                                name:          params[:name],
+                                last_name:     params[:last_name],
+                                last_name_alt: params[:last_name_alt],
+                                document:      params[:document],
+                                email:         params[:email],
+                                ayre:          params[:ayre],
+                                phone_number:  params[:phone_number],
+                                position_id:   params[:position]
+      return
+    end
 
     redirect_to action: :index
   end
