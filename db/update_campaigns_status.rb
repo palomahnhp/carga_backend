@@ -1,4 +1,4 @@
-puts "\n\n--- ACTUALIZANDO ESTADO DE LAS CAMPAÑAS ---"
+puts "====== ACTUALIZANDO ESTADO DE LAS CAMPAÑAS ======"
 
 updated = 0
 Campaign.all.each do |campaign|
@@ -9,6 +9,17 @@ Campaign.all.each do |campaign|
     updated += 1
   end
 end
+puts "--- CAMPAÑAS ACTUALIZADAS: #{updated}   ---"
+
+updated = 0
+Campaign.all.each do |campaign|
+  if (Time.now.to_date >= campaign.start_date.to_date) && campaign.status != Campaign.statuses.key(1)
+    campaign.update_attributes(status: Campaign.statuses[:active])
+    campaign.save(validate: false)
+    puts "----- Campaña \"#{campaign.name}\" en curso, fecha alcanzada de comienzo: #{campaign.start_date.to_date} -----"
+    updated += 1
+  end
+end
 
 puts "--- CAMPAÑAS ACTUALIZADAS: #{updated}   ---"
-puts "--- ACTUALIZACIÓN COMPLETADA            ---"
+puts "====== ACTUALIZACIÓN COMPLETADA            ======"
