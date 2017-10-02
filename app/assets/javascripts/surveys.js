@@ -6,8 +6,14 @@ $(window).ready(function() {
   resizeBox();
 });
 
-$( window ).resize(function() {
+$(window).resize(function() {
   resizeBox();
+});
+
+$(document).keypress(function(event) {
+  if (event.keyCode === 10 || event.keyCode === 13) {
+    event.preventDefault();
+  }
 });
 
 function resizeBox() {
