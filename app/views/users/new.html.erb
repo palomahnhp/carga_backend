@@ -111,10 +111,10 @@
                   </div>
                   <div class="row">
                     <div class="col-md-5">
-                      <b>Código Ayre: </b>
+                      <b>Login Ayre: </b>
                     </div>
                     <div class="col-md-7">
-                      <input class="form-control" id="disabledInput" type="text" name="ayre" value="<%= params[:ayre].present? ? params[:ayre] : "" %>">
+                      <input class="form-control" id="disabledInput" type="text" name="ayre" value="<%= params[:ayre].present? ? params[:ayre] : "" %>" required>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                       <b>NIF: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="document" value="<%= params[:document].present? ? params[:document] : "" %>">
+                      <input type="text" class="form-control" id="inputDefault" name="document" value="<%= params[:document].present? ? params[:document] : "" %>" required>
                     </div>
                   </div>
                 </div>

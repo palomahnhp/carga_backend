@@ -46,10 +46,14 @@ class FunctionsController < ApplicationController
       not_norm:             false
     )
     unless @function.save
+      message = @function.errors[:position_id].present? ? @function.errors[:position_id].to_sentence : nil
+      if message.nil?
+        message = @function.errors[:name].to_sentence
+      end
       redirect_to action: :new, search: params[:search],
-                                error: "Debe seleccionar un puesto",
+                                error: message,
                                 name: params[:name],
-                                position_id: params[:position_id]
+                                position_id: params[:position]
       return
     end
 
@@ -64,11 +68,15 @@ class FunctionsController < ApplicationController
       not_norm:             false
     )
     unless @function.save
+      message = @function.errors[:position_id].present? ? @function.errors[:position_id].to_sentence : nil
+      if message.nil?
+        message = @function.errors[:name].to_sentence
+      end
       redirect_to action: :edit, id: params[:id],
                                 search: params[:search],
-                                error: "Debe seleccionar un puesto",
+                                error: message,
                                 name: params[:name],
-                                position_id: params[:position_id]
+                                position_id: params[:position]
       return
     end
 
