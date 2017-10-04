@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
 
   enum user_role: { respondent: 0, admin: 1, superadmin: 2 }
 
-  validates :position_id, presence: true
+  validates :login, :document, presence: true
+  validates :position_id, presence: { message: "Debe seleccionar un puesto"}
+  validates :document, uniqueness: { scope: :position_id, message: "Ya existe un usuario con el mismo DNI para el mismo puesto." }
 
   def self.search(search)
     self.where("(name || last_name || last_name_alt || user_num) ILIKE ?", "%#{search}%")

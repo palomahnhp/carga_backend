@@ -47,9 +47,13 @@ class UsersController < ApplicationController
       #end_date:        params[:end_date]
     )
     unless @user.save
+      message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
+      if message.nil?
+        message = @user.errors[:document].to_sentence
+      end
       redirect_to action: :edit, id: params[:id],
                                 search: params[:search],
-                                error: "Debe seleccionar un puesto",
+                                error: message,
                                 user_num:        params[:user_num],
                                 name:            params[:name],
                                 last_name:       params[:last_name],
@@ -80,8 +84,12 @@ class UsersController < ApplicationController
       #end_date:      params[:end_date]
     )
     unless @user.save
+      message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
+      if message.nil?
+        message = @user.errors[:document].to_sentence
+      end
       redirect_to action: :new, search: params[:search],
-                                error: "Debe seleccionar un puesto",
+                                error: message,
                                 user_num:      params[:user_num],
                                 name:          params[:name],
                                 last_name:     params[:last_name],

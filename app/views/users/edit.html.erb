@@ -55,10 +55,10 @@
                   </div>
                   <div class="row">
                     <div class="col-md-5">
-                      <b>Código Ayre: </b>
+                      <b>Login Ayre: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="disabledInput" name="ayre" value="<%= @user.login %>">
+                      <input type="text" class="form-control" id="disabledInput" name="ayre" value="<%= @user.login %>" required>
                     </div>
                   </div>
                   <div class="row">
@@ -107,7 +107,7 @@
                       <b>NIF: </b>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" id="inputDefault" name="document" value="<%= @user.document %>">
+                      <input type="text" class="form-control" id="inputDefault" name="document" value="<%= @user.document %>" required>
                     </div>
                   </div>
                 </div>
