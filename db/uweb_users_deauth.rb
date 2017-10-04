@@ -4,7 +4,8 @@ require 'uweb_authenticator'
 puts "--- Comienzo de desautorización de usuarios en uWeb ---"
 
 if ENV["DG"]
-  users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(dir_name: ENV["DG"])))
+  dg_codes = ENV['DG'].split(',')
+  users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(cod_dir: dg_codes)))
   puts "\n===> Desautorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
 else
   users = User.all
