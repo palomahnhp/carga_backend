@@ -5,10 +5,10 @@ puts "--- Comienzo de autorización de usuarios en uWeb ---"
 
 if ENV["DG"]
   users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(dir_name: ENV["DG"])))
-  puts "Autorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
+  puts "\n===> Autorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
 else
   users = User.all
-  puts "Autorizando todos los usuarios de la BBDD."
+  puts "\n===> Autorizando todos los usuarios de la BBDD."
 end
 
 users.each do |user|
@@ -26,4 +26,4 @@ users.each do |user|
   puts "\n"
 end
 
-puts "===== USUARIOS TOTALES => #{User.count} ====="
+puts "===== USUARIOS AUTORIZADOS => #{users.count} ====="

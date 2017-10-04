@@ -3,7 +3,15 @@ require 'uweb_authenticator'
 
 puts "--- Comienzo de desautorización de usuarios en uWeb ---"
 
-User.all.each do |user|
+if ENV["DG"]
+  users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(dir_name: ENV["DG"])))
+  puts "\n===> Desautorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
+else
+  users = User.all
+  puts "\n===> Desautorizando todos los usuarios de la BBDD."
+end
+
+users.each do |user|
   uweb_auth = UwebAuthenticator.new()
   if uweb_auth.user_exists_by_dni?(user.document)
     puts "===> #{user.document} EXISTE EN UWEB <==="
@@ -18,4 +26,4 @@ User.all.each do |user|
   puts "\n"
 end
 
-puts "===== USUARIOS TOTALES => #{User.count} ====="
+puts "===== USUARIOS DESAUTORIZADOS => #{users.count} ====="
