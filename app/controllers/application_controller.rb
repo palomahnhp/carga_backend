@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def request_from_uweb?
+    return true unless new_login?
     return true if params[:testancar] == Rails.application.secrets.test_key || session[:testancar] == Rails.application.secrets.test_key
 
     connect_date = params[:fecha_conexion].present? ? params[:fecha_conexion] : nil # Eg 20160609112830
