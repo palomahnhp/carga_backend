@@ -53,7 +53,8 @@ class ApplicationController < ActionController::Base
     connect_date = connect_date[0...10]
     current_date = "#{Time.now.strftime("%Y")}#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%H")}"
 
-    connect_date == current_date && app_key == Rails.application.secrets.uweb_application_key.to_s
+    #connect_date == current_date &&
+    app_key == Rails.application.secrets.uweb_application_key.to_s
   end
 
   private
