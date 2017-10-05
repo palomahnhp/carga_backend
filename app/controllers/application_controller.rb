@@ -47,9 +47,6 @@ class ApplicationController < ActionController::Base
     #name = params[:nombre].present? ? params[:nombre] : nil
     #last_name = params[:apellido1].present? ? params[:apellido1] : nil
     #last_name_alt = params[:apellido2].present? ? params[:apellido2] : nil
-
-    puts "====> #{connect_date} #{user_key} #{app_key} #{login}"
-    puts "====> #{connect_date.nil? || user_key.nil? || app_key.nil? || login.nil?}"
     
     return false if connect_date.nil? || user_key.nil? || app_key.nil? || login.nil?
 
