@@ -44,11 +44,11 @@ class ApplicationController < ActionController::Base
     app_key = params[:clave_aplica].present? ? params[:clave_aplica] : nil # Eg 292
     login = params[:login].present? ? params[:login] : nil
     #document = params[:DNI].present? ? params[:DNI] : nil
-    name = params[:nombre].present? ? params[:nombre] : nil
-    last_name = params[:apellido1].present? ? params[:apellido1] : nil
-    last_name_alt = params[:apellido2].present? ? params[:apellido2] : nil
+    #name = params[:nombre].present? ? params[:nombre] : nil
+    #last_name = params[:apellido1].present? ? params[:apellido1] : nil
+    #last_name_alt = params[:apellido2].present? ? params[:apellido2] : nil
     
-    return false if connect_date.nil? || user_key.nil? || app_key.nil? || login.nil? || name.nil? || last_name.nil? || last_name_alt.nil?
+    return false if connect_date.nil? || user_key.nil? || app_key.nil? || login.nil?
 
     connect_date = connect_date[0...12]
     current_date = "#{Time.now.strftime("%Y")}#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%H")}#{Time.now.strftime("%M")}"
