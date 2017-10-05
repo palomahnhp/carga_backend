@@ -49,10 +49,12 @@ class ApplicationController < ActionController::Base
     last_name_alt = params[:apellido2].present? ? params[:apellido2] : nil
     
     return false if connect_date.nil? || user_key.nil? || app_key.nil? || login.nil? || document.nil? || name.nil? || last_name.nil? || last_name_alt.nil?
-     
-    connect_date = connect_date[0...12]
-    current_date = "#{Time.now.strftime("%Y")}#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%H")}#{Time.now.strftime("%M")}"
 
+    puts "=====> Time from uWeb: #{connect_date}"
+    connect_date = connect_date[0...11]
+    puts "=====> Time truncated uWeb: #{connect_date}"
+    current_date = "#{Time.now.strftime("%Y")}#{Time.now.strftime("%m")}#{Time.now.strftime("%d")}#{Time.now.strftime("%H")}#{Time.now.strftime("%M")}"
+    puts "=====> Time from uWeb: #{current_date}"
     connect_date == current_date && app_key == Rails.application.secrets.uweb_application_key.to_s
   end
 
