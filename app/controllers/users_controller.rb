@@ -43,8 +43,8 @@ class UsersController < ApplicationController
       phone_number:    params[:phone_number],
       user_role:       params[:role].to_i,
       position_id:     params[:position],
-      #start_date:      params[:start_date],
-      #end_date:        params[:end_date]
+      start_date:      params[:start_date],
+      end_date:        params[:end_date]
     )
     unless @user.save
       message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
@@ -63,7 +63,9 @@ class UsersController < ApplicationController
                                 ayre:            params[:ayre],
                                 phone_number:    params[:phone_number],
                                 user_role:       params[:role].to_i,
-                                position_id:     params[:position]
+                                position_id:     params[:position],
+                                start_date:      params[:start_date],
+                                end_date:        params[:end_date]
       return
     end
     redirect_to action: :index
@@ -80,8 +82,8 @@ class UsersController < ApplicationController
       login:         params[:ayre],
       phone_number:  params[:phone_number],
       position_id:   params[:position],
-      #start_date:    params[:start_date],
-      #end_date:      params[:end_date]
+      start_date:    params[:start_date],
+      end_date:      params[:end_date]
     )
     unless @user.save
       message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
@@ -98,7 +100,9 @@ class UsersController < ApplicationController
                                 email:         params[:email],
                                 ayre:          params[:ayre],
                                 phone_number:  params[:phone_number],
-                                position_id:   params[:position]
+                                position_id:   params[:position],
+                                start_date:    params[:start_date],
+                                end_date:      params[:end_date]
       return
     end
 
