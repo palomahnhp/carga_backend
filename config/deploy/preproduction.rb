@@ -7,7 +7,9 @@ set :ssh_options, port: deploysecret(:ssh_port)
 set :stage, :preproduction
 set :rails_env, :preproduction
 
-server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer)
+server deploysecret(:server1), user: deploysecret(:user), roles: %w(web app db importer)
+server deploysecret(:server2), user: deploysecret(:user), roles: %w(web app db importer)
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
