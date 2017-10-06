@@ -116,6 +116,15 @@ class SurveysController < ApplicationController
         name: params["other_task_1001"],
         not_norm: 't'
       )
+      unless function.save
+        function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1001"]}%", current_user.position).order(:name)
+        function_name = "#{function_name.last.name} *"
+        function = Function.create(
+          position: current_user.position,
+          name: function_name,
+          not_norm: 't'
+        )
+      end
       @response = Response.create(
         user_id:     current_user.id,
         function:    function,
@@ -128,6 +137,15 @@ class SurveysController < ApplicationController
         name: params["other_task_1002"],
         not_norm: 't'
       )
+      unless function.save
+        function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1002"]}%", current_user.position).order(:name)
+        function_name = "#{function_name.last.name} *"
+        function = Function.create(
+          position: current_user.position,
+          name: function_name,
+          not_norm: 't'
+        )
+      end
       @response = Response.create(
         user_id:     current_user.id,
         function:    function,
@@ -140,6 +158,15 @@ class SurveysController < ApplicationController
         name: params["other_task_1003"],
         not_norm: 't'
       )
+      unless function.save
+        function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1003"]}%", current_user.position).order(:name)
+        function_name = "#{function_name.last.name} *"
+        function = Function.create(
+          position: current_user.position,
+          name: function_name,
+          not_norm: 't'
+        )
+      end
       @response = Response.create(
         user_id:     current_user.id,
         function:    function,

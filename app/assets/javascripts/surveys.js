@@ -59,8 +59,13 @@ function formCheck() {
             validData = false;
             showError("Debe rellenar las descripciones de las funciones extra");
           } else {
-            percSum = percSum + parseFloat(value.value);
-            value.value = Math.round(value.value*100)/100;
+            if ($("input[name='other_task_1001']").val() == $("input[name='other_task_1002']").val() || $("input[name='other_task_1001']").val() == $("input[name='other_task_1003']").val() || $("input[name='other_task_1002']").val() == $("input[name='other_task_1003']").val()) {
+              validData = false;
+              showError("Las descripciones de las funciones extra no pueden coincidir");
+            } else {
+              percSum = percSum + parseFloat(value.value);
+              value.value = Math.round(value.value*100)/100; 
+            }
           }
         }
       }
