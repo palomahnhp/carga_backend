@@ -118,7 +118,7 @@ class SurveysController < ApplicationController
       )
       unless function.save
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1001"]}%", current_user.position).order(:name)
-        function_name = "#{function_name.last.name} *"
+        function_name = "#{function_name.last.name} "
         function = Function.create(
           position: current_user.position,
           name: function_name,
@@ -139,7 +139,7 @@ class SurveysController < ApplicationController
       )
       unless function.save
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1002"]}%", current_user.position).order(:name)
-        function_name = "#{function_name.last.name} *"
+        function_name = "#{function_name.last.name} "
         function = Function.create(
           position: current_user.position,
           name: function_name,
@@ -160,7 +160,7 @@ class SurveysController < ApplicationController
       )
       unless function.save
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1003"]}%", current_user.position).order(:name)
-        function_name = "#{function_name.last.name} *"
+        function_name = "#{function_name.last.name} "
         function = Function.create(
           position: current_user.position,
           name: function_name,
