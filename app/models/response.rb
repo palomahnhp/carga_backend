@@ -3,7 +3,7 @@ class Response < ActiveRecord::Base
   belongs_to :function
 
   validates :time_per, presence: { message: "Falta porcentaje de tiempo de la tarea" }
-  validates :function_id, user_id, presence: true
+  validates :function_id, :user_id, presence: true
 
   def self.to_csv(records)
     CSV.generate(col_sep:';', encoding:'ISO-8859-1') do |csv|
