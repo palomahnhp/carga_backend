@@ -62,8 +62,8 @@ class SurveysController < ApplicationController
     respond_to do |format|
       format.csv {
         send_file(
-          "#{Rails.root}/public/Calculos dedicaciones_Macro_V.5.0.xlsm",
-          filename: "Calculos dedicaciones_Macro_V.5.0.xlsm",
+          "#{Rails.root}/public/Calculadora dedicaciones_V.6.0.xlsm",
+          filename: "Calculadora dedicaciones_V.6.0.xlsm",
           type: "application/vnd.ms-excel.sheet.macroEnabled.12"
         )
       }
@@ -112,7 +112,7 @@ class SurveysController < ApplicationController
   def createExtraResponses
     if params["time_per_1001"]
       function = Function.create(
-        position: current_user.position,
+        position: @position,
         name: params["other_task_1001"],
         not_norm: 't'
       )
@@ -120,7 +120,7 @@ class SurveysController < ApplicationController
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1001"]}%", current_user.position).order(:name)
         function_name = "#{function_name.last.name} "
         function = Function.create(
-          position: current_user.position,
+          position: @position,
           name: function_name,
           not_norm: 't'
         )
@@ -133,7 +133,7 @@ class SurveysController < ApplicationController
     end
     if params["time_per_1002"]
       function = Function.create(
-        position: current_user.position,
+        position: @position,
         name: params["other_task_1002"],
         not_norm: 't'
       )
@@ -141,7 +141,7 @@ class SurveysController < ApplicationController
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1002"]}%", current_user.position).order(:name)
         function_name = "#{function_name.last.name} "
         function = Function.create(
-          position: current_user.position,
+          position: @position,
           name: function_name,
           not_norm: 't'
         )
@@ -154,7 +154,7 @@ class SurveysController < ApplicationController
     end
     if params["time_per_1003"]
       function = Function.create(
-        position: current_user.position,
+        position: @position,
         name: params["other_task_1003"],
         not_norm: 't'
       )
@@ -162,7 +162,7 @@ class SurveysController < ApplicationController
         function_name = Function.select(:name).where("name ILIKE ? AND position_id = ?", "#{params["other_task_1003"]}%", current_user.position).order(:name)
         function_name = "#{function_name.last.name} "
         function = Function.create(
-          position: current_user.position,
+          position: @position,
           name: function_name,
           not_norm: 't'
         )
