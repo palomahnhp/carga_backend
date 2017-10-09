@@ -59,7 +59,7 @@ function formCheck() {
             validData = false;
             showError("Debe rellenar las descripciones de las funciones extra");
           } else {
-            if ($("input[name='other_task_1001']").val() == $("input[name='other_task_1002']").val() || $("input[name='other_task_1001']").val() == $("input[name='other_task_1003']").val() || $("input[name='other_task_1002']").val() == $("input[name='other_task_1003']").val()) {
+            if ($(".task-row").length > 1 && ($("input[name='other_task_1001']").val() == $("input[name='other_task_1002']").val() || $("input[name='other_task_1001']").val() == $("input[name='other_task_1003']").val() || $("input[name='other_task_1002']").val() == $("input[name='other_task_1003']").val())) {
               validData = false;
               showError("Las descripciones de las funciones extra no pueden coincidir");
             } else {
