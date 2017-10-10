@@ -4,7 +4,7 @@ class Function < ActiveRecord::Base
 
   validates :name, presence: true
   validates :position_id, presence: { message: "Debe seleccionar un puesto"}
-  #validates :name, uniqueness: { scope: :position_id, message: "Ya existe una función con el mismo nombre para el mismo puesto." }
+  validates :name, uniqueness: { scope: :position_id, message: "Ya existe una función con el mismo nombre para el mismo puesto." }
 
   scope :not_extra_functions, -> { where(not_norm: false) }
   scope :extra_functions, -> { where(not_norm: true) }
