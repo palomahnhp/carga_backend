@@ -10,7 +10,7 @@ Campaign.all.each do |campaign|
   end
 end
 puts "--- CAMPAÑAS ACTUALIZADAS: #{updated}   ---"
-##
+
 updated = 0
 Campaign.all.each do |campaign|
   if (Time.now.to_date >= campaign.start_date.to_date) && campaign.status == Campaign.statuses.key(0)
