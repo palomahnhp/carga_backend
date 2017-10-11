@@ -10,10 +10,10 @@ Campaign.all.each do |campaign|
   end
 end
 puts "--- CAMPAÑAS ACTUALIZADAS: #{updated}   ---"
-
+##
 updated = 0
 Campaign.all.each do |campaign|
-  if (Time.now.to_date >= campaign.start_date.to_date) && campaign.status != Campaign.statuses.key(1)
+  if (Time.now.to_date >= campaign.start_date.to_date) && campaign.status == Campaign.statuses.key(0)
     campaign.update_attributes(status: Campaign.statuses[:active])
     campaign.save(validate: false)
     puts "----- Campaña \"#{campaign.name}\" en curso, fecha alcanzada de comienzo: #{campaign.start_date.to_date} -----"
