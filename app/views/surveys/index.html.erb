@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-4">
                   <% if position.unit.campaign.status == "active" %>
-                    <% unless Rails.env.production? && position.functions.first.responses != [] %>
+                    <% unless (Rails.env.production? || Rails.env.preproduction?) && position.functions.first.responses != [] %>
                       <a href="/surveys/show?id=<%= position.slug %>">
                         <button type="button" class="btn btn-lg btn-primary btn-primary-custom">
                           <%= position.name %> - <%= position.unit.name %>
