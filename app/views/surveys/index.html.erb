@@ -32,19 +32,20 @@
                     <% unless (Rails.env.production? || Rails.env.preproduction?) && position.functions.first.responses.where(user: User.find_by(document: @current_user.document, position: position)) != [] %>
                       <a href="/surveys/show?id=<%= position.slug %>">
                         <button type="button" class="btn btn-lg btn-primary btn-primary-custom">
-                          <% if @current_user.position.unit.subdir_name.present? %>         
-                            <%= @current_user.position.unit.subdir_name %>
+                          <% if position.unit.subdir_name.present? %>         
+                            <%= position.unit.subdir_name %> - <%= position.name %>
                           <% else %>
-                            <%= @current_user.position.unit.dir_name %>
+                            <%= position.unit.dir_name %> - <%= position.name %>
                           <% end %>
                         </button>
                       </a>
                       <br><br>
                     <% else %>
-                      <h3 class="small-text">El cuestionario <%= position.name %> - <%= position.unit.name %> ya ha sido respondido</h3>
+                      <% subdir_or_dir_name = position.unit.subdir_name.present? ? position.unit.subdir_name : position.unit.dir_name %>
+                      <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.unit.name %> ya ha sido respondido</h3>
                     <% end %>
                   <% else %>
-                    <h3 class="small-text">El cuestionario <%= position.name %> - <%= position.unit.name %> no esta activo</h3>
+                    <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.unit.name %> no esta activo</h3>
                   <% end %>
                 </div>
               </div>
