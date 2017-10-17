@@ -33,19 +33,19 @@
                       <a href="/surveys/show?id=<%= position.slug %>">
                         <button type="button" class="btn btn-lg btn-primary btn-primary-custom">
                           <% if position.unit.subdir_name.present? %>         
-                            <%= position.unit.subdir_name %> - <%= position.name %>
+                            <%= position.name %> - <%= position.unit.subdir_name %>
                           <% else %>
-                            <%= position.unit.dir_name %> - <%= position.name %>
+                            <%= position.name %> - <%= position.unit.dir_name %>
                           <% end %>
                         </button>
                       </a>
                       <br><br>
                     <% else %>
                       <% subdir_or_dir_name = position.unit.subdir_name.present? ? position.unit.subdir_name : position.unit.dir_name %>
-                      <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.name %> ya ha sido respondido</h3>
+                      <h3 class="small-text">El cuestionario <%= position.name %> - <%= subdir_or_dir_name %> ya ha sido respondido</h3>
                     <% end %>
                   <% else %>
-                    <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.name %> no esta activo</h3>
+                    <h3 class="small-text">El cuestionario <%= position.name %> - <%= subdir_or_dir_name %> no esta activo</h3>
                   <% end %>
                 </div>
               </div>
