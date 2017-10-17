@@ -42,10 +42,10 @@
                       <br><br>
                     <% else %>
                       <% subdir_or_dir_name = position.unit.subdir_name.present? ? position.unit.subdir_name : position.unit.dir_name %>
-                      <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.unit.name %> ya ha sido respondido</h3>
+                      <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.name %> ya ha sido respondido</h3>
                     <% end %>
                   <% else %>
-                    <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.unit.name %> no esta activo</h3>
+                    <h3 class="small-text">El cuestionario <%= subdir_or_dir_name %> - <%= position.name %> no esta activo</h3>
                   <% end %>
                 </div>
               </div>
