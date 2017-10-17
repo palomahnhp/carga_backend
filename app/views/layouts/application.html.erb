@@ -52,9 +52,9 @@
         <% if @current_user && @current_user.position %>
           <p class="brand-font"><%= @current_user.name %> <%= @current_user.last_name %> <%= @current_user.last_name_alt %></p>
           <% if @current_user.position.unit.subdir_name.present? %>         
-            <p class="brand-font"><%= @current_user.position.unit.subdir_name %></p>
+            <p class="brand-font"><%= @current_user.position.unit.subdir_name %> - <%= @current_user.position.name %></p>
           <% else %>
-            <p class="brand-font"><%= @current_user.position.unit.dir_name %></p>
+            <p class="brand-font"><%= @current_user.position.unit.dir_name %> - <%= @current_user.position.name %></p>
           <% end %>
         <% end %>
       </a>
