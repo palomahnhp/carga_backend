@@ -24,10 +24,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  def reset_responses
-    redirect_to action: :index
-  end
-
   def create
     @pos_functions = fillPosFunctions
     @unit = fillPosUnit

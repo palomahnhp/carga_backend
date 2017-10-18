@@ -43,7 +43,6 @@ Rails.application.routes.draw do
 
   get '/surveys', to: 'surveys#index'
   get '/surveys/show', to: 'surveys#show'
-  get '/surveys/reset_responses', to: 'surveys#reset_responses'
   get '/surveys/download_calc', to: 'surveys#download_calc'
   get '/surveys/download_manual', to: 'surveys#download_manual'
 
