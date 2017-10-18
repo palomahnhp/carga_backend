@@ -199,12 +199,13 @@ class UnitsController < ApplicationController
         emails_list << user.email
       end
     end
-    email_groups = emails_list.each_slice(1000).to_a
+    email_groups = emails_list.each_slice(500).to_a
     email_groups.each do |email_group|
       bbc_string = ""
       email_group.each do |email|
         bbc_string = "#{bbc_string}, #{email}"
       end
+      #puts "Un grupo"
       UserMailer.group_email("madrid@madrid.es",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
     end
         
