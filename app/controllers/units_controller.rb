@@ -192,7 +192,7 @@ class UnitsController < ApplicationController
 
   def send_massive_mails
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-    users = User.where.not(email: nil)
+    users = User.where.not(email: nil).where.not(email: '')
     emails_list = []
     users.each do |user|
       if Response.where(user: user).empty?
