@@ -192,12 +192,15 @@ class UnitsController < ApplicationController
 
   def send_massive_mails
     users = User.where.not(email: nil)
+    user_emails = ""
     users.each do |user|
       if Response.where(user: user).empty?
-        message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-        UserMailer.group_email("madrid@madrid.es",bcc: user.email, message: message.html_safe, subject: params[:subject]).deliver_now
+        user_emails = "#{user_emails}, #{user.email}"
       end
     end
+    puts user_emails
+    message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
+    UserMailer.group_email("madrid@madrid.es",bcc: user_emails, message: message.html_safe, subject: params[:subject]).deliver_now
     redirect_to action: :tracking
   end
 
