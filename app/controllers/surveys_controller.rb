@@ -4,10 +4,6 @@ class SurveysController < ApplicationController
 
   def index
     @current_user = current_user
-    if @current_user.position
-    else
-      @render = false
-    end
     @positions = Position.where(id: User.select(:position_id).where(document: current_user.document))
     @user_positions = []
     @positions.each do |position|
