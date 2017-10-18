@@ -178,9 +178,26 @@ class UnitsController < ApplicationController
     end
   end
 
+  def non_response_mail
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def send_mails
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
     UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: message.html_safe, subject: params[:subject]).deliver_now
+    redirect_to action: :tracking
+  end
+
+  def send_massive_mails
+    users = User.where.not(email: nil)
+    users.each do |user|
+      if Response.where(user: user).empty?
+        message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
+        UserMailer.group_email("madrid@madrid.es",bcc: user.email, message: message.html_safe, subject: params[:subject]).deliver_now
+      end
+    end
     redirect_to action: :tracking
   end
 
