@@ -205,8 +205,7 @@ class UnitsController < ApplicationController
       email_group.each do |email|
         bbc_string = "#{bbc_string}, #{email}"
       end
-      #puts "Un grupo"
-      UserMailer.group_email("madrid@madrid.es",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
+      UserMailer.group_email("",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
     end
         
     redirect_to action: :tracking
