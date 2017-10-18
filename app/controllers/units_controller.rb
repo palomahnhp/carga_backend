@@ -192,7 +192,7 @@ class UnitsController < ApplicationController
 
   def send_massive_mails
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-    users = User.where.not(email: nil)
+    users = User.where.not(email: nil).where.not(email: '')
     emails_list = []
     users.each do |user|
       if Response.where(user: user).empty?
@@ -217,9 +217,9 @@ class UnitsController < ApplicationController
     respond_to do |format|
       format.csv {
         send_file(
-          "#{Rails.root}/public/ListadoCorreos_UltimoEnvio.xlsm",
-          filename: "ListadoCorreos_UltimoEnvio.xlsm",
-          type: "application/vnd.ms-excel.sheet.macroEnabled.12"
+          "#{Rails.root}/public/ListadoCorreos_UltimoEnvio.csv",
+          filename: "ListadoCorreos_UltimoEnvio.csv",
+          type: "text/csv"
         )
       }
       format.html
@@ -255,7 +255,7 @@ class UnitsController < ApplicationController
   end
 
   def saveList(emails_list)
-    CSV.open("#{Rails.root}/public/ListadoCorreos_UltimoEnvio.xlsm", "wb") do |csv|
+    CSV.open("#{Rails.root}/public/ListadoCorreos_UltimoEnvio.csv", "wb") do |csv|
       csv << ["Correos"]
       emails_list.each do |email|
         csv << [email]
