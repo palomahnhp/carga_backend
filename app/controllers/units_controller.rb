@@ -191,14 +191,39 @@ class UnitsController < ApplicationController
   end
 
   def send_massive_mails
-    users = User.where.not(email: nil)
+    message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
+    users = User.where.not(email: nil).where.not(email: '')
+    emails_list = []
     users.each do |user|
       if Response.where(user: user).empty?
-        message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-        UserMailer.group_email("madrid@madrid.es",bcc: user.email, message: message.html_safe, subject: params[:subject]).deliver_now
+        emails_list << user.email
       end
     end
+    saveList(emails_list)
+
+    email_groups = emails_list.each_slice(500).to_a
+    email_groups.each do |email_group|
+      bbc_string = ""
+      email_group.each do |email|
+        bbc_string = "#{bbc_string}, #{email}"
+      end
+      UserMailer.group_email("",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
+    end
+
     redirect_to action: :tracking
+  end
+
+  def download_massive_mails_log
+    respond_to do |format|
+      format.csv {
+        send_file(
+          "#{Rails.root}/public/ListadoCorreos_UltimoEnvio.csv",
+          filename: "ListadoCorreos_UltimoEnvio.csv",
+          type: "text/csv"
+        )
+      }
+      format.html
+    end
   end
 
   private
@@ -226,6 +251,15 @@ class UnitsController < ApplicationController
         dir: @dir,
         subdir: @subdir
       }
+    end
+  end
+
+  def saveList(emails_list)
+    CSV.open("#{Rails.root}/public/ListadoCorreos_UltimoEnvio.csv", "wb") do |csv|
+      csv << ["Correos"]
+      emails_list.each do |email|
+        csv << [email]
+      end
     end
   end
 

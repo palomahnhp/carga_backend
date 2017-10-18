@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get '/units/send_massive_mails', to: 'units#send_massive_mails'
   get '/units/user_list', to: 'units#user_list'
   get '/units/non_response_mail', to: 'units#non_response_mail'
+  get '/units/download_massive_mails_log', to: 'units#download_massive_mails_log'
 
   get '/surveys', to: 'surveys#index'
   get '/surveys/show', to: 'surveys#show'
