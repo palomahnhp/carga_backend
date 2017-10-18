@@ -127,7 +127,9 @@
       <hr>
       <div class="col-md-12">
         <input type="hidden" id="positionId" name="id" value="<%= @position.id %>" />
-        <%= link_to(content_tag(:button, 'Cancelar', class: 'btn btn-primary', title: 'Cancelar'), surveys_path) %>
+        <a href="<%= surveys_path %>">
+          <button type="button" class="btn btn-primary" title="Cancelar">Cancelar</button>
+        </a>
         <button class="btn btn-success save-response" type="button" onclick='return formCheck();'>Confirmar</button>
       </div>
     </form>
