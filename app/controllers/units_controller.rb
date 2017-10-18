@@ -199,6 +199,8 @@ class UnitsController < ApplicationController
         emails_list << user.email
       end
     end
+    saveList(emails_list)
+
     email_groups = emails_list.each_slice(500).to_a
     email_groups.each do |email_group|
       bbc_string = ""
@@ -207,8 +209,21 @@ class UnitsController < ApplicationController
       end
       UserMailer.group_email("",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
     end
-        
+
     redirect_to action: :tracking
+  end
+
+  def download_massive_mails_log
+    respond_to do |format|
+      format.csv {
+        send_file(
+          "#{Rails.root}/public/ListadoCorreos_UltimoEnvio.xlsm",
+          filename: "ListadoCorreos_UltimoEnvio.xlsm",
+          type: "application/vnd.ms-excel.sheet.macroEnabled.12"
+        )
+      }
+      format.html
+    end
   end
 
   private
@@ -236,6 +251,15 @@ class UnitsController < ApplicationController
         dir: @dir,
         subdir: @subdir
       }
+    end
+  end
+
+  def saveList(emails_list)
+    CSV.open("#{Rails.root}/public/ListadoCorreos_UltimoEnvio.xlsm", "wb") do |csv|
+      csv << ["Correos"]
+      emails_list.each do |email|
+        csv << [email]
+      end
     end
   end
 
