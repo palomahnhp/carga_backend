@@ -71,6 +71,7 @@ function formCheck() {
       }
     }
   });
+  percSum = Math.round(percSum*10000)/10000;
   if (validData && percSum != 100) {
     validData = false;
     showError("El total de porcentajes de tiempo debe sumar 100%");
