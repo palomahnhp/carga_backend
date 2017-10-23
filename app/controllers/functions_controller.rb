@@ -74,13 +74,14 @@ class FunctionsController < ApplicationController
       end
       redirect_to action: :edit, id: params[:id],
                                 search: params[:search],
+                                searchByUser: params[:searchByUser],
                                 error: message,
                                 name: params[:name],
                                 position_id: params[:position]
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search], searchByUser: params[:searchByUser]
   end
 
   def delete

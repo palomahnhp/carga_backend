@@ -14,6 +14,11 @@ Rails.application.config.assets.precompile += %w( jquery.min.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( jquery-ui.js )
 Rails.application.config.assets.precompile += %w( datepicker-es.js )
+Rails.application.config.assets.precompile += %w( campaigns.js )
+Rails.application.config.assets.precompile += %w( positions.js )
+Rails.application.config.assets.precompile += %w( surveys.js )
+Rails.application.config.assets.precompile += %w( units.js )
+Rails.application.config.assets.precompile += %w( users.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
