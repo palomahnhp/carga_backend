@@ -90,6 +90,12 @@
               <%= link_to "Eliminar Función", {action: 'delete',id: @function.id}, class: "btn btn-primary link-delete" %>
             </div>
           </div>
+          <% if params[:search].present? %>
+            <input type="hidden" value="<%= params[:search] %>" name="search"/>
+          <% end %>
+          <% if params[:searchByUser].present? %>
+            <input type="hidden" value="<%= params[:searchByUser] %>" name="searchByUser"/>
+          <% end %>
         </form>
       </div>
       <div class="col-md-6">
