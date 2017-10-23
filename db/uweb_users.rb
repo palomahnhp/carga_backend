@@ -8,8 +8,13 @@ if ENV["DG"]
   users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(cod_dir: dg_codes)))
   puts "\n===> Autorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
 else
-  users = User.all
-  puts "\n===> Autorizando todos los usuarios de la BBDD."
+  if ENV["USER"]
+    users = User.where(document: ENV["USER"])
+    puts "\n===> Autorizando usuario con documento #{ENV["USER"]}, tiene #{users.count} puestos."
+  else
+    users = User.all
+    puts "\n===> Autorizando todos los usuarios de la BBDD."
+  end
 end
 
 users.each do |user|
@@ -19,6 +24,8 @@ users.each do |user|
     uwebapi = UwebUpdateApi.new("48417")
     uwebapi.insert_profile(uweb_auth.uweb_user_data)
     unless uweb_auth.errors.any? || uwebapi.errors.any?
+      puts "===> #{uweb_auth.errors}"
+      puts "===> #{uwebapi.errors}"
       puts "===> AUTORIZADO EN UWEB <==="
     end
   else
