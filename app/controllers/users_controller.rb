@@ -68,7 +68,7 @@ class UsersController < ApplicationController
                                 end_date:        params[:end_date]
       return
     end
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def create
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   private
