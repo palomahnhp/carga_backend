@@ -88,7 +88,7 @@ class FunctionsController < ApplicationController
   def delete
     @function = Function.find(params[:id])
     @function.destroy
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search], searchByUser: params[:searchByUser]
   end
 
   private
