@@ -82,7 +82,7 @@ class UnitsController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def update
@@ -114,7 +114,7 @@ class UnitsController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def delete
@@ -124,7 +124,7 @@ class UnitsController < ApplicationController
         users = User.where(position: position)
         if users.any?
           alert = "No se puede borrar la unidad porque existen usuarios pertenecientes a alguno de sus puestos"
-          redirect_to action: :edit, id: params[:id], alert: alert
+          redirect_to action: :edit, id: params[:id], search: params[:search], alert: alert
           return
         else
           if position.functions
@@ -138,7 +138,7 @@ class UnitsController < ApplicationController
     end
 
     @unit.destroy
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def user_list
@@ -162,7 +162,7 @@ class UnitsController < ApplicationController
   def send_mail
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
     UserMailer.reminder_email(params[:recipient], message: message.html_safe, subject: params[:subject]).deliver_now
-    redirect_to action: :tracking
+    redirect_to action: :tracking, search: params[:search]
   end
 
   def group_mail
@@ -187,7 +187,7 @@ class UnitsController < ApplicationController
   def send_mails
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
     UserMailer.group_email("madrid@madrid.es",bcc: params[:bcc], message: message.html_safe, subject: params[:subject]).deliver_now
-    redirect_to action: :tracking
+    redirect_to action: :tracking, search: params[:search]
   end
 
   def send_massive_mails
@@ -210,7 +210,7 @@ class UnitsController < ApplicationController
       UserMailer.group_email("",bcc: bbc_string, message: message.html_safe, subject: params[:subject]).deliver_now
     end
 
-    redirect_to action: :tracking
+    redirect_to action: :tracking, search: params[:search]
   end
 
   def download_massive_mails_log

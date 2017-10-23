@@ -28,12 +28,15 @@
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <a href="/units/tracking">
+        <a href="/units/tracking?search=<%= params[:search] %>">
           <button type="reset" class="btn btn-primary">Cancelar</button>
         </a>
         <button type="submit" class="btn btn-primary">Enviar</button>
       </div>
     </div>
   </fieldset>
+  <% if params[:search].present? %>
+    <input type="hidden" value="<%= params[:search] %>" name="search"/>
+  <% end %>
 </form>
 <% end %>
