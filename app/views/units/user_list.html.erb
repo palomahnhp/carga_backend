@@ -33,7 +33,7 @@
                             <%= user.email %>
                           </td>
                           <td>
-                            <%= link_to(content_tag(:i, nil, class: 'fa fa-envelope', title: 'Enviar recordatorio'), action: 'show_mail', id: user.id) %>
+                            <%= link_to(content_tag(:i, nil, class: 'fa fa-envelope', title: 'Enviar recordatorio'), action: 'show_mail', id: user.id, search: params[:search]) %>
                           </td>
                         </tr>
                     <% end %>
@@ -42,9 +42,12 @@
             </div>
           </div>
         </div>
+        <% if params[:search].present? %>
+          <input type="hidden" value="<%= params[:search] %>" name="search"/>
+        <% end %>
       </fieldset>
     <div class="col-md-6">
-      <a href="/units/tracking">
+      <a href="/units/tracking?search=<%= params[:search] %>">
         <button type="submit" class="btn btn-primary">Volver</button>
       </a>
     </div>
