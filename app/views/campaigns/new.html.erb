@@ -80,6 +80,9 @@
               <button class="btn btn-primary save-changes" type="submit" >Crear campaña</button>
             </div>
           </div>
+          <% if params[:search].present? %>
+            <input type="hidden" value="<%= params[:search] %>" name="search"/>
+          <% end %>
         </form>
       </div>
     </fieldset>

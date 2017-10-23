@@ -43,7 +43,7 @@ class CampaignsController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def edit
@@ -78,7 +78,7 @@ class CampaignsController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def delete
@@ -86,12 +86,12 @@ class CampaignsController < ApplicationController
     units = Unit.where(campaign: @campaign)
     if units.any?
       alert = "No se puede borrar la campaña porque existen unidades asociadas a ella"
-      redirect_to action: :edit, id: params[:id], alert: alert
+      redirect_to action: :edit, id: params[:id], search: params[:search], alert: alert
       return
     end
 
     @campaign.destroy
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   private
