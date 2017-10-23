@@ -51,7 +51,7 @@ class PositionsController < ApplicationController
 
     @position.update_attributes(slug: Digest::SHA1.hexdigest("#{@position.id}"))
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def update
@@ -76,7 +76,7 @@ class PositionsController < ApplicationController
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   def delete
@@ -84,7 +84,7 @@ class PositionsController < ApplicationController
     users = User.where(position: @position)
     if users.any?
       alert = "No se puede borrar el puesto porque existen usuarios pertenecientes a él"
-      redirect_to action: :edit, id: params[:id], alert: alert
+      redirect_to action: :edit, id: params[:id], search: params[:search], alert: alert
       return
     else
       if @position.functions
@@ -95,7 +95,7 @@ class PositionsController < ApplicationController
     end
     
     @position.destroy
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search]
   end
 
   private
