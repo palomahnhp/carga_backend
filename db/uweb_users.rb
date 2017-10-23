@@ -24,9 +24,11 @@ users.each do |user|
     uwebapi = UwebUpdateApi.new("48417")
     uwebapi.insert_profile(uweb_auth.uweb_user_data)
     unless uweb_auth.errors.any? || uwebapi.errors.any?
+      puts "===> AUTORIZADO EN UWEB <==="
+    else
+      puts "===> NO SE HA PODIDO AUTORIZAR <==="
       puts "===> #{uweb_auth.errors}"
       puts "===> #{uwebapi.errors}"
-      puts "===> AUTORIZADO EN UWEB <==="
     end
   else
     puts "===> #{user.document} NO EXISTE EN UWEB <==="
