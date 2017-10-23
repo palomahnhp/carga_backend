@@ -51,13 +51,14 @@ class FunctionsController < ApplicationController
         message = @function.errors[:name].to_sentence
       end
       redirect_to action: :new, search: params[:search],
+                                searchByUser: params[:searchByUser],
                                 error: message,
                                 name: params[:name],
                                 position_id: params[:position]
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search], searchByUser: params[:searchByUser]
   end
 
   def update
@@ -74,19 +75,20 @@ class FunctionsController < ApplicationController
       end
       redirect_to action: :edit, id: params[:id],
                                 search: params[:search],
+                                searchByUser: params[:searchByUser],
                                 error: message,
                                 name: params[:name],
                                 position_id: params[:position]
       return
     end
 
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search], searchByUser: params[:searchByUser]
   end
 
   def delete
     @function = Function.find(params[:id])
     @function.destroy
-    redirect_to action: :index
+    redirect_to action: :index, search: params[:search], searchByUser: params[:searchByUser]
   end
 
   private

@@ -87,9 +87,15 @@
               <input type="hidden"value="<%= @function.id %>" name="id"/>
               <input type="hidden"value="<%= form_authenticity_token() %>" name="authenticity_token"/>
               <button class="btn btn-primary save-changes" type="submit" >Guardar cambios</button>
-              <%= link_to "Eliminar Función", {action: 'delete',id: @function.id}, class: "btn btn-primary link-delete" %>
+              <%= link_to "Eliminar Función", {action: 'delete', id: @function.id, search: params[:search], searchByUser: params[:searchByUser]}, class: "btn btn-primary link-delete" %>
             </div>
           </div>
+          <% if params[:search].present? %>
+            <input type="hidden" value="<%= params[:search] %>" name="search"/>
+          <% end %>
+          <% if params[:searchByUser].present? %>
+            <input type="hidden" value="<%= params[:searchByUser] %>" name="searchByUser"/>
+          <% end %>
         </form>
       </div>
       <div class="col-md-6">
