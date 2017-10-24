@@ -192,13 +192,17 @@ class UnitsController < ApplicationController
 
   def send_massive_mails
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
-    users = User.where.not(email: nil).where.not(email: '')
+    #users.each do |user|
+      #if Response.where(user: user).empty?
+        #emails_list << user.email
+      #end
+    #end
+    users = User.where.not(email: nil).where.not(email: '').includes(:responses).where(responses: { user_id: nil })
     emails_list = []
     users.each do |user|
-      if Response.where(user: user).empty?
-        emails_list << user.email
-      end
+      emails_list << user.email
     end
+
     saveList(emails_list)
 
     email_groups = emails_list.each_slice(Rails.application.secrets.massive_mails_group_number).to_a
