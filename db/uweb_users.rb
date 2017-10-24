@@ -8,9 +8,9 @@ if ENV["DG"]
   users = User.where(position_id: Position.select(:id).where(unit_id: Unit.select(:id).where(cod_dir: dg_codes)))
   puts "\n===> Autorizando usuarios de la DG #{ENV['DG']}, #{users.count} usuarios."
 else
-  if ENV["USER"]
-    users = User.where(document: ENV["USER"])
-    puts "\n===> Autorizando usuario con documento #{ENV["USER"]}, tiene #{users.count} puestos."
+  if ENV["USER_DOC"]
+    users = User.where(document: ENV["USER_DOC"])
+    puts "\n===> Autorizando usuario con documento #{ENV["USER_DOC"]}, tiene #{users.count} puestos."
   else
     users = User.all
     puts "\n===> Autorizando todos los usuarios de la BBDD."
