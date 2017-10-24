@@ -201,7 +201,7 @@ class UnitsController < ApplicationController
     end
     saveList(emails_list)
 
-    email_groups = emails_list.each_slice(500).to_a
+    email_groups = emails_list.each_slice(Rails.application.secrets.massive_mails_group_number).to_a
     email_groups.each do |email_group|
       bbc_string = ""
       email_group.each do |email|
