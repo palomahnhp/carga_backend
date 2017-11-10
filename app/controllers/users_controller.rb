@@ -44,7 +44,8 @@ class UsersController < ApplicationController
       user_role:       params[:role].to_i,
       position_id:     params[:position],
       start_date:      params[:start_date],
-      end_date:        params[:end_date]
+      end_date:        params[:end_date],
+      annual_hours:    params[:annual_hours]
     )
     unless @user.save
       message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
@@ -65,7 +66,8 @@ class UsersController < ApplicationController
                                 user_role:       params[:role].to_i,
                                 position_id:     params[:position],
                                 start_date:      params[:start_date],
-                                end_date:        params[:end_date]
+                                end_date:        params[:end_date],
+                                annual_hours:    params[:annual_hours]
       return
     end
     redirect_to action: :index, search: params[:search]
@@ -83,7 +85,8 @@ class UsersController < ApplicationController
       phone_number:  params[:phone_number],
       position_id:   params[:position],
       start_date:    params[:start_date],
-      end_date:      params[:end_date]
+      end_date:      params[:end_date],
+      annual_hours:  params[:annual_hours]
     )
     unless @user.save
       message = @user.errors[:position_id].present? ? @user.errors[:position_id].to_sentence : nil
@@ -102,7 +105,8 @@ class UsersController < ApplicationController
                                 phone_number:  params[:phone_number],
                                 position_id:   params[:position],
                                 start_date:    params[:start_date],
-                                end_date:      params[:end_date]
+                                end_date:      params[:end_date],
+                                annual_hours:  params[:annual_hours]
       return
     end
 
@@ -112,7 +116,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:user_num, :name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id, :start_date, :end_date)
+    params.require(:user).permit(:user_num, :name, :last_name, :last_name_alt, :document, :email, :login, :phone_number, :user_role, :position_id, :start_date, :end_date, :annual_hours)
   end
 
   def checkAjaxNew
