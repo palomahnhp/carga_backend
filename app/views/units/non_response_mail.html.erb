@@ -32,5 +32,8 @@
   <% if params[:search].present? %>
     <input type="hidden" value="<%= params[:search] %>" name="search"/>
   <% end %>
+  <% if params[:all].present? %>
+    <input type="hidden" value="<%= params[:all] %>" name="all"/>
+  <% end %>
 </form>
 <% end %>
