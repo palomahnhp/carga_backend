@@ -14,3 +14,12 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'tipologia', 'tipologias'
+  inflect.irregular 'macroproceso', 'macroprocesos'
+  inflect.irregular 'proceso', 'procesos'
+  inflect.irregular 'subproceso', 'subprocesos'
+  inflect.irregular 'procedimiento', 'procedimientos'
+  inflect.irregular 'indicador', 'indicadores'
+end
