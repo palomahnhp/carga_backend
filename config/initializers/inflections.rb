@@ -22,4 +22,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'subproceso', 'subprocesos'
   inflect.irregular 'procedimiento', 'procedimientos'
   inflect.irregular 'indicador', 'indicadores'
+  inflect.irregular 'horas_final', 'horas_finales'
 end
