@@ -80,8 +80,9 @@ class ApplicationController < ActionController::Base
 
   def find_or_create_user
     user1 = "03811082M"
-    admin = "46876077F"
-    login_manager = LoginManager.new(login_data: { document: admin })
+    admin = "50302162N"
+    superadmin = "46876077F"
+    login_manager = LoginManager.new(login_data: { document: superadmin })
     user =    if login_manager.find_or_create_user
                 login_manager.user
               else
