@@ -67,18 +67,30 @@
                     </div>
                     <div class="col-md-7">
                       <select class="form-control" name="role">
-                        <% if @user.superadmin? %>
-                          <option name="role" value="2" selected="selected">Superadministrador</option>
-                          <option value="1">Administrador</option>
-                          <option value="0">Encuestado</option>
-                        <% elsif @user.admin? %>
-                          <option value="2">Superadministrador</option>
-                          <option value="1" selected="selected">Administrador</option>
-                          <option value="0">Encuestado</option>
-                        <% else %>
-                          <option value="2">Superadministrador</option>
-                          <option value="1">Administrador</option>
-                          <option value="0" selected="selected">Encuestado</option>
+                        <% if @current_user.superadmin? %>
+                          <% if @user.superadmin? %>
+                            <option name="role" value="2" selected="selected">Superadministrador</option>
+                            <option value="1">Administrador</option>
+                            <option value="0">Encuestado</option>
+                          <% elsif @user.admin? %>
+                            <option value="2">Superadministrador</option>
+                            <option value="1" selected="selected">Administrador</option>
+                            <option value="0">Encuestado</option>
+                          <% else %>
+                            <option value="2">Superadministrador</option>
+                            <option value="1">Administrador</option>
+                            <option value="0" selected="selected">Encuestado</option>
+                          <% end %>
+                        <% elsif @current_user.admin? %>
+                          <% if @user.superadmin? %>
+                            <option name="role" value="2" selected="selected">Superadministrador</option>
+                          <% elsif @user.admin? %>
+                            <option value="1" selected="selected">Administrador</option>
+                            <option value="0">Encuestado</option>
+                          <% else %>
+                            <option value="1">Administrador</option>
+                            <option value="0" selected="selected">Encuestado</option>
+                          <% end %>
                         <% end %>
                        </select>
                     </div>
