@@ -1,7 +1,13 @@
 <% if can? :settings, @current_user %>
 <form class="form-horizontal" id="mail-fieldset" action="/units/send_massive_mails" method="get">
   <fieldset>
-    <legend>Enviar correo electrónico</legend>
+    <% if params[:all].present? %>
+      <legend>Enviar correo electrónico a todos</legend>
+    <% elsif params[:dir].present? %>
+      <legend>Enviar correo electrónico a directores y subdirectores</legend>
+    <% else %>
+      <legend>Enviar correo electrónico a usuarios que no han respondido</legend>
+    <% end %>
     <div class="form-group">
       <label for="disabledInput" class="col-lg-2 control-label">Remitente</label>
       <div class="col-lg-10">
@@ -34,6 +40,9 @@
   <% end %>
   <% if params[:all].present? %>
     <input type="hidden" value="<%= params[:all] %>" name="all"/>
+  <% end %>
+  <% if params[:dir].present? %>
+    <input type="hidden" value="<%= params[:dir] %>" name="dir"/>
   <% end %>
 </form>
 <% end %>
