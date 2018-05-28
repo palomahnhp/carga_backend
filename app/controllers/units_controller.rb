@@ -194,6 +194,8 @@ class UnitsController < ApplicationController
     emails_list = []
     if params[:all].present?
       users = User.where.not(email: nil).where.not(email: '')
+    elsif params[:dir].present?
+      users = User.where.not(email: nil).where.not(email: '').joins(:position).where("positions.name ILIKE '%DIRECTOR%'")
     else
       users = User.where.not(email: nil).where.not(email: '').includes(:responses).where(responses: { user_id: nil })
     end
