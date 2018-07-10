@@ -200,7 +200,9 @@ class UnitsController < ApplicationController
       users = User.where.not(email: nil).where.not(email: '').includes(:responses).where(responses: { user_id: nil })
     end
     users.each do |user|
-      emails_list << user.email
+      if user.position.unit.campaign.active?
+        emails_list << user.email
+      end
     end
 
     message = params[:message].include?("\r\n") ? params[:message].gsub!("\r\n", "<br>") : params[:message]
